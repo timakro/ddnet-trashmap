@@ -1,0 +1,23 @@
+{
+    "maxservers": 100,
+    "maxrunningservers": 10,
+    "tickseconds": 1,
+    "titleupdateseconds": 10,
+    "joinminutes": 5,
+    "stophours": 8,
+    "deletedays": 30,
+    "mapsizehuman": "5MB",
+    "mapsize": 5000000,
+    "configsizehuman": "100kB",
+    "configsize": 100000,
+    "minplayers": 1,
+    "maxplayers": 16,
+    "defaultplayers": 8,
+    "defaultrcon": "trashmap",
+    "maxlengthlabel": 25,
+    "maxlengthaccesskey": 25,
+    "maxlengthpassword": 25,
+    "maxlengthmapconfigcommand": 25,
+    "maxlengthrconcommand": 25,
+    "maxlengthrcon": 25
+}
