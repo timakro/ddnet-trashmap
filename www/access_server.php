@@ -27,6 +27,7 @@ if(!in_array($_GET["id"], array_keys($servers))) {
 You can control your server on this site.
 Please add this link to your favorites and use it everytime you want to test a map.
 You can share this link with other players to give them access to the server.
+You can also add the teeworlds server to your favorites.
 </p>
 
 <h3>Server Status</h3>

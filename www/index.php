@@ -57,7 +57,7 @@ else
 <p>
 DDNet Trashmap is developed by <a href="https://github.com/timgame">timgame</a>, ingame name <a href="http://forum.ddnet.tw/memberlist.php?mode=viewprofile&u=52">DoNe</a>.
 The sourcecode is hosted on <a href="https://github.com/timgame/DDNet-Trashmap">github</a>.
-Please report bugs on the github page or on the related <a href="">thread</a> in the ddnet forum.
+Please report bugs on the github page or on the related <a href="http://forum.ddnet.tw/viewtopic.php?f=6&t=1764">thread</a> in the ddnet forum.
 </p>
 
 </body>
