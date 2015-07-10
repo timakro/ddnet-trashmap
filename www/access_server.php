@@ -43,10 +43,10 @@ Your server is <?php echo($info["running"] ? "running" : "offline"); ?> at the m
 <?php
     if($info["running"]) {
         echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Mapconfig</th><th>Rcon</th><th>Password</th><th>Playercount</th><th>Runtime</th></tr>\n");
-        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["mapconfig"] == null ? "false" : "true")."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])."/".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td></tr>\n");
+        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["mapconfig"] == null ? "false" : "true")."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])." / ".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td></tr>\n");
     } else {
-        echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Mapconfig</th><th>Rcon</th><th>Password</th></tr>\n");
-        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["mapconfig"] == null ? "false" : "true")."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td></tr>\n");
+        echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Mapconfig</th><th>Rcon</th><th>Password</th><th>Playercount</th></tr>\n");
+        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["mapconfig"] == null ? "false" : "true")."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>- / ".$info["playerlimit"]."</td></tr>\n");
     }
 ?>
 </table>
