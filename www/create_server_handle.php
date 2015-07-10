@@ -12,6 +12,7 @@ $servers = $data["storage"]["servers"];
 $CREATE_SERVER = 3;
 ?>
 
+<a href="index.php">Main Page</a> -> Create Server
 <h2>DDNet Trashmap - Create Server</h2>
 <p>
 <?php
@@ -142,7 +143,7 @@ if($success) {
     echo("Successfully created a new server.\nYou can access the server via the webinterface unsing this link <a href=\"".$link."\">".$link."</a>.\nPlease save this link to your bookmarks and use it everytime you want to test a map.\nYou can also login using a form at the server list page and your accesskey.\nYou can ofcourse share the link or your accesskey with other players.\n");
 }
 else
-    echo("Failed to create a new server because an error occurred.\n");
+    echo("Failed to create a new server because an error occurred.\nClick <a href=\"create_server.php\">here</a> to get back.");
 ?>
 </p>
 

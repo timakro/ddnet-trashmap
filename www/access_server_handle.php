@@ -19,6 +19,7 @@ $CHANGE_PLAYERLIMIT = 10;
 $DELETE_SERVER = 11;
 ?>
 
+<a href="index.php">Main Page</a> -> <a href="server_list.php">Server List</a> -> Access Server
 <h2>DDNet Trashmap - Access Server</h2>
 <p>
 <?php
@@ -138,8 +139,8 @@ else {
         foreach($warningmessages as $warningmessage)
             echo("<span style=\"background-color:orange;\">[".$type."] Warning: ".$warningmessage."</span><br>\n");
     echo("<br>\n");
+    $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $info["accesskey"]]);
     if($success) {
-        $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $info["accesskey"]]);
         if($_POST["action"] == "start") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $START_SERVER,
@@ -201,7 +202,7 @@ else {
         }
     }
     else
-        echo("Failed to access the server because an error occurred.\n");
+        echo("Failed to access the server because an error occurred.\nClick <a href=\"".$link."\">here</a> to get back.\n");
 }
 ?>
 </p>

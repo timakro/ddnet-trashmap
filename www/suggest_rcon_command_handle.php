@@ -11,6 +11,7 @@ $config = $data["config"];
 $SUGGEST_RCON = 12;
 ?>
 
+<a href="index.php">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="rcon_commands.php">Rcon Commands</a> -> Suggest Rcon Command
 <h2>DDNet Trashmap - Suggest Rcon Command</h2>
 <p>
 <?php
@@ -46,10 +47,10 @@ if($success) {
         ["type" => $SUGGEST_RCON,
          "command" => $_POST["commandname"]]
     )."\n");
-    echo("Thanks for suggesting a new command.\n");
+    echo("Thanks for suggesting a new command.\nClick <a href=\"suggest_rcon_command.php\">here</a> to get back.\n");
 }
 else
-    echo("Failed to suggest a new command because an error occurred.\n");
+    echo("Failed to suggest a new command because an error occurred.\nClick <a href=\"suggest_rcon_command.php\">here</a> to get back.\n");
 ?>
 </p>
 

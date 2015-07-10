@@ -11,6 +11,7 @@ $config = $data["config"];
 $servers = $data["storage"]["servers"];
 ?>
 
+<a href="index.php">Main Page</a> -> <a href="server_list.php">Server List</a> -> Access Server
 <h2>DDNet Trashmap - Access Server</h2>
 <p>
 <?php

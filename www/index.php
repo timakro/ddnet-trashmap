@@ -11,6 +11,7 @@ $config = $data["config"];
 $servers = $data["storage"]["servers"];
 ?>
 
+Main Page
 <h2>DDNet Trashmap</h2>
 <p>
 DDNet Trashmap is a service for mappers who can't host their own server.

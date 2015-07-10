@@ -11,6 +11,7 @@ $config = $data["config"];
 $servers = $data["storage"]["servers"];
 ?>
 
+<a href="index.php">Main Page</a> -> Server List
 <h2>DDNet Trashmap - Server List</h2>
 <p>
 This is a list of all servers saved.

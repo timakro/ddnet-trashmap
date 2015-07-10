@@ -10,6 +10,7 @@ $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 $config = $data["config"];
 ?>
 
+<a href="index.php">Main Page</a> -> Create Server
 <h2>DDNet Trashmap - Create Server</h2>
 <p>
 When you submit this form a new server with the map you uploaded will be started.

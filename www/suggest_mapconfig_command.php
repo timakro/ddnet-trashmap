@@ -10,6 +10,7 @@ $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 $config = $data["config"];
 ?>
 
+<a href="index.php">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="mapconfig_commands.php">Mapconfig Commands</a> -> Suggest Mapconfig Command
 <h2>DDNet Trashmap - Suggest Mapconfig Command</h2>
 <p>
 You can suggest a new mapcofig command here.
