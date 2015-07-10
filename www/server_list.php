@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="stylesheet.css">
 <title>DDNet Trashmap - Server List</title>
 </head>
 <body>
