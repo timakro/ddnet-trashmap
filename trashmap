@@ -228,7 +228,10 @@ def changemap(identifier, mapfile, mapname):
     # move new map and reload
     os.rename(mapfile, os.path.join(info["serverdir"], "maps", mapname+".map"))
     if info["running"]:
-        writefifo(identifier, buildcommand("change_map", mapname))
+        if info["mapname"] != mapname:
+            writefifo(identifier, buildcommand("change_map", mapname))
+        else:
+            writefifo(identifier, buildcommand("reload"))
     # update memory
     info["mapname"] = mapname
     log("Changed map", identifier=identifier)
