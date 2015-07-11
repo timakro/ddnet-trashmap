@@ -265,6 +265,11 @@ def update(identifier):
                 if cid in info["clientids"]:
                     info["clientids"].remove(cid)
                 continue
+            match = re.match("\[.*\]\[datafile\]: loading done\. .*", line)
+            if match:
+                if info["mapconfig"]:
+                    writefifo(identifier, "".join(info["mapconfig"]))
+                continue
         if info["lifeseconds"]-info["starttime"] >= data["config"]["joinminutes"]*60 and len(info["clientids"]) == 0:
             stopserver(identifier)
             return
