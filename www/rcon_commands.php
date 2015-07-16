@@ -10,7 +10,7 @@
 $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 ?>
 
-<a href="index.php">Main Page</a> -> <a href="create_server.php">Create Server</a> -> Rcon Commands
+<a href=".">Main Page</a> -> <a href="create_server.php">Create Server</a> -> Rcon Commands
 <h2>DDNet Trashmap - Rcon Commands</h2>
 <p>
 When you have the rcon password of a server you can only execute specifically allowed commands.

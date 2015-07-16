@@ -20,13 +20,13 @@ $CHANGE_PLAYERLIMIT = 10;
 $DELETE_SERVER = 11;
 ?>
 
-<a href="index.php">Main Page</a> -> <a href="server_list.php">Server List</a> -> Access Server
+<a href=".">Main Page</a> -> <a href="server_list.php">Server List</a> -> Access Server
 <h2>DDNet Trashmap - Access Server</h2>
 <p>
 <?php
 if(!in_array($_POST["id"], array_keys($servers)))
     echo("There is no server saved with the given identifier.\n");
-elseif($_POST["key"] != $servers[$_POST["id"]]["accesskey"])
+elseif(!password_verify($_POST["key"], $servers[$_POST["id"]]["accesskey"]))
     echo("The given accesskey does not match.\n");
 else {
     $identifier = $_POST["id"];
@@ -140,7 +140,7 @@ else {
         foreach($warningmessages as $warningmessage)
             echo("<span style=\"background-color:orange;\">[".$type."] Warning: ".$warningmessage."</span><br>\n");
     echo("<br>\n");
-    $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $info["accesskey"]]);
+    $link = "access_server.php?".http_build_query(["id" => $_POST["id"], "key" => $_POST["key"]]);
     if($success) {
         if($_POST["action"] == "start") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
@@ -197,7 +197,7 @@ else {
                 ["type" => $DELETE_SERVER,
                  "identifier" => $identifier]
             )."\n");
-            echo("Successfully deleted the server.\nClick <a href=\"index.php\">here</a> to get back to the main page.\n");
+            echo("Successfully deleted the server.\nClick <a href=\".\">here</a> to get back to the main page.\n");
         } else {
             echo("No such action.\n");
         }

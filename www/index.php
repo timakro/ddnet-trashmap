@@ -28,9 +28,12 @@ foreach($servers as $identifier => $info) {
         array_push($rows, "<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["mapconfig"] == null ? "false" : "true")."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])."/".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td><td><form action=\"access_server.php\" method=\"GET\"><input type=\"hidden\" name=\"id\" value=\"".$identifier."\"><input type=\"text\" name=\"key\" maxlength=\"".$config["maxlengthaccesskey"]."\"><input type=\"submit\" value=\"Access\"></form></td></tr>\n");
 }
 ?>
+If you lost your access key you can find a list of all servers <a href="server_list.php">here</a>.
 There are currently <?php echo(count($rows)); ?> servers running.
 The maximal count of running servers is <?php echo($config["maxrunningservers"]); ?>.
-If you lost your access key you can find a list of all servers <a href="server_list.php">here</a>.
+<?php if(!$_SERVER["HTTPS"]) { ?>
+Click <a href="https://trashmap.timgame.de">here</a> for an encrypted connection if you want to access a server from this site and transmit your accesskey encrypted.
+<?php } ?>
 </p>
 <table cellpadding="5" border="1">
 <tr><th>Label</th><th>Port</th><th>Map</th><th>Mapconfig</th><th>Rcon</th><th>Password</th><th>Playercount</th><th>Runtime</th><th>Accesskey</th></tr>

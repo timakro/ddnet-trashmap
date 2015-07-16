@@ -12,7 +12,7 @@ $config = $data["config"];
 $SUGGEST_COMMAND = 0;
 ?>
 
-<a href="index.php">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="mapconfig_commands.php">Mapconfig Commands</a> -> Suggest Mapconfig Command
+<a href=".">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="mapconfig_commands.php">Mapconfig Commands</a> -> Suggest Mapconfig Command
 <h2>DDNet Trashmap - Suggest Mapconfig Command</h2>
 <p>
 <?php

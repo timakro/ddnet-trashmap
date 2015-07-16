@@ -12,7 +12,7 @@ $config = $data["config"];
 $SUGGEST_RCON = 12;
 ?>
 
-<a href="index.php">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="rcon_commands.php">Rcon Commands</a> -> Suggest Rcon Command
+<a href=".">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="rcon_commands.php">Rcon Commands</a> -> Suggest Rcon Command
 <h2>DDNet Trashmap - Suggest Rcon Command</h2>
 <p>
 <?php

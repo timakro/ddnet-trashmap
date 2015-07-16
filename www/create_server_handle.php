@@ -13,7 +13,7 @@ $servers = $data["storage"]["servers"];
 $CREATE_SERVER = 3;
 ?>
 
-<a href="index.php">Main Page</a> -> Create Server
+<a href=".">Main Page</a> -> Create Server
 <h2>DDNet Trashmap - Create Server</h2>
 <p>
 <?php
@@ -29,6 +29,12 @@ if(!$_POST["accesskey"])
     array_push($errors["Accesskey"], "Field is empty");
 if(strlen($_POST["accesskey"]) > $config["maxlengthaccesskey"])
     array_push($errors["Accesskey"], "Field contains too many characters");
+if(!$errors["Accesskey"]) {
+    $raw_accesskey = $_POST["accesskey"];
+    $_POST["accesskey"] = password_hash($_POST["accesskey"], PASSWORD_DEFAULT);
+    if($_POST["accesskey"] == false)
+        array_push($errors["Accesskey"], "Failed to hash accesskey");
+}
 
 if($_FILES["map"]["error"] == UPLOAD_ERR_NO_FILE)
     array_push($errors["Map"], "No file uploaded");
@@ -126,7 +132,7 @@ foreach($warnings as $type => $warningmessages)
 echo("<br>\n");
 if($success) {
     $identifier = uniqid();
-    $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $_POST["accesskey"]]);
+    $link = ($_SERVER["HTTPS"] ? "https" : "http")."://trashmap.timgame.de/access_server.php?".http_build_query(["id" => $identifier, "key" => $raw_accesskey]);
     $mapfile = tempnam("/tmp", "trashmap");
     move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
     file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(

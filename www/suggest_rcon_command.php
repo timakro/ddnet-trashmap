@@ -11,7 +11,7 @@ $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 $config = $data["config"];
 ?>
 
-<a href="index.php">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="rcon_commands.php">Rcon Commands</a> -> Suggest Rcon Command
+<a href=".">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="rcon_commands.php">Rcon Commands</a> -> Suggest Rcon Command
 <h2>DDNet Trashmap - Suggest Rcon Command</h2>
 <p>
 You can suggest a new rcon command here.
