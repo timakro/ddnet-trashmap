@@ -41,6 +41,7 @@
             "tune_reset"
         ]
     }, 
+    "servers": {},
     "suggested_commands": [], 
     "suggested_rcon": [], 
     "allowed_rcon": [
@@ -62,7 +63,10 @@
         "tune_zone_leave", 
         "tune_zone_reset", 
         "tune_zone_dump", 
-        "logout"
-    ], 
-    "servers": {}
+        "logout", 
+        "status", 
+        "tele", 
+        "kick", 
+        "ban"
+    ]
 }
