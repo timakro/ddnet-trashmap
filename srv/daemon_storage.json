@@ -41,9 +41,8 @@
             "tune_reset"
         ]
     }, 
-    "servers": {},
-    "suggested_commands": [], 
     "suggested_rcon": [], 
+    "suggested_commands": [], 
     "allowed_rcon": [
         "up", 
         "down", 
@@ -67,6 +66,11 @@
         "status", 
         "tele", 
         "kick", 
-        "ban"
+        "ban", 
+        "bans", 
+        "unban", 
+        "unban_all", 
+        "ban_range", 
+        "unban_range"
     ]
 }
