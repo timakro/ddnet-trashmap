@@ -149,6 +149,7 @@ def createserver(order):
         "stoptime": 0,
         "titletime": 0,
         "running": False,
+        "stopping": False,
         "process": None,
         "port": port,
         "runtimestring": None,
@@ -164,6 +165,8 @@ def startserver(identifier):
     if len([1 for i in data["storage"]["servers"].itervalues() if i["running"]]) >= data["config"]["maxrunningservers"]:
         return
     info = data["storage"]["servers"][identifier]
+    if info["running"]:
+        return
     # update memory
     info["starttime"] = info["lifeseconds"]
     info["stoptime"] = None
@@ -180,6 +183,7 @@ def startserver(identifier):
     commands.append(buildcommand("sv_rcon_mod_password", info["rcon"]))
     if info["password"]:
         commands.append(buildcommand("password", info["password"]))
+    commands.append(buildcommand("exec", "banlist.cfg"))
     commands.append(buildcommand("exec", "/srv/trashmap/init.cfg"))
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("mod_command", rcon, 1))
@@ -194,19 +198,12 @@ def startserver(identifier):
 
 def stopserver(identifier):
     info = data["storage"]["servers"][identifier]
-    # update memory
-    info["starttime"] = None
-    info["stoptime"] = info["lifeseconds"]
-    info["running"] = False
-    info["runtimestring"] = None
-    info["streamlast"] = None
-    info["clientids"] = None
+    if not info["running"] or info["stopping"]:
+        return
     # stop server
-    if info["process"]:
-        try:
-            info["process"].terminate()
-        except OSError: pass
-    info["process"] = None
+    writefifo(identifier, buildcommand("bans_save", "banlist.cfg") + buildcommand("shutdown"))
+    # update memory
+    info["stopping"] = True
     log("Stopped server", identifier=identifier)
 
 
@@ -240,10 +237,17 @@ def changemap(identifier, mapfile, mapname):
 
 def update(identifier):
     info = data["storage"]["servers"][identifier]
-    # adjust running mode
-    running = info["process"].poll() == None if info["process"] else False
-    if (not info["running"] and running) or (info["running"] and not running):
-        stopserver(identifier)
+    # update stopping
+    if info["stopping"]:
+        running = info["process"].poll() == None if info["process"] else False
+        if not running:
+            info["starttime"] = None
+            info["stoptime"] = info["lifeseconds"]
+            info["running"] = False
+            info["stopping"] = False
+            info["runtimestring"] = None
+            info["streamlast"] = None
+            info["clientids"] = None
     # check if running
     if info["running"]:
         # check if the server has to stop
@@ -271,6 +275,7 @@ def update(identifier):
                 if info["mapconfig"]:
                     writefifo(identifier, "".join(info["mapconfig"]))
                 continue
+        # check if the server has to stop
         if info["lifeseconds"]-info["starttime"] >= data["config"]["joinminutes"]*60 and len(info["clientids"]) == 0:
             stopserver(identifier)
             return
@@ -307,6 +312,9 @@ def buildruntime(identifier):
 
 
 def writefifo(identifier, line):
+    info = data["storage"]["servers"][identifier]
+    if not info["running"] or info["stopping"]:
+        return
     fifo = os.path.join(data["storage"]["servers"][identifier]["serverdir"], "fifo")
     try:
         assert stat.S_ISFIFO(os.stat(fifo).st_mode)
