@@ -10,6 +10,7 @@ import subprocess
 import shutil
 import re
 import fcntl
+import traceback
 
 
 SUGGEST_COMMAND = 0
@@ -340,8 +341,10 @@ def log(message, identifier=None, warning=False, error=False):
     elif error: prefix = "Error: "
     if identifier:
         prefix += "[" + identifier + "] "
+    message = message.split("\n")
+    message = [(pidstr+" "+prefix if i == 0 else "      ")+m+"\n" for i, m in enumerate(message) if m]
     try:
-        logfile.write(pidstr + " " + prefix + message + "\n")
+        logfile.write("".join(message))
         logfile.flush()
     except: pass
     if error:
@@ -479,12 +482,14 @@ def main():
 
 def shutdown():
     # stop servers
-    for identifier in data["storage"]["servers"].keys():
-        stopserver(identifier)
+    try:
+        for identifier in data["storage"]["servers"].keys():
+            stopserver(identifier)
+    except: pass
 
     # close and remove fifo
-    os.close(fifo)
     try:
+        os.close(fifo)
         os.unlink("/srv/trashmap/daemon_input.fifo")
         log("Removed fifo")
     except:
@@ -498,8 +503,10 @@ def shutdown():
         log("Failed to remove data", warning=True)
 
     # for safety write storage a last time
-    if data["storage"]:
-        writestorage(True)
+    try:
+        if data["storage"]:
+            writestorage(True)
+    except: pass
 
     # close logfile
     if status_flag == SHUTDOWN:    log("Trashmap daemon terminated")
@@ -520,6 +527,7 @@ def starter():
     except:
         global status_flag
         status_flag = EXCEPTION
+        log(traceback.format_exc())
         shutdown()
         raise
 thread = threading.Thread(target=starter)
