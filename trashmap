@@ -7,7 +7,6 @@ import threading
 import stat
 import tempfile
 import subprocess
-import shutil
 import re
 import fcntl
 import traceback
@@ -213,7 +212,17 @@ def deleteserver(identifier):
     if info["running"]:
         stopserver(identifier)
     # delete files
-    shutil.rmtree(info["serverdir"])
+    def rmtree(path):
+        if os.path.isdir(path):
+            files = os.listdir(path)
+            for f in files:
+                rmtree(os.path.join(path, f))
+            try:    os.rmdir(path)
+            except: rmtree(path)
+        else:
+            try:    os.remove(path)
+            except: rmtree(path)
+    rmtree(info["serverdir"])
     # update memory
     del data["storage"]["servers"][identifier]
     log("Deleted server", identifier=identifier)

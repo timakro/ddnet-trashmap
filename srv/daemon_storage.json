@@ -72,5 +72,6 @@
         "unban_all", 
         "ban_range", 
         "unban_range"
-    ]
+    ],
+    "servers": {}
 }
