@@ -189,6 +189,7 @@ def startserver(identifier):
     if info["mapconfig"]:
         commands.extend(info["mapconfig"])
     # start server
+    log("subprocess.Popen((\"/srv/trashmap/DDNet-Server\", {}), cwd={}, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)".format("".join(commands), info["serverdir"]), identifier=identifier)
     process = subprocess.Popen(("/srv/trashmap/DDNet-Server", "".join(commands)), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     fcntl.fcntl(process.stdout, fcntl.F_SETFL, os.O_RDONLY | os.O_NONBLOCK)
     info["process"] = process
@@ -327,7 +328,7 @@ def writefifo(identifier, line):
     fifo = os.path.join(data["storage"]["servers"][identifier]["serverdir"], "fifo")
     try:
         assert stat.S_ISFIFO(os.stat(fifo).st_mode)
-        with open(fifo, "w") as fifo:
+        with open(fifo, "w+") as fifo:
             fifo.write((line+"\n").encode("utf-8"))
     except:
         log("Failed to write to server fifo", identifier=identifier, warning=True)
