@@ -219,7 +219,7 @@ def deleteserver(identifier):
                 rmtree(os.path.join(path, f))
             try:    os.rmdir(path)
             except: rmtree(path)
-        else:
+        elif os.path.exists(path):
             try:    os.remove(path)
             except: rmtree(path)
     rmtree(info["serverdir"])
