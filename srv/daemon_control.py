@@ -43,7 +43,7 @@ while True:
         print("mdelete <command> - Delete mapconfig command")
         print("rsuggested - List suggested rcon commands")
         print("rallowed - List allowed rcon commands")
-        print("rallow <command> <reset> - Allow rcon command")
+        print("rallow <command> - Allow rcon command")
         print("rdelete <command> - Delete rcon command")
         print("exit - Exit daemon control")
     elif command == "msuggested":

@@ -1,5 +1,5 @@
 {
-    "maxservers": 100,
+    "maxservers": 150,
     "maxrunningservers": 10,
     "tickseconds": 1,
     "titleupdateseconds": 10,
@@ -7,7 +7,7 @@
     "stophours": 8,
     "deletedays": 30,
     "mapsizehuman": "5MB",
-    "mapsize": 5000000,
+    "mapsize": 5242880,
     "configsizehuman": "100kB",
     "configsize": 100000,
     "minplayers": 1,

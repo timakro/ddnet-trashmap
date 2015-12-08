@@ -65,5 +65,12 @@ The sourcecode is hosted on <a href="https://github.com/timgame/DDNet-Trashmap">
 Please report bugs on the github page or on the related <a href="http://forum.ddnet.tw/viewtopic.php?f=6&t=1764">thread</a> in the ddnet forum.
 </p>
 
+<h3>Changelog</h3>
+<table cellpadding="5" border="1">
+<tr><th>Date</th><th>Change</th></tr>
+<tr><td>2015-12-08</td><td>Introduce Changelog</td></tr>
+</table>
+</p>
+
 </body>
 </html>

@@ -189,6 +189,7 @@ def startserver(identifier):
     if info["mapconfig"]:
         commands.extend(info["mapconfig"])
     # start server
+    log("subprocess.Popen((\"/srv/trashmap/DDNet-Server\", "+"".join(commands)+"), cwd="+info["serverdir"]+", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)")
     process = subprocess.Popen(("/srv/trashmap/DDNet-Server", "".join(commands)), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     fcntl.fcntl(process.stdout, fcntl.F_SETFL, os.O_RDONLY | os.O_NONBLOCK)
     info["process"] = process
