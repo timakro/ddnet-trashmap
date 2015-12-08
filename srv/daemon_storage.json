@@ -1,48 +1,8 @@
 {
-    "allowed_commands": {
-        "sv_pauseable": [
-            "sv_pauseable", 
-            1
-        ], 
-        "sv_solo_server": [
-            "sv_solo_server", 
-            0
-        ], 
-        "tune_zone_leave": null, 
-        "sv_old_teleport_weapons": [
-            "sv_old_teleport_weapons", 
-            0
-        ], 
-        "sv_old_teleport_hook": [
-            "sv_old_teleport_hook", 
-            0
-        ], 
-        "sv_team": [
-            "sv_team", 
-            1
-        ], 
-        "tune_zone_enter": null, 
-        "sv_max_team_size": [
-            "sv_max_team_size", 
-            64
-        ], 
-        "sv_old_laser": [
-            "sv_old_laser", 
-            0
-        ], 
-        "tune_zone": [
-            "tune_zone_reset"
-        ], 
-        "sv_freeze_delay": [
-            "sv_freeze_delay", 
-            3
-        ], 
-        "tune": [
-            "tune_reset"
-        ]
-    }, 
-    "suggested_rcon": [], 
-    "suggested_commands": [], 
+    "suggested_rcon": [
+        "unsolo", 
+        "undepp"
+    ], 
     "allowed_rcon": [
         "up", 
         "down", 
@@ -71,7 +31,8 @@
         "unban", 
         "unban_all", 
         "ban_range", 
-        "unban_range"
-    ],
+        "unban_range", 
+        "undeep"
+    ], 
     "servers": {}
 }

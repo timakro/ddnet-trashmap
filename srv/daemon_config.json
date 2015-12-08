@@ -19,5 +19,30 @@
     "maxlengthpassword": 25,
     "maxlengthmapconfigcommand": 25,
     "maxlengthrconcommand": 25,
-    "maxlengthrcon": 25
+    "maxlengthrcon": 25,
+    "allowed_commands": [
+        "sv_hit",
+        "sv_endless_drag",
+        "sv_freeze_delay",
+        "sv_save_worse_scores",
+        "sv_pauseable",
+        "sv_team",
+        "sv_max_team_size",
+        "sv_team_lock",
+        "sv_map_vote",
+        "sv_old_laser",
+        "sv_reset_pickups",
+        "sv_plasma_range",
+        "sv_plasma_per_sec",
+        "sv_solo_server",
+        "sv_old_teleport_weapons",
+        "sv_old_teleport_hook",
+        "sv_teleport_hold_hook",
+        "sv_teleport_lose_weapons",
+        "tune",
+        "tune_zone",
+        "tune_zone_enter",
+        "tune_zone_leave",
+        "switch_open"
+    ]
 }

@@ -12,9 +12,6 @@ import fcntl
 import traceback
 
 
-SUGGEST_COMMAND = 0
-ALLOW_COMMAND = 1
-DELETE_COMMAND = 2
 CREATE_SERVER = 3
 START_SERVER = 4
 STOP_SERVER = 5
@@ -41,23 +38,7 @@ json.JSONEncoder.default = mydefault
 
 
 def handle(order):
-    if order["type"] == SUGGEST_COMMAND:
-        if order["command"] not in data["storage"]["allowed_commands"] and order["command"] not in data["storage"]["suggested_commands"]:
-            data["storage"]["suggested_commands"].append(order["command"])
-        writestorage()
-    elif order["type"] == ALLOW_COMMAND:
-        if order["command"] in data["storage"]["suggested_commands"]:
-            data["storage"]["suggested_commands"].remove(order["command"])
-        if order["command"] not in data["storage"]["allowed_commands"]:
-            data["storage"]["allowed_commands"].update({order["command"]: order["reset"]})
-        writestorage()
-    elif order["type"] == DELETE_COMMAND:
-        if order["command"] in data["storage"]["allowed_commands"]:
-            data["storage"]["allowed_commands"].pop(order["command"])
-        if order["command"] in data["storage"]["suggested_commands"]:
-            data["storage"]["suggested_commands"].remove(order["command"])
-        writestorage()
-    elif order["type"] == CREATE_SERVER:
+    if order["type"] == CREATE_SERVER:
         if order["identifier"] not in data["storage"]["servers"]:
             createserver(order)
             writestorage()
@@ -75,7 +56,6 @@ def handle(order):
         if order["identifier"] in data["storage"]["servers"]:
             if data["storage"]["servers"][order["identifier"]]["running"]:
                 commands = []
-                commands.extend([buildcommand(*r) for r in data["storage"]["allowed_commands"].values() if r != None]) # reset
                 if order["mapconfig"]:
                     commands.extend(order["mapconfig"])
                 commands.append(buildcommand("reload")) # reload

@@ -85,7 +85,7 @@ else {
             if(!$errors["Mapconfig"]) {
                 $commands = preg_split("/(\n|;)/", file_get_contents($_FILES["mapconfig"]["tmp_name"]));
                 $filtered = false;
-                $allowed_commands = implode("|", array_keys($data["storage"]["allowed_commands"]));
+                $allowed_commands = implode("|", $config["allowed_commands"]);
                 foreach($commands as $command) {
                     $match = [];
                     if(preg_match("/^\s*((".$allowed_commands.")(.*[^\s]|)|)\s*$/", $command, $match)) {
@@ -96,9 +96,9 @@ else {
                 }
                 if($filtered) {
                     if($mapconfig)
-                        array_push($warnings["Mapconfig"], "Mapconfig contained forbidden commands and was adjusted, you can suggest commands <a href=\"suggest_mapconfig_command.php\">here</a>");
+                        array_push($warnings["Mapconfig"], "Mapconfig contained forbidden commands and was adjusted, you can see allowed commands <a href=\"mapconfig_commands.php\">here</a>");
                     else
-                        array_push($errors["Mapconfig"], "Mapconfig contained forbidden commands, was adjusted and is empty now, you can suggest commands <a href=\"suggest_mapconfig_command.php\">here</a>");
+                        array_push($errors["Mapconfig"], "Mapconfig contained forbidden commands, was adjusted and is empty now, you can see allowed commands <a href=\"mapconfig_commands.php\">here</a>");
                 }
                 elseif(!$mapconfig)
                         array_push($errors["Mapconfig"], "Mapconfig is empty");

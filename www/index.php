@@ -68,7 +68,9 @@ Please report bugs on the github page or on the related <a href="http://forum.dd
 <h3>Changelog</h3>
 <table cellpadding="5" border="1">
 <tr><th>Date</th><th>Change</th></tr>
-<tr><td>2015-12-08</td><td>Introduce Changelog</td></tr>
+<tr><td>2015-12-08</td><td>Forbid suggesting map commands but get them from <a href="http://ddnet.tw/settingscommands/#map-settings">ddnet map settings page</a></td></tr>
+<tr><td>2015-12-08</td><td>Serverside security fixes</td></tr>
+<tr><td>2015-12-08</td><td>Introduce changelog</td></tr>
 </table>
 </p>
 

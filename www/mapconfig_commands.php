@@ -8,6 +8,7 @@
 <body>
 <?php
 $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
+$config = $data["config"];
 ?>
 
 <a href=".">Main Page</a> -> <a href="create_server.php">Create Server</a> -> Mapconfig Commands
@@ -23,15 +24,10 @@ This is a list of all allowed commands in a mapconfig.
 </p>
 <ul>
 <?php
-foreach(array_keys($data["storage"]["allowed_commands"]) as $command)
+foreach($config["allowed_commands"] as $command)
     echo("<li>".$command."</li>\n");
 ?>
 </ul>
-
-<h3>Suggest Command</h3>
-There are probably forbidden commands that are not dangerous and would be useful for a mapconfig.
-You can suggest new commands <a href="suggest_mapconfig_command.php">here</a>.
-<p>
 
 </body>
 </html>
