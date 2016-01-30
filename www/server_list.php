@@ -19,9 +19,6 @@ This is a list of all servers saved.
 You can use the search function of your browser to find a server with a known label.
 There are currently <?php echo(strval(count($servers))); ?> servers saved.
 The maximal count of saved servers is <?php echo($config["maxservers"]); ?>.
-<?php if(!$_SERVER["HTTPS"]) { ?>
-Click <a href="https://trashmap.timakro.de/server_list.php">here</a> for an encrypted connection if you want to access a server from this site and transmit your accesskey encrypted.
-<?php } ?>
 </p>
 
 <h3>Running Servers</h3>

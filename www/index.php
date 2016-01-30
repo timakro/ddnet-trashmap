@@ -31,9 +31,6 @@ foreach($servers as $identifier => $info) {
 If you lost your access key you can find a list of all servers <a href="server_list.php">here</a>.
 There are currently <?php echo(count($rows)); ?> servers running.
 The maximal count of running servers is <?php echo($config["maxrunningservers"]); ?>.
-<?php if(!$_SERVER["HTTPS"]) { ?>
-Click <a href="https://trashmap.timakro.de">here</a> for an encrypted connection if you want to access a server from this site and transmit your accesskey encrypted.
-<?php } ?>
 </p>
 <table cellpadding="5" border="1">
 <tr><th>Label</th><th>Port</th><th>Map</th><th>Mapconfig</th><th>Rcon</th><th>Password</th><th>Playercount</th><th>Runtime</th><th>Accesskey</th></tr>
@@ -60,14 +57,14 @@ else
 
 <h3>Development</h3>
 <p>
-DDNet Trashmap is developed by <a href="http://timakro.de">timakro</a>, the sourcecode is hosted on <a href="https://github.com/timakro/DDNet-Trashmap">github</a>.
-Please report bugs on the github page or on the related <a href="http://forum.ddnet.tw/viewtopic.php?f=6&t=1764">thread</a> in the DDNet forum.
+DDNet Trashmap is developed by <a href="https://timakro.de">timakro</a>, the sourcecode is hosted on <a href="https://github.com/timakro/DDNet-Trashmap">github</a>.
+Please report bugs on the github page or on the related <a href="https://forum.ddnet.tw/viewtopic.php?f=6&t=1764">thread</a> in the DDNet forum.
 </p>
 
 <h3>Changelog</h3>
 <table cellpadding="5" border="1">
 <tr><th>Date</th><th>Change</th></tr>
-<tr><td>2015-12-08</td><td>Forbid suggesting map commands but get them from <a href="http://ddnet.tw/settingscommands/#map-settings">ddnet map settings page</a></td></tr>
+<tr><td>2015-12-08</td><td>Forbid suggesting map commands but get them from <a href="https://ddnet.tw/settingscommands/#map-settings">ddnet map settings page</a></td></tr>
 <tr><td>2015-12-08</td><td>Serverside security fixes</td></tr>
 <tr><td>2015-12-08</td><td>Introduce changelog</td></tr>
 </table>

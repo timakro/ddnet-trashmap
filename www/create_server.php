@@ -20,9 +20,6 @@ If the server is empty it will be stopped automatically.
 You will also get a link to control the server after you created it.
 The maximal testing time until the server will be stopped automatically is <?php echo($config["stophours"]); ?> hours.
 If a servers was not running for <?php echo($config["deletedays"]); ?> days it will be deleted automatically.
-<?php if(!$_SERVER["HTTPS"]) { ?>
-Click <a href="https://trashmap.timakro.de/create_server.php">here</a> for an encrypted connection.
-<?php } ?>
 </p>
 
 <form enctype="multipart/form-data" action="create_server_handle.php" method="POST">
@@ -40,9 +37,6 @@ This can't be changed after creating the server.
 <p>
 The key required to control the server via the webinterface.
 The maximal length is <?php echo($config["maxlengthaccesskey"]); ?> characters.
-<?php if(!$_SERVER["HTTPS"]) { ?>
-Please don't choose an important key since it is transmitted unencrypted.
-<?php } ?>
 This field may not be empty.
 This can't be changed after creating the server.
 </p>
@@ -75,7 +69,6 @@ This file is optional.
 <p>
 The password required to join the server.
 The maximal length is <?php echo($config["maxlengthpassword"]); ?> characters.
-Please don't choose an important password since it is <?php if(!$_SERVER["HTTPS"]) echo("transmitted and "); ?>stored unencrypted.
 This field is optional.
 </p>
 <input type="text" name="password" maxlength="<?php echo($config["maxlengthpassword"]); ?>">
@@ -84,7 +77,6 @@ This field is optional.
 <p>
 The rcon password required to access the server console ingame.
 The maximal length is <?php echo($config["maxlengthrcon"]); ?> characters.
-Please don't choose an important password since it is <?php if(!$_SERVER["HTTPS"]) echo("transmitted and "); ?>stored unencrypted.
 A list of allowed commands in the rcon console can be found <a href="rcon_commands.php">here</a>.
 If this value is empty or too long the default rcon password '<?php echo($config["defaultrcon"]); ?>' will be used.
 </p>

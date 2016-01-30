@@ -30,11 +30,6 @@ You can control your server on this site.
 Please add this link to your favorites and use it everytime you want to test a map.
 You can share this link with other players to give them access to the server.
 You can also add the teeworlds server to your favorites.
-<?php
-$link = "https://trashmap.timakro.de/access_server.php?".http_build_query(["id" => $_GET["id"], "key" => $_GET["key"]]);
-if(!$_SERVER["HTTPS"])
-    echo("Click <a href=\"".$link."\">here</a> for an encrypted connection.\n");
-?>
 </p>
 
 <h3>Server Status</h3>
@@ -108,7 +103,6 @@ Select no file to delete the current mapconfig.
 <p>
 Change the password required to join the server.
 The maximal length is <?php echo($config["maxlengthpassword"]); ?> characters.
-Please don't choose an important password since it is <?php if(!$_SERVER["HTTPS"]) echo("transmitted and "); ?>stored unencrypted.
 Leave this field empty to open the server for everybody.
 </p>
 <form enctype="multipart/form-data" action="access_server_handle.php" method="POST">
@@ -124,7 +118,6 @@ Leave this field empty to open the server for everybody.
 <p>
 Change the rcon password required to access the server console ingame.
 The maximal length is <?php echo($config["maxlengthrcon"]); ?> characters.
-Please don't choose an important password since it is <?php if(!$_SERVER["HTTPS"]) echo("transmitted and "); ?>stored unencrypted.
 A list of allowed commands in the rcon console can be found <a href="rcon_commands.php">here</a>.
 If this value is empty or too long the default rcon password '<?php echo($config["defaultrcon"]); ?>' will be used.
 </p>
