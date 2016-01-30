@@ -21,7 +21,7 @@ You will also get a link to control the server after you created it.
 The maximal testing time until the server will be stopped automatically is <?php echo($config["stophours"]); ?> hours.
 If a servers was not running for <?php echo($config["deletedays"]); ?> days it will be deleted automatically.
 <?php if(!$_SERVER["HTTPS"]) { ?>
-Click <a href="https://trashmap.timgame.de/create_server.php">here</a> for an encrypted connection.
+Click <a href="https://trashmap.timakro.de/create_server.php">here</a> for an encrypted connection.
 <?php } ?>
 </p>
 

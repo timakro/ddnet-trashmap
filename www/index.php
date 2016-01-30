@@ -32,7 +32,7 @@ If you lost your access key you can find a list of all servers <a href="server_l
 There are currently <?php echo(count($rows)); ?> servers running.
 The maximal count of running servers is <?php echo($config["maxrunningservers"]); ?>.
 <?php if(!$_SERVER["HTTPS"]) { ?>
-Click <a href="https://trashmap.timgame.de">here</a> for an encrypted connection if you want to access a server from this site and transmit your accesskey encrypted.
+Click <a href="https://trashmap.timakro.de">here</a> for an encrypted connection if you want to access a server from this site and transmit your accesskey encrypted.
 <?php } ?>
 </p>
 <table cellpadding="5" border="1">

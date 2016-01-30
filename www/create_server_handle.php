@@ -132,7 +132,7 @@ foreach($warnings as $type => $warningmessages)
 echo("<br>\n");
 if($success) {
     $identifier = uniqid();
-    $link = ($_SERVER["HTTPS"] ? "https" : "http")."://trashmap.timgame.de/access_server.php?".http_build_query(["id" => $identifier, "key" => $raw_accesskey]);
+    $link = ($_SERVER["HTTPS"] ? "https" : "http")."://trashmap.timakro.de/access_server.php?".http_build_query(["id" => $identifier, "key" => $raw_accesskey]);
     $mapfile = tempnam("/tmp", "trashmap");
     move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
     file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(

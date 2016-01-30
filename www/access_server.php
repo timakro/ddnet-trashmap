@@ -31,7 +31,7 @@ Please add this link to your favorites and use it everytime you want to test a m
 You can share this link with other players to give them access to the server.
 You can also add the teeworlds server to your favorites.
 <?php
-$link = "https://trashmap.timgame.de/access_server.php?".http_build_query(["id" => $_GET["id"], "key" => $_GET["key"]]);
+$link = "https://trashmap.timakro.de/access_server.php?".http_build_query(["id" => $_GET["id"], "key" => $_GET["key"]]);
 if(!$_SERVER["HTTPS"])
     echo("Click <a href=\"".$link."\">here</a> for an encrypted connection.\n");
 ?>
@@ -42,7 +42,7 @@ if(!$_SERVER["HTTPS"])
 Your server is <?php echo($info["running"] ? "running" : "offline"); ?> at the moment.
 <?php
     if($info["running"])
-        echo("The ip of your server is 'timgame.de:".$info["port"]."' or '84.38.65.222:".$info["port"]."'.\n");
+        echo("The ip of your server is 'timakro.de:".$info["port"]."' or '84.38.65.222:".$info["port"]."'.\n");
 ?>
 </p>
 <table cellpadding="5" border="1">
