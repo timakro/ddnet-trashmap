@@ -55,16 +55,6 @@ This file is required to start the server.
 <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo($config["mapsize"]); ?>">
 <input type="file" name="map">
 
-<h3>Mapconfig</h3>
-<p>
-The mapconfig to use for the map.
-The maximal file size is <?php echo($config["configsizehuman"]); ?>.
-A list of allowed commands in the mapconfig can be found <a href="mapconfig_commands.php">here</a>.
-This file is optional.
-</p>
-<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo($config["configsize"]); ?>">
-<input type="file" name="mapconfig">
-
 <h3>Password</h3>
 <p>
 The password required to join the server.

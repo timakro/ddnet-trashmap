@@ -17,8 +17,8 @@ $CREATE_SERVER = 3;
 <h2>DDNet Trashmap - Create Server</h2>
 <p>
 <?php
-$errors =   ["Label" => [], "Accesskey" => [], "Map" => [], "Mapconfig" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
-$warnings = ["Label" => [], "Accesskey" => [], "Map" => [], "Mapconfig" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+$errors =   ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+$warnings = ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
 
 if(!$_POST["label"])
     array_push($errors["Label"], "Field is empty");
@@ -56,37 +56,6 @@ else {
             array_push($errors["Map"], "Filename had to be adjusted and is now empty");
         elseif($mapname != $basename)
             array_push($warnings["Map"], "Filename contains critical characters and was adjusted");
-    }
-}
-
-$mapconfig = [];
-if($_FILES["mapconfig"]["error"] != UPLOAD_ERR_NO_FILE) {
-    if($_FILES["mapconfig"]["error"] == UPLOAD_ERR_FORM_SIZE || $_FILES["mapconfig"]["size"] > $config["configsize"])
-        array_push($errors["Mapconfig"], "Maximal file size exceeded");
-    if($_FILES["mapconfig"]["error"] == UPLOAD_ERR_PARTIAL)
-        array_push($errors["Mapconfig"], "File only partially uploaded");
-    if($_FILES["mapconfig"]["error"] == UPLOAD_ERR_INI_SIZE || $_FILES["mapconfig"]["error"] == UPLOAD_ERR_NO_TMP_DIR || $_FILES["mapconfig"]["error"] == UPLOAD_ERR_CANT_WRITE || $_FILES["mapconfig"]["error"] == UPLOAD_ERR_EXTENSION)
-        array_push($errors["Mapconfig"], "This error wasn't caused by you, please contact a server administrator to fix the problem");
-    if(!$errors["Mapconfig"]) {
-        $commands = preg_split("/(\n|;)/", file_get_contents($_FILES["mapconfig"]["tmp_name"]));
-        $filtered = false;
-        $allowed_commands = implode("|", $config["allowed_commands"]);
-        foreach($commands as $command) {
-            $match = [];
-            if(preg_match("/^\s*((".$allowed_commands.")(.*[^\s]|)|)\s*$/", $command, $match)) {
-                if($match[1])
-                    array_push($mapconfig, $match[1].";");
-            } else
-                $filtered = true;
-        }
-        if($filtered) {
-            if($mapconfig)
-                array_push($warnings["Mapconfig"], "Mapconfig contained forbidden commands and was adjusted, you can see allowed commands <a href=\"mapconfig_commands.php\">here</a>");
-            else
-                array_push($errors["Mapconfig"], "Mapconfig contained forbidden commands, was adjusted and is empty now, you can see allowed commands <a href=\"mapconfig_commands.php\">here</a>");
-        }
-        elseif(!$mapconfig)
-                array_push($errors["Mapconfig"], "Mapconfig is empty");
     }
 }
 
@@ -142,7 +111,6 @@ if($success) {
          "accesskey" => $_POST["accesskey"],
          "mapfile" => $mapfile,
          "mapname" => $mapname,
-         "mapconfig" => $mapconfig ? $mapconfig : null,
          "password" => $_POST["password"] ? $_POST["password"] : null,
          "rcon" => $_POST["rcon"],
          "playerlimit" => $_POST["playerlimit"]]

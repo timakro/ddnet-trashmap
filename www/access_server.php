@@ -43,11 +43,11 @@ Your server is <?php echo($info["running"] ? "running" : "offline"); ?> at the m
 <table cellpadding="5" border="1">
 <?php
     if($info["running"]) {
-        echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Mapconfig</th><th>Rcon</th><th>Password</th><th>Playercount</th><th>Runtime</th></tr>\n");
-        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["mapconfig"] == null ? "false" : "true")."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])." / ".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td></tr>\n");
+        echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Playercount</th><th>Runtime</th></tr>\n");
+        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])." / ".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td></tr>\n");
     } else {
-        echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Mapconfig</th><th>Rcon</th><th>Password</th><th>Playercount</th></tr>\n");
-        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["mapconfig"] == null ? "false" : "true")."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>- / ".$info["playerlimit"]."</td></tr>\n");
+        echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Playercount</th></tr>\n");
+        echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>- / ".$info["playerlimit"]."</td></tr>\n");
     }
 ?>
 </table>
@@ -80,23 +80,6 @@ If the uploaded file is no valid map the server can't run.
 <input type="file" name="map">
 <br><br>
 <input type="submit" value="Change Map">
-</form>
-
-<h3>Mapconfig</h3>
-<p>
-The mapconfig to use for the map.
-The maximal file size is <?php echo($config["configsizehuman"]); ?>.
-A list of allowed commands in the mapconfig can be found <a href="mapconfig_commands.php">here</a>.
-Select no file to delete the current mapconfig.
-</p>
-<form enctype="multipart/form-data" action="access_server_handle.php" method="POST">
-<input type="hidden" name="id" value="<?php echo($_GET["id"]); ?>">
-<input type="hidden" name="key" value="<?php echo($_GET["key"]); ?>">
-<input type="hidden" name="action" value="mapconfig">
-<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo($config["configsize"]); ?>">
-<input type="file" name="mapconfig">
-<br><br>
-<input type="submit" value="Change Mapconfig">
 </form>
 
 <h3>Password</h3>

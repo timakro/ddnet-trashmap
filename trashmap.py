@@ -16,7 +16,6 @@ CREATE_SERVER = 3
 START_SERVER = 4
 STOP_SERVER = 5
 CHANGE_MAP = 6
-CHANGE_MAPCONFIG = 7
 CHANGE_PASSWORD = 8
 CHANGE_RCON = 9
 CHANGE_PLAYERLIMIT = 10
@@ -51,16 +50,6 @@ def handle(order):
     elif order["type"] == CHANGE_MAP:
         if order["identifier"] in data["storage"]["servers"]:
             changemap(order["identifier"], order["mapfile"], order["mapname"])
-            writestorage()
-    elif order["type"] == CHANGE_MAPCONFIG:
-        if order["identifier"] in data["storage"]["servers"]:
-            if data["storage"]["servers"][order["identifier"]]["running"]:
-                commands = []
-                if order["mapconfig"]:
-                    commands.extend(order["mapconfig"])
-                commands.append(buildcommand("reload")) # reload
-                writefifo(order["identifier"], "".join(commands))
-            data["storage"]["servers"][order["identifier"]]["mapconfig"] = order["mapconfig"]
             writestorage()
     elif order["type"] == CHANGE_PASSWORD:
         if order["identifier"] in data["storage"]["servers"]:
@@ -119,7 +108,6 @@ def createserver(order):
         "accesskey": order["accesskey"],
         "serverdir": serverdir,
         "mapname": order["mapname"],
-        "mapconfig": order["mapconfig"],
         "password": order["password"],
         "rcon": order["rcon"],
         "playerlimit": order["playerlimit"],
@@ -166,9 +154,8 @@ def startserver(identifier):
     commands.append(buildcommand("exec", "/srv/trashmap/init.cfg"))
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
-    if info["mapconfig"]:
-        commands.extend(info["mapconfig"])
     # start server
+    log(repr(info["serverdir"])+" "+repr("".join(commands)), identifier=identifier)
     process = subprocess.Popen(("/srv/trashmap/DDNet-Server", "".join(commands)), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     fcntl.fcntl(process.stdout, fcntl.F_SETFL, os.O_RDONLY | os.O_NONBLOCK)
     info["process"] = process
@@ -258,11 +245,6 @@ def update(identifier):
                 cid = int(match.group(1))
                 if cid in info["clientids"]:
                     info["clientids"].remove(cid)
-                continue
-            match = re.match("\[.*\]\[datafile\]: loading done\. .*", line)
-            if match:
-                if info["mapconfig"]:
-                    writefifo(identifier, "".join(info["mapconfig"]))
                 continue
         # check if the server has to stop
         if info["lifeseconds"]-info["starttime"] >= data["config"]["joinminutes"]*60 and len(info["clientids"]) == 0:

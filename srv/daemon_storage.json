@@ -1,8 +1,5 @@
 {
-    "suggested_rcon": [
-        "unsolo", 
-        "undepp"
-    ], 
+    "suggested_rcon": [], 
     "allowed_rcon": [
         "up", 
         "down", 

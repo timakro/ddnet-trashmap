@@ -13,7 +13,6 @@ $servers = $data["storage"]["servers"];
 $START_SERVER = 4;
 $STOP_SERVER = 5;
 $CHANGE_MAP = 6;
-$CHANGE_MAPCONFIG = 7;
 $CHANGE_PASSWORD = 8;
 $CHANGE_RCON = 9;
 $CHANGE_PLAYERLIMIT = 10;
@@ -32,8 +31,8 @@ else {
     $identifier = $_POST["id"];
     $info = $servers[$identifier];
 
-    $errors =   ["Map" => [], "Mapconfig" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
-    $warnings = ["Map" => [], "Mapconfig" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+    $errors =   ["Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+    $warnings = ["Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
 
     if($_POST["action"] == "start") {
         $running = 0;
@@ -70,38 +69,6 @@ else {
                     array_push($errors["Map"], "Filename had to be adjusted and is now empty");
                 elseif($mapname != $basename)
                     array_push($warnings["Map"], "Filename contains critical characters and was adjusted");
-            }
-        }
-
-    } elseif($_POST["action"] == "mapconfig") {
-        $mapconfig = [];
-        if($_FILES["mapconfig"]["error"] != UPLOAD_ERR_NO_FILE) {
-            if($_FILES["mapconfig"]["error"] == UPLOAD_ERR_FORM_SIZE || $_FILES["mapconfig"]["size"] > $config["configsize"])
-                array_push($errors["Mapconfig"], "Maximal file size exceeded");
-            if($_FILES["mapconfig"]["error"] == UPLOAD_ERR_PARTIAL)
-                array_push($errors["Mapconfig"], "File only partially uploaded");
-            if($_FILES["mapconfig"]["error"] == UPLOAD_ERR_INI_SIZE || $_FILES["mapconfig"]["error"] == UPLOAD_ERR_NO_TMP_DIR || $_FILES["mapconfig"]["error"] == UPLOAD_ERR_CANT_WRITE || $_FILES["mapconfig"]["error"] == UPLOAD_ERR_EXTENSION)
-                array_push($errors["Mapconfig"], "This error wasn't caused by you, please contact a server administrator to fix the problem");
-            if(!$errors["Mapconfig"]) {
-                $commands = preg_split("/(\n|;)/", file_get_contents($_FILES["mapconfig"]["tmp_name"]));
-                $filtered = false;
-                $allowed_commands = implode("|", $config["allowed_commands"]);
-                foreach($commands as $command) {
-                    $match = [];
-                    if(preg_match("/^\s*((".$allowed_commands.")(.*[^\s]|)|)\s*$/", $command, $match)) {
-                        if($match[1])
-                            array_push($mapconfig, $match[1].";");
-                    } else
-                        $filtered = true;
-                }
-                if($filtered) {
-                    if($mapconfig)
-                        array_push($warnings["Mapconfig"], "Mapconfig contained forbidden commands and was adjusted, you can see allowed commands <a href=\"mapconfig_commands.php\">here</a>");
-                    else
-                        array_push($errors["Mapconfig"], "Mapconfig contained forbidden commands, was adjusted and is empty now, you can see allowed commands <a href=\"mapconfig_commands.php\">here</a>");
-                }
-                elseif(!$mapconfig)
-                        array_push($errors["Mapconfig"], "Mapconfig is empty");
             }
         }
 
@@ -164,13 +131,6 @@ else {
                  "mapname" => $mapname]
             )."\n");
             echo("Successfully changed the map.\nClick <a href=\"".$link."\">here</a> to get back.\n");
-        } elseif($_POST["action"] == "mapconfig") {
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
-                ["type" => $CHANGE_MAPCONFIG,
-                 "identifier" => $identifier,
-                 "mapconfig" => $mapconfig ? $mapconfig : null]
-            )."\n");
-            echo("Successfully changed the mapconfig.\nClick <a href=\"".$link."\">here</a> to get back.\n");
         } elseif($_POST["action"] == "password") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_PASSWORD,
