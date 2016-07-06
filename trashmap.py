@@ -155,8 +155,7 @@ def startserver(identifier):
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
     # start server
-    log(repr(info["serverdir"])+" "+repr("".join(commands)), identifier=identifier)
-    process = subprocess.Popen(("/srv/trashmap/DDNet-Server", "".join(commands)), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    process = subprocess.Popen(("/srv/trashmap/DDNet-Server", "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     fcntl.fcntl(process.stdout, fcntl.F_SETFL, os.O_RDONLY | os.O_NONBLOCK)
     info["process"] = process
     log("Started server", identifier=identifier)
