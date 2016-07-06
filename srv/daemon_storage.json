@@ -29,7 +29,8 @@
         "unban_all", 
         "ban_range", 
         "unban_range", 
-        "undeep"
+        "undeep", 
+        "unsolo"
     ], 
     "servers": {}
 }
