@@ -1,0 +1,11 @@
+[Unit]
+Description=DDNet Trashmap
+
+[Service]
+User=www-data
+ExecStart=/srv/trashmap/trashmap.py
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
