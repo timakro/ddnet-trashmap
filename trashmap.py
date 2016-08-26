@@ -518,10 +518,10 @@ def handle_sigterm(x, y):
 signal.signal(signal.SIGTERM, handle_sigterm)
 
 # set up sigusr1 handler
-def handle_sighup(x, y):
+def handle_sigusr1(x, y):
     global config_reload_flag
     config_reload_flag = True
-signal.signal(signal.SIGHUP, handle_sighup)
+signal.signal(signal.SIGUSR1, handle_sigusr1)
 
 # wait for shutdown
 try:
