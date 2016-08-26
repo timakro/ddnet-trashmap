@@ -122,7 +122,7 @@ else {
             )."\n");
             echo("Successfully stopped the server.\nClick <a href=\"".$link."\">here</a> to get back.\n");
         } elseif($_POST["action"] == "map") {
-            $mapfile = tempnam("/tmp", "trashmap");
+            $mapfile = tempnam("/srv/trashmap/upload", "");
             move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_MAP,
