@@ -15,6 +15,7 @@ $config = $data["config"];
 <h2>DDNet Trashmap - Create Server</h2>
 <p>
 When you submit this form a new server with the map you uploaded will be started.
+You are only allowed to have at most <?php echo($config["maxserversperip"]); ?> servers saved at a time.
 After it started the server will be running for <?php echo($config["joinminutes"]); ?> minutes until it will start to check regularly if there are players on the server.
 If the server is empty it will be stopped automatically.
 You will also get a link to control the server after you created it.

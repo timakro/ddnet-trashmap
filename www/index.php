@@ -64,6 +64,7 @@ Please report bugs on the github page or on the related <a href="https://forum.d
 <h3>Changelog</h3>
 <table cellpadding="5" border="1">
 <tr><th>Date</th><th>Change</th></tr>
+<tr><td>2017-03-23</td><td>Due to recent exploits we from now on only allow a limited number of saved servers per ip address. With this change all saved servers had to be deleted, sorry for any inconveniences.</td></tr>
 <tr><td>2016-06-06</td><td>No external map configs possible anymore</td></tr>
 <tr><td>2015-12-08</td><td>Forbid suggesting map commands but get them from <a href="https://ddnet.tw/settingscommands/#map-settings">ddnet map settings page</a></td></tr>
 <tr><td>2015-12-08</td><td>Serverside security fixes</td></tr>
