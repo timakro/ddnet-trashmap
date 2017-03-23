@@ -111,6 +111,7 @@ def createserver(order):
         "password": order["password"],
         "rcon": order["rcon"],
         "playerlimit": order["playerlimit"],
+        "userip": order["userip"],
         "lifeseconds": 0,
         "starttime": None,
         "stoptime": 0,

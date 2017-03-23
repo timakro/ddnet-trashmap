@@ -80,14 +80,18 @@ if(!$_POST["playerlimit"] || !ctype_digit($_POST["playerlimit"])) {
 
 if(count($servers) >= $config["maxservers"])
     array_push($errors["Limit"], "The maximal count of saved servers is already reached");
-else {
-    $running = 0;
-    foreach($servers as $identifier => $data)
-        if($data["running"])
-            $running += 1;
-    if($running >= $config["maxrunningservers"])
-        array_push($warnings["Limit"], "The maximal count of running servers is already reached, the server couldn't be started");
+$sameip = 0;
+$running = 0;
+foreach($servers as $identifier => $data) {
+    if($data["userip"] == $_SERVER["REMOTE_ADDR"])
+        $sameip += 1;
+    if($data["running"])
+        $running += 1;
 }
+if($sameip >= $config["maxserversperip"])
+    array_push($errors["Limit"], "The maximal count of saved servers per ip is already reached");
+if(!$errors["Limit"] && $running >= $config["maxrunningservers"])
+        array_push($warnings["Limit"], "The maximal count of running servers is already reached, the server couldn't be started");
 
 $success = true;
 foreach($errors as $type => $errormessages)
@@ -113,7 +117,8 @@ if($success) {
          "mapname" => $mapname,
          "password" => $_POST["password"] ? $_POST["password"] : null,
          "rcon" => $_POST["rcon"],
-         "playerlimit" => $_POST["playerlimit"]]
+         "playerlimit" => $_POST["playerlimit"],
+         "userip" => $_SERVER["REMOTE_ADDR"]]
     )."\n");
     echo("Successfully created a new server.\nYou can access the server via the webinterface unsing this link <a href=\"".$link."\">".$link."</a>.\nPlease save this link to your bookmarks and use it everytime you want to test a map.\nYou can also login using a form at the server list page and your accesskey.\nYou can ofcourse share the link or your accesskey with other players.\n");
 }

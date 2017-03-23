@@ -1,5 +1,6 @@
 {
-    "maxservers": 150,
+    "maxservers": 300,
+    "maxserversperip": 2,
     "maxrunningservers": 10,
     "tickseconds": 1,
     "titleupdateseconds": 10,

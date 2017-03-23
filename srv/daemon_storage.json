@@ -30,7 +30,18 @@
         "ban_range", 
         "unban_range", 
         "undeep", 
-        "unsolo"
+        "unsolo", 
+        "shotgun", 
+        "grenade", 
+        "ninja", 
+        "rifle", 
+        "unshotgun", 
+        "ungrenade", 
+        "unrifle", 
+        "jetpack", 
+        "unjetpack", 
+        "move", 
+        "move_raw"
     ], 
     "servers": {}
 }
