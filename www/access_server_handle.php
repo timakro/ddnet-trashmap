@@ -75,7 +75,6 @@ else {
     } elseif($_POST["action"] == "password") {
         if(strlen($_POST["password"]) > $config["maxlengthpassword"])
             array_push($errors["Password"], "Field contains too many characters");
-        
     } elseif($_POST["action"] == "rcon") {
         if(!$_POST["rcon"]) {
             array_push($warnings["Rcon"], "Field is empty");

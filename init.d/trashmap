@@ -10,14 +10,14 @@
 #                    on the instructions by the trashmap website.
 ### END INIT INFO
 
-# Author: Tim Schumacher <tim@bschu.de>
+# Author: Tim Schumacher <tim@timakro.de>
 
 # PATH should only include /usr/* if it runs after the mountnfs.sh script
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Manages trashmap servers"
 NAME=trashmap
-DAEMON=/usr/sbin/$NAME
-PIDFILE=/var/run/$NAME.pid
+DAEMON=/srv/trashmap/trashmap.py
+PIDFILE=/srv/trashmap/pidfile
 SCRIPTNAME=/etc/init.d/$NAME
 
 # Exit if the package is not installed
