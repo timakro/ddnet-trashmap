@@ -2,8 +2,8 @@ RewriteEngine On
 
 # rewrite to daemon error if daemon is not running
 RewriteCond /srv/trashmap/daemon_data.json !-f
-RewriteRule ^(?!(daemon_error.htm|stylesheet.css)).*$ daemon_error.htm
+RewriteRule ^(?!(daemon_error.html|stylesheet.css)).*$ daemon_error.html
 
 # rewrite to mainpage if daemon is running and user accesses daemon error
 RewriteCond /srv/trashmap/daemon_data.json -f
-RewriteRule daemon_error.htm index.php
+RewriteRule daemon_error.html index.php
