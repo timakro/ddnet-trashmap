@@ -213,9 +213,9 @@ def changemap(identifier, mapfile, mapname):
 
 def update(identifier):
     info = data["storage"]["servers"][identifier]
+    running = info["process"].poll() == None if info["process"] else False
     # update stopping
     if info["stopping"]:
-        running = info["process"].poll() == None if info["process"] else False
         if not running:
             info["starttime"] = None
             info["stoptime"] = info["lifeseconds"]
@@ -226,10 +226,12 @@ def update(identifier):
             info["clientids"] = None
     # check if running
     if info["running"]:
+        # stop server if it crashed
+        if not running:
+            stopserver(identifier)
         # check if the server has to stop
         if info["lifeseconds"]-info["starttime"] >= data["config"]["stophours"]*60*60:
             stopserver(identifier)
-            return
         # update runtime
         info["runtimestring"] = buildruntime(identifier)
         # read stream
@@ -249,7 +251,6 @@ def update(identifier):
         # check if the server has to stop
         if info["lifeseconds"]-info["starttime"] >= data["config"]["joinminutes"]*60 and len(info["clientids"]) == 0:
             stopserver(identifier)
-            return
         # update title
         if info["lifeseconds"]-info["titletime"] >= data["config"]["titleupdateseconds"]:
             writefifo(identifier, buildcommand("sv_name", buildtitle(identifier)))
