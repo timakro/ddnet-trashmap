@@ -17,5 +17,6 @@
     "maxlengthaccesskey": 25,
     "maxlengthpassword": 25,
     "maxlengthrconcommand": 25,
-    "maxlengthrcon": 25
+    "maxlengthrcon": 25,
+    "bannedips": []
 }

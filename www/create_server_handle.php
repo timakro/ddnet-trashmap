@@ -93,6 +93,9 @@ if($sameip >= $config["maxserversperip"])
 if(!$errors["Limit"] && $running >= $config["maxrunningservers"])
         array_push($warnings["Limit"], "The maximal count of running servers is already reached, the server couldn't be started");
 
+if(in_array($_SERVER["REMOTE_ADDR"], $config["bannedips"]))
+    array_push($errors["Limit"], "Your ip is banned");
+
 $success = true;
 foreach($errors as $type => $errormessages)
     foreach($errormessages as $errormessage) {

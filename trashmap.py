@@ -260,6 +260,10 @@ def update(identifier):
         if info["lifeseconds"]-info["stoptime"] >= data["config"]["deletedays"]*24*60*60:
             deleteserver(identifier)
             return
+    # delete servers with banned user ips
+    if info["userip"] in data["config"]["bannedips"]:
+        deleteserver(identifier)
+        return
     info["lifeseconds"] += data["config"]["tickseconds"]
 
 
