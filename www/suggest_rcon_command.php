@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="stylesheet.css">
+<?php include "includes/head.inc.php";?>
 <title>DDNet Trashmap - Suggest Rcon Command</title>
 </head>
 <body>
@@ -23,7 +22,7 @@ Please don't misuse this service and only suggest commands with are useful and n
 <h3>Commandname</h3>
 <p>
 The name of the suggested command.
-The maximal length is <?php echo($config["maxlengthrconcommand"]); ?> characters.
+The maximum length is <?php echo($config["maxlengthrconcommand"]); ?> characters.
 The commandname may only contain small letters and underscores.
 This field may not be empty.
 </p>

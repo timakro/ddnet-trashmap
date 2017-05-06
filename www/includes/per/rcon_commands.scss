@@ -1,0 +1,9 @@
+@import "../_master.scss";
+
+.main {
+	> section {
+		&.suggest_command_section {
+			background-color: $shade1;
+		}
+	}
+}

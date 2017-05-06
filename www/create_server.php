@@ -1,90 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="stylesheet.css">
+<?php include "includes/head.inc.php";?>
 <title>DDNet Trashmap - Create Server</title>
 </head>
 <body>
+<?php include "includes/openingBody.inc.php";?>
+
 <?php
 $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 $config = $data["config"];
 ?>
 
-<a href=".">Main Page</a> -> Create Server
-<h2>DDNet Trashmap - Create Server</h2>
-<p>
-When you submit this form a new server with the map you uploaded will be started.
-You are only allowed to have at most <?php echo($config["maxserversperip"]); ?> servers saved at a time.
-After it started the server will be running for <?php echo($config["joinminutes"]); ?> minutes until it will start to check regularly if there are players on the server.
-If the server is empty it will be stopped automatically.
-You will also get a link to control the server after you created it.
-The maximal testing time until the server will be stopped automatically is <?php echo($config["stophours"]); ?> hours.
-If a servers was not running for <?php echo($config["deletedays"]); ?> days it will be deleted automatically.
-</p>
+<div class="breadcrumbs">
+    <div class="crumb">
+    	<a href=".">Main Page</a>
+	</div>
+	<div class="crumb">
+		Create Server
+	</div>
+</div>
 
-<form enctype="multipart/form-data" action="create_server_handle.php" method="POST">
+<div class="main">
+	<section class="page_branding">
+		<h2 class="page_title">DDNet Trashmap - Create Server</h2>
+		<ul class="page_description">
+			<li>When you submit this form a new server with the map you uploaded will be started.</li>
+			<li>You are only allowed to have at most <?php echo($config["maxserversperip"]); ?> servers saved at a time.</li>
+			<li>After it started the server will be running for <?php echo($config["joinminutes"]); ?> minutes until it will start to check regularly if there are players on the server.</li>
+			<li>If the server is empty it will be stopped automatically.</li>
+			<li>You will also get a link to control the server after you created it.</li>
+			<li>The maximum testing time until the server will be stopped automatically is <?php echo($config["stophours"]); ?> hours.</li>
+			<li>If a servers was not running for <?php echo($config["deletedays"]); ?> days it will be deleted automatically.</li>
+		</ul>
+	<form enctype="multipart/form-data" action="create_server_handle.php" method="POST">
+	</section>
 
-<h3>Label</h3>
-<p>
-The label to display in the servername.
-The maximal length is <?php echo($config["maxlengthlabel"]); ?> characters.
-This field may not be empty.
-This can't be changed after creating the server.
-</p>
-<input type="text" name="label" maxlength="<?php echo($config["maxlengthlabel"]); ?>">
+	<section>
+		<h3 class="section_title">Label</h3>
+		<p>
+		The label to display in the servername.
+		The maximum length is <?php echo($config["maxlengthlabel"]); ?> characters.
+		This field may not be empty.
+		This can't be changed after creating the server.
+		</p>
+		<input type="text" name="label" maxlength="<?php echo($config["maxlengthlabel"]); ?>">
+	</section>
 
-<h3>Accesskey</h3>
-<p>
-The key required to control the server via the webinterface.
-The maximal length is <?php echo($config["maxlengthaccesskey"]); ?> characters.
-This field may not be empty.
-This can't be changed after creating the server.
-</p>
-</p>
-<input type="text" name="accesskey" maxlength="<?php echo($config["maxlengthaccesskey"]); ?>">
+	<section>
+		<h3 class="section_title">Accesskey</h3>
+		<p>
+		The key required to control the server via the webinterface.
+		The maximum length is <?php echo($config["maxlengthaccesskey"]); ?> characters.
+		This field may not be empty.
+		This can't be changed after creating the server.
+		</p>
+		<input type="text" name="accesskey" maxlength="<?php echo($config["maxlengthaccesskey"]); ?>">
+	</section>
 
-<h3>Map</h3>
-<p>
-The map file to upload on the server.
-The maximal file size is <?php echo($config["mapsizehuman"]); ?>.
-The filename has to end with '.map'.
-If there are any critical characters in the filename it will be adjusted.
-If the uploaded file is no valid map the server won't start.
-This file is required to start the server.
-</p>
-<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo($config["mapsize"]); ?>">
-<input type="file" name="map">
+	<section>
+		<h3 class="section_title">Map</h3>
+		<p>
+		The map file to upload on the server.
+		The maximum file size is <?php echo($config["mapsizehuman"]); ?>.
+		The filename has to end with '.map'.
+		If there are any critical characters in the filename it will be adjusted.
+		If the uploaded file is no valid map the server won't start.
+		This file is required to start the server.
+		</p>
+		<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo($config["mapsize"]); ?>">
+		<input id="file_upload" type="file" name="map" class="inputfile" />
+		<label for="file_upload" class="custom_file_upload">
+		    <span>Upload Map</span>
+		</label>
+	</section>
 
-<h3>Password</h3>
-<p>
-The password required to join the server.
-The maximal length is <?php echo($config["maxlengthpassword"]); ?> characters.
-This field is optional.
-</p>
-<input type="text" name="password" maxlength="<?php echo($config["maxlengthpassword"]); ?>">
+	<section>
+		<h3 class="section_title">Password</h3>
+		<p>
+		The password required to join the server.
+		The maximum length is <?php echo($config["maxlengthpassword"]); ?> characters.
+		This field is optional.
+		</p>
+		<input type="text" name="password" maxlength="<?php echo($config["maxlengthpassword"]); ?>">
+	</section>
 
-<h3>Rcon</h3>
-<p>
-The rcon password required to access the server console ingame.
-The maximal length is <?php echo($config["maxlengthrcon"]); ?> characters.
-A list of allowed commands in the rcon console can be found <a href="rcon_commands.php">here</a>.
-If this value is empty or too long the default rcon password '<?php echo($config["defaultrcon"]); ?>' will be used.
-</p>
-<input type="text" name="rcon" maxlength="<?php echo($config["maxlengthrcon"]); ?>" value="<?php echo($config["defaultrcon"]); ?>">
+	<section>
+		<h3 class="section_title">Rcon</h3>
+		<p>
+		The rcon password required to access the server console ingame.
+		The maximum length is <?php echo($config["maxlengthrcon"]); ?> characters.
+		A list of allowed commands in the rcon console can be found <a href="rcon_commands.php">here</a>.
+		If this value is empty or too long the default rcon password '<?php echo($config["defaultrcon"]); ?>' will be used.
+		</p>
+		<input type="text" name="rcon" maxlength="<?php echo($config["maxlengthrcon"]); ?>" value="<?php echo($config["defaultrcon"]); ?>">
+	</section>
 
-<h3>Playerlimit</h3>
-<p>
-The maximal number of players on the server.
-The number has to be between <?php echo($config["minplayers"]); ?> and <?php echo($config["maxplayers"]); ?>.
-If this value isn't valid the default value <?php echo($config["defaultplayers"]); ?> will be used.
-</p>
-<input type="number" name="playerlimit" value="<?php echo($config["defaultplayers"]); ?>" min="<?php echo($config["minplayers"]); ?>" max="<?php echo($config["maxplayers"]); ?>">
+	<section>
+		<h3 class="section_title">Playerlimit</h3>
+		<p>
+		The maximum number of players on the server.
+		The number has to be between <?php echo($config["minplayers"]); ?> and <?php echo($config["maxplayers"]); ?>.
+		If this value isn't valid the default value <?php echo($config["defaultplayers"]); ?> will be used.
+		</p>
+		<input type="number" name="playerlimit" value="<?php echo($config["defaultplayers"]); ?>" min="<?php echo($config["minplayers"]); ?>" max="<?php echo($config["maxplayers"]); ?>"><br>
+	</section>
+	
+	<section>
+		<input type="submit" value="Create Server">
+	</section>
 
-<br><br><br>
-<input type="submit" value="Create Server">
-
-</form>
+	</form>
+</div>
 
 </body>
 </html>

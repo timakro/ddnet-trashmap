@@ -29,42 +29,38 @@ $servers = $data["storage"]["servers"];
     <section class="page_branding">
         <h2 class="page_title">DDNet Trashmap - Access Server</h2>
         <p class="page_description">
-        <?php if(!in_array($_GET["id"], array_keys($servers))): ?>
-            There is no server saved with the given identifier.
-        <?php elseif(!password_verify($_GET["key"], $servers[$_GET["id"]]["accesskey"])): ?>
-            The given accesskey does not match.
-        <?php else:
-            $displaycontent = true;
-            $identifier = $_GET["id"];
-            $info = $servers[$identifier]; ?>
             You can control your server on this site.
             Please add this link to your favorites and use it everytime you want to test a map.
             You can share this link with other players to give them access to the server.
             You can also add the teeworlds server to your favorites.
         </p>
-        <?php endif; ?>
     </section>
     
-    <?php if($displaycontent): ?>
     <section class="server_status_section">
         <h3 class="section_title">Server Status</h3>
         <p>
-        Your server is <?php echo($info["running"] ? "running" : "offline"); ?> at the moment.
-        <?php
-            if($info["running"])
-                echo("The ip of your server is 'timakro.de:".$info["port"]."' or '84.38.65.222:".$info["port"]."'.\n");
-        ?>
+        Your server is running at the moment.
+        The ip of your server is 'timakro.de:8604' or '84.38.65.222:8604'.
         </p>
         <table class="data_table server_status_table">
-        <?php
-            if($info["running"]) {
-                echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Playercount</th><th>Runtime</th></tr>\n");
-                echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])." / ".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td></tr>\n");
-            } else {
-                echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Playercount</th></tr>\n");
-                echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>- / ".$info["playerlimit"]."</td></tr>\n");
-            }
-        ?>
+            <tr>
+                <th>Label</th>
+                <th>Port</th>
+                <th>Map</th>
+                <th>Rcon</th>
+                <th>Password</th>
+                <th>Playercount</th>
+                <th>Runtime</th>
+            </tr>
+            <tr>
+                <td>Fuck You</td>
+                <td>8604</td>
+                <td>ctf_gal</td>
+                <td>default</td>
+                <td>true</td>
+                <td>0 / 8</td>
+                <td>0h 0m 2s</td>
+            </tr>
         </table>
     </section>
 
@@ -170,7 +166,6 @@ $servers = $data["storage"]["servers"];
             <input type="submit" value="Delete Server">
         </form>
     </section>
-    <?php endif;?>
 </div>
 </body>
 </html>

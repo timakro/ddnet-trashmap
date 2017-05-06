@@ -1,0 +1,320 @@
+/* Font Stacks */
+/* Font Sizes */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Open+Sans:400,600");
+@font-face {
+  font-family: 'customIconFont';
+  src: url("iconFont/IF.eot?j3dzxt");
+  src: url("iconFont/IF.eot?j3dzxt#iefix") format("embedded-opentype"), url("iconFont/IF.ttf?j3dzxt") format("truetype"), url("iconFont/IF.woff?j3dzxt") format("woff"), url("iconFont/IF.svg?j3dzxt#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/* - Normalize - */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html {
+  font-family: Open Sans, Noto Sans, Roboto, sans-serif; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th {
+  font-family: Montserrat, Roboto, sans-serif;
+  font-weight: 500; }
+
+body {
+  font-size: 16px; }
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+table {
+  border: none;
+  border-collapse: collapse; }
+
+/* Global Styles */
+[class^="cif_"], [class*=" cif_"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'customIconFont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.cif_arrow:before {
+  content: "\e900"; }
+
+a {
+  text-decoration: none;
+  color: #37798A;
+  font-weight: 600; }
+  a:hover, a.hovering {
+    color: #1a3941; }
+
+p, td {
+  color: #555;
+  margin-bottom: 0.3em; }
+  p:last-of-type, td:last-of-type {
+    margin-bottom: 0; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th {
+  color: #378A54; }
+  h1 a,
+  h2 a,
+  h3 a,
+  h4 a,
+  h5 a,
+  h6 a,
+  th a {
+    color: #378A54;
+    font-weight: 500; }
+    h1 a:hover, h1 a.hovering,
+    h2 a:hover,
+    h2 a.hovering,
+    h3 a:hover,
+    h3 a.hovering,
+    h4 a:hover,
+    h4 a.hovering,
+    h5 a:hover,
+    h5 a.hovering,
+    h6 a:hover,
+    h6 a.hovering,
+    th a:hover,
+    th a.hovering {
+      color: #1a4128; }
+
+.icon_group {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  display: inline-block; }
+  .icon_group a {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10; }
+  .icon_group .icon use[*|href="#path_serverlist"], .icon_group .icon use[*|href="#path_plus"], .icon_group .icon use[*|href="#path_dev"] {
+    fill: #378A54; }
+  .icon_group .icon use[*|href="#path_cross"] {
+    fill: #8a3737; }
+  .icon_group .icon.hovering {
+    display: none; }
+    .icon_group .icon.hovering use.path_hovering[*|href="#path_serverlist"], .icon_group .icon.hovering use.path_hovering[*|href="#path_plus"], .icon_group .icon.hovering use.path_hovering[*|href="#path_dev"] {
+      fill: #1a4128; }
+
+table.data_table {
+  margin-top: 1em;
+  border-bottom: 1px solid #b0b0b0;
+  box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.3); }
+  table.data_table th, table.data_table td {
+    padding: 10px;
+    vertical-align: top; }
+  table.data_table th {
+    background-color: #52a26e;
+    color: white; }
+  table.data_table td {
+    border-right: 1px solid #b0b0b0; }
+  table.data_table td:last-of-type {
+    border-right: none; }
+  table.data_table tr:nth-child(odd) {
+    background-color: white; }
+  table.data_table tr:nth-child(even) {
+    background-color: #e3e3e3; }
+  table.data_table.negative tr:nth-child(odd) {
+    background-color: #d6d6d6; }
+  table.data_table.negative tr:nth-child(even) {
+    background-color: #f2f2f2; }
+
+ul {
+  margin-left: 25px;
+  margin-top: 0.5em; }
+  ul li {
+    color: inherit;
+    margin-bottom: 0.3em; }
+    ul li:last-of-type {
+      margin-bottom: 0; }
+
+input {
+  margin: 1em 0; }
+  input[type=text], input[type=number] {
+    padding: 5px 8px;
+    border-radius: 0;
+    border: 1px solid #b0b0b0;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+    font-family: Open Sans, Noto Sans, Roboto, sans-serif;
+    color: #3c3c3c; }
+  input[type=submit] {
+    padding: 5px 8px;
+    border: 1px solid #b0b0b0;
+    font-family: Open Sans, Noto Sans, Roboto, sans-serif;
+    color: #555;
+    font-size: 14px;
+    background-color: #378A54;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    color: white; }
+    input[type=submit]:hover {
+      cursor: pointer;
+      background-color: #307849; }
+  input[type=file] {
+    display: none; }
+
+label {
+  margin: 1em 0; }
+  label.custom_file_upload {
+    padding: 5px 8px;
+    border: 1px solid #b0b0b0;
+    font-family: Open Sans, Noto Sans, Roboto, sans-serif;
+    color: #555;
+    font-size: 14px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: inline-block; }
+    label.custom_file_upload:hover {
+      cursor: pointer;
+      background-color: #f2f2f2; }
+
+.button {
+  margin: 1em 0;
+  display: inline-block;
+  padding: 5px 8px;
+  border: 1px solid #b0b0b0;
+  font-family: Open Sans, Noto Sans, Roboto, sans-serif;
+  color: #555;
+  font-size: 14px;
+  background-color: #378A54;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  color: white; }
+  .button:hover {
+    cursor: pointer;
+    background-color: #307849; }
+  .button.negative {
+    padding: 5px 8px;
+    border: 1px solid #b0b0b0;
+    font-family: Open Sans, Noto Sans, Roboto, sans-serif;
+    color: #555;
+    font-size: 14px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    color: #378A54; }
+    .button.negative:hover {
+      cursor: pointer;
+      background-color: #f2f2f2; }
+
+body {
+  background-color: white; }
+
+.breadcrumbs {
+  background-color: white;
+  padding: 5px 0px 5px 20px;
+  border-bottom: 1px solid #cacaca;
+  font-size: 16px; }
+  .breadcrumbs .separator {
+    color: #7d7d7d;
+    font-size: 14px;
+    margin-right: 10px; }
+  .breadcrumbs .crumb {
+    margin-right: 10px;
+    color: #7d7d7d;
+    font-family: Montserrat, Roboto, sans-serif;
+    font-weight: 400;
+    display: inline-block; }
+    .breadcrumbs .crumb a {
+      color: #378A54;
+      font-weight: 500; }
+
+.main > section {
+  padding: 30px 0;
+  overflow: auto; }
+  .main > section .inner_wrap {
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: inherit; }
+  .main > section .error_block {
+    margin-bottom: 1em;
+    padding: 10px 15px;
+    background-color: #dfaeae;
+    border-left: 6px solid #c26565; }
+    .main > section .error_block .error_line .error_type {
+      color: #8a3737;
+      font-weight: 600; }
+    .main > section .error_block .error_line .error_message {
+      color: #8a3737;
+      margin-left: 5px; }
+  .main > section .warning_block {
+    margin-bottom: 1em;
+    padding: 10px 15px;
+    background-color: #e8c399;
+    border-left: 6px solid #d49247; }
+    .main > section .warning_block .warning_line .warning_type {
+      color: #935E22;
+      font-weight: 600; }
+    .main > section .warning_block .warning_line .warning_message {
+      color: #935E22;
+      margin-left: 5px; }
+  .main > section:nth-child(odd) {
+    background-color: #e3e3e3; }
+  .main > section:nth-child(even) {
+    background-color: white; }
+  .main > section.page_branding {
+    background-color: #5e9672; }
+    .main > section.page_branding .page_title {
+      color: white;
+      display: inline-block;
+      padding-bottom: 10px;
+      border-bottom: 2px solid white;
+      margin-bottom: 15px; }
+    .main > section.page_branding .page_description {
+      color: white;
+      max-width: 75%; }
+      .main > section.page_branding .page_description p {
+        color: white; }
+  .main > section.site_branding {
+    background-color: #5e9672;
+    padding-left: 20px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    margin: auto; }
+    .main > section.site_branding .site_title {
+      color: white;
+      margin-bottom: 10px;
+      text-align: center;
+      font-size: 40px; }
+    .main > section.site_branding .site_description {
+      color: white;
+      margin-top: 10px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 10px;
+      border-top: 2px solid white;
+      max-width: 50%;
+      font-size: 14px; }
+
+/*# sourceMappingURL=stylesheet.css.map */

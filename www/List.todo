@@ -1,0 +1,7 @@
+This not to include:
+ ☐ .sass-cache
+ ☐ access_server_copy.php
+ ☐ includes/per/access_server_copy.scss
+ ☐ includes/per/access_server_copy.css
+ ☐ includes/per/access_server_copy.css.map
+ ☐ server_list_copy.php

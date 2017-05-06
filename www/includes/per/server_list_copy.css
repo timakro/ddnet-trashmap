@@ -1,0 +1,18 @@
+/* Font Stacks */
+/* Font Sizes */
+.main > section.offline_servers_section .offline_servers_table td:nth-child(1), .main > section.offline_servers_section .offline_servers_table td:nth-child(3) {
+  overflow: auto;
+  max-width: 12em; }
+.main > section.offline_servers_section .offline_servers_table td:last-of-type {
+  white-space: nowrap;
+  overflow: auto; }
+  .main > section.offline_servers_section .offline_servers_table td:last-of-type form input[type=text] {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .main > section.offline_servers_section .offline_servers_table td:last-of-type form input[type=submit] {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+    height: 40px; }
+
+/*# sourceMappingURL=server_list_copy.css.map */
