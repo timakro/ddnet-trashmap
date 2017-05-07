@@ -40,11 +40,12 @@ $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 
 	</section>
 	<section class="suggest_command_section">
-		<h3>Suggest Command</h3>
+		<h3 class="section_title">Suggest Command</h3>
 		<p>
 		There are probably forbidden commands that are not dangerous and would be useful in the rcon console.
-		You can suggest new commands <a href="suggest_rcon_command.php">here</a>.
+		You can suggest new commands by clicking the following button:
 		</p>
+		<a href="suggest_rcon_command.php" class="button">Suggest Command</a>
 	</section>
 </div>
 

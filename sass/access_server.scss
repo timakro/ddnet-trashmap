@@ -1,7 +1,7 @@
 @import "../_master.scss";
 
 .main {
-	> section {
+	section {
 		&.map_section {
 			input[type=submit] {
 				margin-left: 10px;

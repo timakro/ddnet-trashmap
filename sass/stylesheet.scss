@@ -78,15 +78,6 @@ table {
 	content: "\e900";
 }
 
-a {
-	text-decoration: none;
-	color: $link1;
-	font-weight: 600;
-	&:hover, &.hovering {
-		color: darken($link1, 20%);
-	}
-}
-
 p, td {
 	color: $text1-0;
 	margin-bottom: 0.3em;
@@ -195,7 +186,7 @@ ul {
 }
 
 @mixin button($bgColor) {
-	padding: 5px 8px;
+	padding: 8px 12px;
 	border: 1px solid darken($shade1, 20%);
 	font-family: $bodyFS;
 	color: $text1-0;
@@ -207,15 +198,19 @@ ul {
 		background-color: darken($bgColor, 5%);
 	}
 }
+
 input {
 	margin: 1em 0;
 	&[type=text], &[type=number] {
-		padding: 5px 8px;
+		padding: 8px 12px;
 		border-radius: 0;
 		border: 1px solid darken($shade1, 20%);
-		box-shadow: inset 0px 0px 5px rgba(0,0,0,0.2);
+		box-shadow: inset 0px 0px 8px rgba(0,0,0,0.2);
 		font-family: $bodyFS;
 		color: darken($text1-0, 10%);
+		&:focus {
+			border-color: lighten($accent1, 20%);
+		}
 	}
 	&[type=submit] {
 		@include button($accent1);
@@ -233,14 +228,29 @@ label {
 	}
 }
 
-.button {
-	margin: 1em 0;
-	display: inline-block;
-	@include button($accent1);
-	color: $shade0;
-	&.negative {
-		@include button($shade0);
-		color: $accent1;
+a {
+	text-decoration: none;
+	color: $link1;
+	font-weight: 600;
+	&:hover, &.hovering {
+		color: darken($link1, 20%);
+	}
+	&.button {
+		margin: 1em 0;
+		display: inline-block;
+		@include button($accent1);
+		color: $shade0;
+		font-weight: 400;
+		&:hover &.hovering {
+			color: darken($shade0, 20%);
+		}
+		&.negative {
+			@include button($shade0);
+			color: $accent1;
+			&:hover &.hovering {
+				color: darken($accent1, 20%);
+			}
+		}
 	}
 }
 
@@ -273,7 +283,7 @@ body {
 
 
 .main {
-	> section {
+	section {
 		padding: 30px 0;
 		overflow: auto;
 		.inner_wrap {

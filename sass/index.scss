@@ -1,7 +1,7 @@
 @import "../_master.scss";
 
 .main {
-	> section {
+	section {
 		// site_branding is styled in stylesheet.scss
 		&.display_case_section {
 			background-color: $shade0;

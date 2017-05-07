@@ -14,9 +14,9 @@
 </div>
 
 <div class="main">
-	<section class="site_branding">
-		<h2 class="site_title">DDNet Trashmap - Maintenance</h2>
-		<p class="site_description">Sorry, we are down for maintenance!</p>
+	<section class="page_branding">
+		<h2 class="page_title">DDNet Trashmap - Maintenance</h2>
+		<p class="page_description">Sorry, we are down for maintenance!</p>
 	</section>
 </div>
 

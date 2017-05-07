@@ -27,15 +27,15 @@ $config = $data["config"];
 		<ul class="page_description">
 			<li>When you submit this form a new server with the map you uploaded will be started.</li>
 			<li>You are only allowed to have at most <?php echo($config["maxserversperip"]); ?> servers saved at a time.</li>
-			<li>After it started the server will be running for <?php echo($config["joinminutes"]); ?> minutes until it will start to check regularly if there are players on the server.</li>
+			<li>After it is started, the server will be running for <?php echo($config["joinminutes"]); ?> minutes until it will start to check regularly if there are players on the server.</li>
 			<li>If the server is empty it will be stopped automatically.</li>
-			<li>You will also get a link to control the server after you created it.</li>
+			<li>You will also get a link to control the server after you create it.</li>
 			<li>The maximum testing time until the server will be stopped automatically is <?php echo($config["stophours"]); ?> hours.</li>
-			<li>If a servers was not running for <?php echo($config["deletedays"]); ?> days it will be deleted automatically.</li>
+			<li>If a server has not been running for <?php echo($config["deletedays"]); ?> days it will be deleted automatically.</li>
 		</ul>
-	<form enctype="multipart/form-data" action="create_server_handle.php" method="POST">
 	</section>
 
+	<form enctype="multipart/form-data" action="create_server_handle.php" method="POST">
 	<section>
 		<h3 class="section_title">Label</h3>
 		<p>

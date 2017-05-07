@@ -50,7 +50,7 @@ $CREATE_SERVER = 3;
             if($_FILES["map"]["error"] == UPLOAD_ERR_NO_FILE)
                 array_push($errors["Map"], "No file uploaded");
             if($_FILES["map"]["error"] == UPLOAD_ERR_FORM_SIZE || $_FILES["map"]["size"] > $config["mapsize"])
-                array_push($errors["Map"], "Maximal file size exceeded");
+                array_push($errors["Map"], "Maximum file size exceeded");
             if($_FILES["map"]["error"] == UPLOAD_ERR_PARTIAL)
                 array_push($errors["Map"], "File only partially uploaded");
             if($_FILES["map"]["error"] == UPLOAD_ERR_INI_SIZE || $_FILES["map"]["error"] == UPLOAD_ERR_NO_TMP_DIR || $_FILES["map"]["error"] == UPLOAD_ERR_CANT_WRITE || $_FILES["map"]["error"] == UPLOAD_ERR_EXTENSION)

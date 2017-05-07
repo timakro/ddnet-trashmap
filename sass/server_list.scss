@@ -1,7 +1,7 @@
 @import "../_master.scss";
 
 .main {
-	> section {
+	section {
 		&.offline_servers_section {
 			.offline_servers_table {
 				td:nth-child(1), td:nth-child(3) {
