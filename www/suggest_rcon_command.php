@@ -43,7 +43,7 @@ if (isset($_SESSION['suggestedcommand'])):
                 }
             }
             echo '</div>';
-        }?>"
+        }?>";
 
         var content = content + "<?php if(!empty($warnings)) {
             echo '<div class=\"warning_block\">';
@@ -53,7 +53,7 @@ if (isset($_SESSION['suggestedcommand'])):
                 }
             }
             echo '</div>';
-        }?>"
+        }?>";
         
     modal.setContent(content);
 
