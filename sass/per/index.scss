@@ -1,70 +1,70 @@
 @import "../_master.scss";
 
 .main {
-	section {
-		// site_branding is styled in stylesheet.scss
-		&.display_case_section {
-			background-color: $shade0;
-			table.display_case {
-				table-layout: fixed;
-				td {
-					background-color: inherit;
-					padding: 20px;
-					width: 33.33%;
-					vertical-align: top;
-					border-left: 2px solid darken($shade0, 10%);
-					&:first-child {
-						border-left: none;
-					}
-					.case_head {
-						overflow: hidden;
-						line-height: 48px;	// must be the same height as the icon
-						margin-bottom: 10px;
-						.icon_group, .header_link {
-							float: left;
-						}
-						.header_link {
-							margin-left: 15px;
-						}
-					}
-					.case_description {
-						clear: left;
-					}
-					&.maxed_out {
-						.case_head {
-							.header_link {
-								color: $error1;
-							}
-						}
-						.case_description {
-							border-top: 2px solid $error1;
-							padding-top: 10px;
-							color: $error1;
-							font-weight: 600;
-						}
-					}
-				}
-			}
-		}
-		&.changelog_section {
-			padding-top: 50px;
-			background-color: $shade1;
-			.section_title {
-				text-align: center;
-				font-size: 30px;
-			}
-			table.changelog {
-				margin-top: 25px;
-				td:nth-child(1) {
-					white-space: nowrap;
-					color: darken($shade1, 40%);
-					font-family: $monoFS;
-					font-weight: 700;
-				}
-				td:nth-child(2) {
-					padding-left: 20px;
-				}
-			}
-		}
-	}
+    section {
+        // site_branding is styled in stylesheet.scss
+        &.display_case_section {
+            background-color: $shade0;
+            table.display_case {
+                table-layout: fixed;
+                td {
+                    background-color: inherit;
+                    padding: 20px;
+                    width: 33.33%;
+                    vertical-align: top;
+                    border-left: 2px solid darken($shade0, 10%);
+                    &:first-child {
+                        border-left: none;
+                    }
+                    .case_head {
+                        overflow: hidden;
+                        line-height: 48px;  // must be the same height as the icon
+                        margin-bottom: 10px;
+                        .icon_group, .header_link {
+                            float: left;
+                        }
+                        .header_link {
+                            margin-left: 15px;
+                        }
+                    }
+                    .case_description {
+                        clear: left;
+                    }
+                    &.maxed_out {
+                        .case_head {
+                            .header_link {
+                                color: $error1;
+                            }
+                        }
+                        .case_description {
+                            border-top: 2px solid $error1;
+                            padding-top: 10px;
+                            color: $error1;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+        &.changelog_section {
+            padding-top: 50px;
+            background-color: $shade1;
+            .section_title {
+                text-align: center;
+                font-size: 30px;
+            }
+            table.changelog {
+                margin-top: 25px;
+                td:nth-child(1) {
+                    white-space: nowrap;
+                    color: darken($shade1, 40%);
+                    font-family: $monoFS;
+                    font-weight: 700;
+                }
+                td:nth-child(2) {
+                    padding-left: 20px;
+                }
+            }
+        }
+    }
 }

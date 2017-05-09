@@ -1,7 +1,7 @@
 <?php
-	$includedFiles = get_included_files();
-	$includedFrom = $includedFiles[count($includedFiles) - 2];
-	$includedFromName = basename($includedFrom, '.php');
+  $includedFiles = get_included_files();
+  $includedFrom = $includedFiles[count($includedFiles) - 2];
+  $includedFromName = basename($includedFrom, '.php');
 ?>
 <meta charset="utf-8">
 <link rel="stylesheet" href="includes/stylesheet.css">

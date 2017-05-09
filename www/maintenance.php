@@ -8,16 +8,16 @@
 <?php include "includes/openingBody.inc.php";?>
 
 <div class="breadcrumbs">
-	<div class="crumb">
-		Maintenance
-	</div>
+  <div class="crumb">
+    Maintenance
+  </div>
 </div>
 
 <div class="main">
-	<section class="page_branding">
-		<h2 class="page_title">DDNet Trashmap - Maintenance</h2>
-		<p class="page_description">Sorry, we are down for maintenance!</p>
-	</section>
+  <section class="page_branding">
+    <h2 class="page_title">DDNet Trashmap - Maintenance</h2>
+    <p class="page_description">Sorry, we are down for maintenance!</p>
+  </section>
 </div>
 
 </body>
