@@ -5,6 +5,64 @@
 <title>DDNet Trashmap - Create Server</title>
 </head>
 <body>
+
+<?php
+session_start();
+if (isset($_SESSION['unsuccessfulservercreation'])):
+	$errors = $_SESSION['servercreation_errors'];
+	$warnings = $_SESSION['servercreation_warnings'];
+?>
+<script>
+    // instanciate new modal
+    var modal = new tingle.modal({
+        closeMethods: ['overlay', 'button', 'escape'],
+        cssClass: ['aside'];
+        closeLabel: "Close",
+        onOpen: function() {
+            console.log('modal open');
+        },
+        onClose: function() {
+            console.log('modal closed');
+        },
+        beforeClose: function() {
+            // here's goes some logic
+            // e.g. save content before closing the modal
+            return true; // close the modal
+            return false; // nothing happens
+        }
+    });
+
+
+    var content = "<h2 class=\"modal_title error_head\">There was an error in creating the server.</h2>";
+    var content = content + "<?php if(!empty($errors)) {
+        echo '<div class=\"error_block\">';
+        foreach($errors as $type => $errormessages) {
+            foreach($errormessages as $errormessage) {
+                    echo '<div class=\"error_line\">' . '<span class=\"error_type\">[' . $type . ']</span><span class=\"error_message\">' . $errormessage . '</span></div>';
+            }
+        }
+        echo '</div>';
+    }?>"
+
+    var content = content + "<?php if(!empty($warnings)) {
+        echo '<div class=\"warning_block\">';
+        foreach($warnings as $type => $warningmessages) {
+            foreach($warningmessages as $warningmessage) {
+                    echo '<div class=\"warning_line\">' . '<span class=\"warning_type\">[' . $type . ']</span><span class=\"warning_message\">' . $warningmessage . '</span></div>';
+            }
+        }
+        echo '</div>';
+    }?>"
+
+    modal.setContent(content);
+
+    // open modal
+    modal.open();
+</script>
+<?php endif;
+session_unset();
+?>
+
 <?php include "includes/openingBody.inc.php";?>
 
 <?php

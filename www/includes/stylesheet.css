@@ -255,35 +255,52 @@ body {
       color: #378A54;
       font-weight: 500; }
 
+.tingle-modal.aside .tingle-modal-box {
+  font-size: 14px;
+  width: 100%;
+  margin-top: 0;
+  background-color: white;
+  border-radius: 0; }
+.tingle-modal.aside .tingle-modal-box__content {
+  padding: 20px; }
+.tingle-modal .modal_title.error_head {
+  color: #8a3737; }
+.tingle-modal p {
+  margin-top: 0.3em; }
+  .tingle-modal p:first-of-type {
+    margin-top: 1em; }
+.tingle-modal .error_block {
+  margin-top: 1em;
+  padding: 10px 15px;
+  background-color: #dfaeae;
+  border-left: 6px solid #c26565; }
+  .tingle-modal .error_block .error_line .error_type {
+    color: #8a3737;
+    font-weight: 600; }
+  .tingle-modal .error_block .error_line .error_message {
+    color: #8a3737;
+    margin-left: 5px; }
+.tingle-modal .warning_block {
+  margin-top: 1em;
+  padding: 10px 15px;
+  background-color: #e8c399;
+  border-left: 6px solid #d49247; }
+  .tingle-modal .warning_block .warning_line .warning_type {
+    color: #935E22;
+    font-weight: 600; }
+  .tingle-modal .warning_block .warning_line .warning_message {
+    color: #935E22;
+    margin-left: 5px; }
+
 .main section {
   padding: 30px 0;
   overflow: auto; }
+  .main section .section_title {
+    margin-bottom: 0.3em; }
   .main section .inner_wrap {
     max-width: 80%;
     margin: 0 auto;
     background-color: inherit; }
-  .main section .error_block {
-    margin-bottom: 1em;
-    padding: 10px 15px;
-    background-color: #dfaeae;
-    border-left: 6px solid #c26565; }
-    .main section .error_block .error_line .error_type {
-      color: #8a3737;
-      font-weight: 600; }
-    .main section .error_block .error_line .error_message {
-      color: #8a3737;
-      margin-left: 5px; }
-  .main section .warning_block {
-    margin-bottom: 1em;
-    padding: 10px 15px;
-    background-color: #e8c399;
-    border-left: 6px solid #d49247; }
-    .main section .warning_block .warning_line .warning_type {
-      color: #935E22;
-      font-weight: 600; }
-    .main section .warning_block .warning_line .warning_message {
-      color: #935E22;
-      margin-left: 5px; }
   .main section:nth-child(odd) {
     background-color: #e3e3e3; }
   .main section:nth-child(even) {

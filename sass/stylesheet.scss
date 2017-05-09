@@ -281,6 +281,64 @@ body {
 	}
 }
 
+.tingle-modal {
+	&.aside {
+		.tingle-modal-box {
+			font-size: 14px;
+			width: 100%;
+			margin-top: 0;
+			background-color: $shade0;
+			border-radius: 0;
+		}
+		.tingle-modal-box__content {
+			padding: 20px;
+		}
+	}
+	.modal_title {
+		&.error_head {
+			color: $error1;
+		}
+	}
+	p {
+		margin-top: 0.3em;
+		&:first-of-type {
+			margin-top: 1em;
+		}
+	}
+	.error_block {
+		margin-top: 1em;
+		padding: 10px 15px;
+		background-color: lighten($error1, 40%);
+		border-left: 6px solid lighten($error1, 20%);
+		.error_line {
+			.error_type {
+				color: $error1;
+				font-weight: 600;
+			}
+			.error_message {
+				color: $error1;
+				margin-left: 5px;
+			}
+		}
+	}
+	.warning_block {
+		margin-top: 1em;
+		padding: 10px 15px;
+		background-color: lighten($warning1, 40%);
+		border-left: 6px solid lighten($warning1, 20%);
+		.warning_line {
+			.warning_type {
+				color: $warning1;
+				font-weight: 600;
+			}
+			.warning_message {
+				color: $warning1;
+				margin-left: 5px;
+			}
+		}
+	}
+}
+
 
 .main {
 	section {
@@ -290,38 +348,6 @@ body {
 			max-width: 80%;
 			margin: 0 auto;
 			background-color: inherit;
-		}
-		.error_block {
-			margin-bottom: 1em;
-			padding: 10px 15px;
-			background-color: lighten($error1, 40%);
-			border-left: 6px solid lighten($error1, 20%);
-			.error_line {
-				.error_type {
-					color: $error1;
-					font-weight: 600;
-				}
-				.error_message {
-					color: $error1;
-					margin-left: 5px;
-				}
-			}
-		}
-		.warning_block {
-			margin-bottom: 1em;
-			padding: 10px 15px;
-			background-color: lighten($warning1, 40%);
-			border-left: 6px solid lighten($warning1, 20%);
-			.warning_line {
-				.warning_type {
-					color: $warning1;
-					font-weight: 600;
-				}
-				.warning_message {
-					color: $warning1;
-					margin-left: 5px;
-				}
-			}
 		}
 		&:nth-child(odd) {
 			background-color: $shade1;

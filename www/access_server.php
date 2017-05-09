@@ -5,6 +5,91 @@
 <title>DDNet Trashmap - Access Server</title>
 </head>
 <body>
+
+<?php
+session_start();
+if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])):
+    if (isset($_SESSION['newlycreatedserver'])) {
+        $warnings = $_SESSION['servercreation_warnings'];
+    }
+    if (isset($_SESSION['changedsetting'])) {
+        $settingstatus = $_SESSION['settingstatus'];
+        $success = $_SESSION['settingstatus_success'];
+        $errors = $_SESSION['settingstatus_errors'];
+        $warnings = $_SESSION['settingstatus_warnings'];
+    }
+?>
+<script>
+    // instanciate new modal
+    var modal = new tingle.modal({
+        closeMethods: ['overlay', 'escape'],
+        cssClass: ['aside'],
+        closeLabel: "Close",
+        onOpen: function() {
+            console.log('modal open');
+        },
+        onClose: function() {
+            console.log('modal closed');
+        },
+        beforeClose: function() {
+            // here's goes some logic
+            // e.g. save content before closing the modal
+            return true; // close the modal
+            return false; // nothing happens
+        }
+    });
+
+    // setTimeout(function () {
+        // modal.close();
+    // }, 3000);
+
+    <?php if (isset($_SESSION['newlycreatedserver'])): ?>
+        var content = "<h2 class=\"modal_title\">Successfully created a new server.</h2>"
+        var content = content + "<?php if(!empty($warnings)) {
+            echo '<div class=\"warning_block\">';
+            foreach($warnings as $type => $warningmessages) {
+                foreach($warningmessages as $warningmessage) {
+                        echo '<div class=\"warning_line\">' . '<span class=\"warning_type\">[' . $type . ']</span><span class=\"warning_message\">' . $warningmessage . '</span></div>';
+                }
+            }
+            echo '</div>';
+        }?>"
+        // set content
+        var content = content + '<p>Please save this link to your bookmarks and use it everytime you want to test a map.</p><p>You can also login using a form at the server list page and your accesskey.</p><p>You can of course share the link or your accesskey with other players.</p>';
+
+    <?php elseif (isset($_SESSION['changedsetting'])): ?>
+        var content = "<h2 class=\"modal_title <?php if (!$success) { echo "error_head"; };?>\"><?php echo "$settingstatus";?></h2>";
+        var content = content + "<?php if(!empty($errors)) {
+            echo '<div class=\"error_block\">';
+            foreach($errors as $type => $errormessages) {
+                foreach($errormessages as $errormessage) {
+                        echo '<div class=\"error_line\">' . '<span class=\"error_type\">[' . $type . ']</span><span class=\"error_message\">' . $errormessage . '</span></div>';
+                }
+            }
+            echo '</div>';
+        }?>"
+
+        var content = content + "<?php if(!empty($warnings)) {
+            echo '<div class=\"warning_block\">';
+            foreach($warnings as $type => $warningmessages) {
+                foreach($warningmessages as $warningmessage) {
+                        echo '<div class=\"warning_line\">' . '<span class=\"warning_type\">[' . $type . ']</span><span class=\"warning_message\">' . $warningmessage . '</span></div>';
+                }
+            }
+            echo '</div>';
+        }?>"
+        
+    <?php endif; ?>
+
+    modal.setContent(content);
+
+    // open modal
+    modal.open();
+</script>
+<?php endif;
+session_unset();
+?>
+
 <?php include "includes/openingBody.inc.php";?>
 
 <?php
