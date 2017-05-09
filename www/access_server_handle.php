@@ -147,7 +147,7 @@ else {
         }
     }
     else {
-        $settingstatus = "Failed to access the server because an error occurred";
+        $settingstatus = "Failed to change setting because an error occurred";
         $success = false;
     }
 }
@@ -157,4 +157,8 @@ $_SESSION['settingstatus'] = $settingstatus;
 $_SESSION['settingstatus_success'] = $success;
 $_SESSION['settingstatus_errors'] = $errors;
 $_SESSION['settingstatus_warnings'] = $warnings;
+if(!$error) {
+  // Make sure the server recognizes that a setting changed
+  sleep($config["tickseconds"]);
+}
 header("Location: $link");
