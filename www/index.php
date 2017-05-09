@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <?php include "includes/head.inc.php";?>
+<link rel="stylesheet" href="includes/per/index.css">
 <title>DDNet Trashmap</title>
 </head>
 <body>

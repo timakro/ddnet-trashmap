@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <?php include "includes/head.inc.php";?>
+<link rel="stylesheet" href="includes/per/rcon_commands.css">
 <title>DDNet Trashmap - Rcon Commands</title>
 </head>
 <body>

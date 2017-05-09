@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <?php include "includes/head.inc.php";?>
+<link rel="stylesheet" href="includes/per/access_server.css">
 <title>DDNet Trashmap - Access Server</title>
 </head>
 <body>
