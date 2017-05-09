@@ -109,6 +109,8 @@ if($success) {
     session_start();
     $_SESSION['newlycreatedserver'] = true;
     $_SESSION['servercreation_warnings'] = $warnings;
+    // Make sure the server recognizes that a new server has been created    
+    sleep($config["tickseconds"]);
     header("Location: $link");
 }
 else {
