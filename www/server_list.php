@@ -41,7 +41,7 @@ $servers = $data["storage"]["servers"];
 		There are currently <?php echo(strval(count($rows))); ?> servers running.
 		The maximum count of running servers is <?php echo($config["maxrunningservers"]); ?>.
 		</p>
-		<?php if (count($rows) > 0):?>
+		<?php if (!empty($rows)):?>
 		<table class="running_servers data_table">
 			<tr>
 				<th>Label</th>
@@ -74,7 +74,7 @@ $servers = $data["storage"]["servers"];
 		?>
 		There are currently <?php echo(strval(count($rows))); ?> offline servers saved.
 		</p>
-		<?php if (!emtpy($rows)):?>
+		<?php if (!empty($rows)):?>
 		<table class="offline_servers_table data_table negative">
 			<tr>
 				<th>Label</th>
