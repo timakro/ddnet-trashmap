@@ -13,7 +13,7 @@ var breadcrumbs = (function (public) {
             var separator = document.createElement("SPAN");
             separator.classList.add("separator");
             separator.classList.add("cif_arrow");
-            breadcrumbsBar.insertBefore(separator, crumbs[j]);          
+            breadcrumbsBar.insertBefore(separator, crumbs[j]);
         }
     };
 

@@ -7,7 +7,7 @@ $errors =   ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "P
 $warnings = ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
 
 if(!$_POST["label"])
-    array_push($errors["Label"], "Field is empty"); 
+    array_push($errors["Label"], "Field is empty");
 if(strlen($_POST["label"]) > $config["maxlengthlabel"])
     array_push($errors["Label"], "Field contains too many characters");
 
@@ -109,7 +109,7 @@ if($success) {
     session_start();
     $_SESSION['newlycreatedserver'] = true;
     $_SESSION['servercreation_warnings'] = $warnings;
-    // Make sure the server recognizes that a new server has been created    
+    // Make sure the server recognizes that a new server has been created
     sleep($config["tickseconds"]);
     header("Location: $link");
 }

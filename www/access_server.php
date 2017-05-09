@@ -74,7 +74,7 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
             }
             echo '</div>';
         }?>";
-        
+
     <?php endif; ?>
 
     modal.setContent(content);
@@ -102,7 +102,7 @@ $servers = $data["storage"]["servers"];
         <a href="server_list.php">Server List</a>
     </div>
     <div class="crumb">
-        Access Server        
+        Access Server
     </div>
 </div>
 
@@ -125,7 +125,7 @@ $servers = $data["storage"]["servers"];
         </p>
         <?php endif; ?>
     </section>
-    
+
     <?php if($displaycontent): ?>
     <section class="server_status_section">
         <h3 class="section_title">Server Status</h3>

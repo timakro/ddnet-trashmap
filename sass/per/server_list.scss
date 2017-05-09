@@ -4,7 +4,7 @@
     section {
         &.offline_servers_section .offline_servers_table, &.running_servers_section .running_servers_table {
             td:nth-child(1), td:nth-child(3) {
-                white-space: normal;                    
+                white-space: normal;
                 word-break: break-all;
                 max-width: 12em;
             }

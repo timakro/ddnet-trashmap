@@ -163,7 +163,7 @@ $config = $data["config"];
     </p>
     <input type="number" name="playerlimit" value="<?php echo($config["defaultplayers"]); ?>" min="<?php echo($config["minplayers"]); ?>" max="<?php echo($config["maxplayers"]); ?>"><br>
   </section>
-  
+
   <section>
     <input type="submit" value="Create Server">
   </section>

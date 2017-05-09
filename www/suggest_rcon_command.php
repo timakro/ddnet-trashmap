@@ -54,7 +54,7 @@ if (isset($_SESSION['suggestedcommand'])):
             }
             echo '</div>';
         }?>";
-        
+
     modal.setContent(content);
 
     // open modal
