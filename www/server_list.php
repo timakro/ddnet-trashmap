@@ -42,7 +42,7 @@ $servers = $data["storage"]["servers"];
 		The maximum count of running servers is <?php echo($config["maxrunningservers"]); ?>.
 		</p>
 		<?php if (!empty($rows)):?>
-		<table class="running_servers data_table">
+		<table class="running_servers_table data_table">
 			<tr>
 				<th>Label</th>
 				<th>Port</th>
