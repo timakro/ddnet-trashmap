@@ -1,0 +1,11 @@
+@import "../_master.scss";
+
+.main {
+	section {
+		&.map_section {
+			input[type=submit] {
+				margin-left: 10px;
+			}
+		}
+	}
+}

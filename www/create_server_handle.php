@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="stylesheet.css">
-<title>DDNet Trashmap - Create Server</title>
-</head>
-<body>
 <?php
 $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 $config = $data["config"];
 $servers = $data["storage"]["servers"];
 $CREATE_SERVER = 3;
-?>
-
-<a href=".">Main Page</a> -> Create Server
-<h2>DDNet Trashmap - Create Server</h2>
-<p>
-<?php
 $errors =   ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
 $warnings = ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
 
 if(!$_POST["label"])
-    array_push($errors["Label"], "Field is empty");
+    array_push($errors["Label"], "Field is empty"); 
 if(strlen($_POST["label"]) > $config["maxlengthlabel"])
     array_push($errors["Label"], "Field contains too many characters");
 
@@ -39,7 +25,7 @@ if(!$errors["Accesskey"]) {
 if($_FILES["map"]["error"] == UPLOAD_ERR_NO_FILE)
     array_push($errors["Map"], "No file uploaded");
 if($_FILES["map"]["error"] == UPLOAD_ERR_FORM_SIZE || $_FILES["map"]["size"] > $config["mapsize"])
-    array_push($errors["Map"], "Maximal file size exceeded");
+    array_push($errors["Map"], "Maximum file size exceeded");
 if($_FILES["map"]["error"] == UPLOAD_ERR_PARTIAL)
     array_push($errors["Map"], "File only partially uploaded");
 if($_FILES["map"]["error"] == UPLOAD_ERR_INI_SIZE || $_FILES["map"]["error"] == UPLOAD_ERR_NO_TMP_DIR || $_FILES["map"]["error"] == UPLOAD_ERR_CANT_WRITE || $_FILES["map"]["error"] == UPLOAD_ERR_EXTENSION)
@@ -79,7 +65,7 @@ if(!$_POST["playerlimit"] || !ctype_digit($_POST["playerlimit"])) {
 }
 
 if(count($servers) >= $config["maxservers"])
-    array_push($errors["Limit"], "The maximal count of saved servers is already reached");
+    array_push($errors["Limit"], "The maximum count of saved servers is already reached");
 $sameip = 0;
 $running = 0;
 foreach($servers as $identifier => $data) {
@@ -89,23 +75,20 @@ foreach($servers as $identifier => $data) {
         $running += 1;
 }
 if($sameip >= $config["maxserversperip"])
-    array_push($errors["Limit"], "The maximal count of saved servers per ip is already reached");
+    array_push($errors["Limit"], "The maximum count of saved servers per ip is already reached");
 if(!$errors["Limit"] && $running >= $config["maxrunningservers"])
-        array_push($warnings["Limit"], "The maximal count of running servers is already reached, the server couldn't be started");
+        array_push($warnings["Limit"], "The maximum count of running servers is already reached, the server couldn't be started");
 
 if(in_array($_SERVER["REMOTE_ADDR"], $config["bannedips"]))
     array_push($errors["Limit"], "Your ip is banned");
 
 $success = true;
-foreach($errors as $type => $errormessages)
-    foreach($errormessages as $errormessage) {
-        echo("<span style=\"background-color:tomato;\">[".$type."] Error: ".$errormessage."</span><br>\n");
-        $success = false;
-    }
-foreach($warnings as $type => $warningmessages)
-    foreach($warningmessages as $warningmessage)
-        echo("<span style=\"background-color:orange;\">[".$type."] Warning: ".$warningmessage."</span><br>\n");
-echo("<br>\n");
+$errors = array_filter($errors);
+$warnings = array_filter($warnings);
+if (!empty($errors)) {
+    $success = false;
+}
+
 if($success) {
     $identifier = uniqid();
     $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $raw_accesskey]);
@@ -123,12 +106,17 @@ if($success) {
          "playerlimit" => $_POST["playerlimit"],
          "userip" => $_SERVER["REMOTE_ADDR"]]
     )."\n");
-    echo("Successfully created a new server.\nYou can access the server via the webinterface unsing this link <a href=\"".$link."\">".$link."</a>.\nPlease save this link to your bookmarks and use it everytime you want to test a map.\nYou can also login using a form at the server list page and your accesskey.\nYou can ofcourse share the link or your accesskey with other players.\n");
+    session_start();
+    $_SESSION['newlycreatedserver'] = true;
+    $_SESSION['servercreation_warnings'] = $warnings;
+    // Make sure the server recognizes that a new server has been created    
+    sleep($config["tickseconds"]);
+    header("Location: $link");
 }
-else
-    echo("Failed to create a new server because an error occurred.\nClick <a href=\"create_server.php\">here</a> to get back.");
-?>
-</p>
-
-</body>
-</html>
+else {
+    session_start();
+    $_SESSION['unsuccessfulservercreation'] = true;
+    $_SESSION['servercreation_errors'] = $errors;
+    $_SESSION['servercreation_warnings'] = $warnings;
+    header("Location: create_server.php");
+}

@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="stylesheet.css">
-<title>DDNet Trashmap - Access Server</title>
-</head>
-<body>
 <?php
 $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 $config = $data["config"];
@@ -17,16 +9,11 @@ $CHANGE_PASSWORD = 8;
 $CHANGE_RCON = 9;
 $CHANGE_PLAYERLIMIT = 10;
 $DELETE_SERVER = 11;
-?>
 
-<a href=".">Main Page</a> -> <a href="server_list.php">Server List</a> -> Access Server
-<h2>DDNet Trashmap - Access Server</h2>
-<p>
-<?php
 if(!in_array($_POST["id"], array_keys($servers)))
-    echo("There is no server saved with the given identifier.\n");
+    $settingstatus = "There are no servers saved with the given identifier";
 elseif(!password_verify($_POST["key"], $servers[$_POST["id"]]["accesskey"]))
-    echo("The given accesskey does not match.\n");
+    $settingstatus = "The given accesskey does not match.";
 else {
     $identifier = $_POST["id"];
     $info = $servers[$identifier];
@@ -40,7 +27,7 @@ else {
             if($data["running"])
                 $running += 1;
         if($running >= $config["maxrunningservers"])
-            array_push($errors["Limit"], "The maximal count of running servers is already reached, the server couldn't be started");
+            array_push($errors["Limit"], "The maximum count of running servers is already reached, the server couldn't be started");
         elseif($info["running"])
             array_push($warnings["Limit"], "The server was already running");
 
@@ -52,7 +39,7 @@ else {
         if($_FILES["map"]["error"] == UPLOAD_ERR_NO_FILE)
             array_push($errors["Map"], "No file uploaded");
         if($_FILES["map"]["error"] == UPLOAD_ERR_FORM_SIZE || $_FILES["map"]["size"] > $config["mapsize"])
-            array_push($errors["Map"], "Maximal file size exceeded");
+            array_push($errors["Map"], "Maximum file size exceeded");
         if($_FILES["map"]["error"] == UPLOAD_ERR_PARTIAL)
             array_push($errors["Map"], "File only partially uploaded");
         if($_FILES["map"]["error"] == UPLOAD_ERR_INI_SIZE || $_FILES["map"]["error"] == UPLOAD_ERR_NO_TMP_DIR || $_FILES["map"]["error"] == UPLOAD_ERR_CANT_WRITE || $_FILES["map"]["error"] == UPLOAD_ERR_EXTENSION)
@@ -97,15 +84,12 @@ else {
     }
 
     $success = true;
-    foreach($errors as $type => $errormessages)
-        foreach($errormessages as $errormessage) {
-            echo("<span style=\"background-color:tomato;\">[".$type."] Error: ".$errormessage."</span><br>\n");
-            $success = false;
-        }
-    foreach($warnings as $type => $warningmessages)
-        foreach($warningmessages as $warningmessage)
-            echo("<span style=\"background-color:orange;\">[".$type."] Warning: ".$warningmessage."</span><br>\n");
-    echo("<br>\n");
+    $errors = array_filter($errors);
+    $warnings = array_filter($warnings);
+    if (!empty($errors)) {
+        $success = false;
+    }
+
     $link = "access_server.php?".http_build_query(["id" => $_POST["id"], "key" => $_POST["key"]]);
     if($success) {
         if($_POST["action"] == "start") {
@@ -113,13 +97,13 @@ else {
                 ["type" => $START_SERVER,
                  "identifier" => $identifier]
             )."\n");
-            echo("Successfully started the server.\nClick <a href=\"".$link."\">here</a> to get back.\n");
+            $settingstatus = "Successfully started the server";
         } elseif($_POST["action"] == "stop") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $STOP_SERVER,
                  "identifier" => $identifier]
             )."\n");
-            echo("Successfully stopped the server.\nClick <a href=\"".$link."\">here</a> to get back.\n");
+            $settingstatus = "Successfully stopped the server";
         } elseif($_POST["action"] == "map") {
             $mapfile = tempnam("/srv/trashmap/upload", "");
             move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
@@ -129,43 +113,48 @@ else {
                  "mapfile" => $mapfile,
                  "mapname" => $mapname]
             )."\n");
-            echo("Successfully changed the map.\nClick <a href=\"".$link."\">here</a> to get back.\n");
+            $settingstatus = "Successfully changed the map";
         } elseif($_POST["action"] == "password") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_PASSWORD,
                  "identifier" => $identifier,
                  "password" => $_POST["password"] ? $_POST["password"] : null]
             )."\n");
-            echo("Successfully changed the password.\nClick <a href=\"".$link."\">here</a> to get back.\n");
+            $settingstatus = "Successfully changed the password";
         } elseif($_POST["action"] == "rcon") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_RCON,
                  "identifier" => $identifier,
                  "rcon" => $_POST["rcon"]]
             )."\n");
-            echo("Successfully changed the rcon.\nClick <a href=\"".$link."\">here</a> to get back.\n");
+            $settingstatus = "Successfully changed the rcon";
         } elseif($_POST["action"] == "playerlimit") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_PLAYERLIMIT,
                  "identifier" => $identifier,
                  "playerlimit" => $_POST["playerlimit"]]
             )."\n");
-            echo("Successfully changed the playerlimit.\nClick <a href=\"".$link."\">here</a> to get back.\n");
+            $settingstatus = "Successfully changed the playerlimit";
         } elseif($_POST["action"] == "delete") {
             file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
                 ["type" => $DELETE_SERVER,
                  "identifier" => $identifier]
             )."\n");
-            echo("Successfully deleted the server.\nClick <a href=\".\">here</a> to get back to the main page.\n");
+            $settingstatus = "Successfully deleted the server";
         } else {
-            echo("No such action.\n");
+            $settingstatus = "No such action";
+            $success = false;
         }
     }
-    else
-        echo("Failed to access the server because an error occurred.\nClick <a href=\"".$link."\">here</a> to get back.\n");
+    else {
+        $settingstatus = "Failed to access the server because an error occurred";
+        $success = false;
+    }
 }
-?>
-</p>
-
-</body>
-</html>
+session_start();
+$_SESSION['changedsetting'] = true;
+$_SESSION['settingstatus'] = $settingstatus;
+$_SESSION['settingstatus_success'] = $success;
+$_SESSION['settingstatus_errors'] = $errors;
+$_SESSION['settingstatus_warnings'] = $warnings;
+header("Location: $link");

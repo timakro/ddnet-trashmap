@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="stylesheet.css">
-<title>DDNet Trashmap - Suggest Rcon Command</title>
-</head>
-<body>
 <?php
 $data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
 $config = $data["config"];
 $SUGGEST_RCON = 12;
-?>
 
-<a href=".">Main Page</a> -> <a href="create_server.php">Create Server</a> -> <a href="rcon_commands.php">Rcon Commands</a> -> Suggest Rcon Command
-<h2>DDNet Trashmap - Suggest Rcon Command</h2>
-<p>
-<?php
 $errors =   ["Commandname" => []];
 $warnings = ["Commandname" => []];
 
@@ -34,26 +21,27 @@ if(!$errors["Commandname"]) {
         }
 }
 $success = true;
-foreach($errors as $type => $errormessages)
-    foreach($errormessages as $errormessage) {
-        echo("<span style=\"background-color:tomato;\">[".$type."] Error: ".$errormessage."</span><br>\n");
-        $success = false;
-    }
-foreach($warnings as $type => $warningmessages)
-    foreach($warningmessages as $warningmessage)
-        echo("<span style=\"background-color:orange;\">[".$type."] Warning: ".$warningmessage."</span><br>\n");
-echo("<br>\n");
+$errors = array_filter($errors);
+$warnings = array_filter($warnings);
+if (!empty($errors)) {
+    $success = false;
+}
+
 if($success) {
     file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
         ["type" => $SUGGEST_RCON,
          "command" => $_POST["commandname"]]
     )."\n");
-    echo("Thanks for suggesting a new command.\nClick <a href=\"suggest_rcon_command.php\">here</a> to get back.\n");
+    $commandstatus = 'Thanks for suggesting a new command';
 }
-else
-    echo("Failed to suggest a new command because an error occurred.\nClick <a href=\"suggest_rcon_command.php\">here</a> to get back.\n");
-?>
-</p>
+else {
+    $commandstatus = 'Failed to suggest a new command because an error occurred.';
+}
 
-</body>
-</html>
+session_start();
+$_SESSION['suggestedcommand'] = true;
+$_SESSION['commandstatus'] = $commandstatus;
+$_SESSION['commandstatus_success'] = $success;
+$_SESSION['commandstatus_errors'] = $errors;
+$_SESSION['commandstatus_warnings'] = $warnings;
+header("Location: suggest_rcon_command.php");

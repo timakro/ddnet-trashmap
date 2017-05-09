@@ -1,0 +1,48 @@
+/* Font Stacks */
+/* Font Sizes */
+.main section.display_case_section {
+  background-color: white; }
+  .main section.display_case_section table.display_case {
+    table-layout: fixed; }
+    .main section.display_case_section table.display_case td {
+      background-color: inherit;
+      padding: 20px;
+      width: 33.33%;
+      vertical-align: top;
+      border-left: 2px solid #e6e6e6; }
+      .main section.display_case_section table.display_case td:first-child {
+        border-left: none; }
+      .main section.display_case_section table.display_case td .case_head {
+        overflow: hidden;
+        line-height: 48px;
+        margin-bottom: 10px; }
+        .main section.display_case_section table.display_case td .case_head .icon_group, .main section.display_case_section table.display_case td .case_head .header_link {
+          float: left; }
+        .main section.display_case_section table.display_case td .case_head .header_link {
+          margin-left: 15px; }
+      .main section.display_case_section table.display_case td .case_description {
+        clear: left; }
+      .main section.display_case_section table.display_case td.maxed_out .case_head .header_link {
+        color: #8a3737; }
+      .main section.display_case_section table.display_case td.maxed_out .case_description {
+        border-top: 2px solid #8a3737;
+        padding-top: 10px;
+        color: #8a3737;
+        font-weight: 600; }
+.main section.changelog_section {
+  padding-top: 50px;
+  background-color: #e3e3e3; }
+  .main section.changelog_section .section_title {
+    text-align: center;
+    font-size: 30px; }
+  .main section.changelog_section table.changelog {
+    margin-top: 25px; }
+    .main section.changelog_section table.changelog td:nth-child(1) {
+      white-space: nowrap;
+      color: #7d7d7d;
+      font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+      font-weight: 700; }
+    .main section.changelog_section table.changelog td:nth-child(2) {
+      padding-left: 20px; }
+
+/*# sourceMappingURL=index.css.map */
