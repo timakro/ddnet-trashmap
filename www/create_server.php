@@ -15,8 +15,8 @@ if (isset($_SESSION['unsuccessfulservercreation'])):
 <script>
     // instanciate new modal
     var modal = new tingle.modal({
-        closeMethods: ['overlay', 'button', 'escape'],
-        cssClass: ['aside'];
+        closeMethods: ['overlay', 'escape'],
+        cssClass: ['aside'],
         closeLabel: "Close",
         onOpen: function() {
             console.log('modal open');
@@ -42,7 +42,7 @@ if (isset($_SESSION['unsuccessfulservercreation'])):
             }
         }
         echo '</div>';
-    }?>"
+    }?>";
 
     var content = content + "<?php if(!empty($warnings)) {
         echo '<div class=\"warning_block\">';
@@ -52,7 +52,7 @@ if (isset($_SESSION['unsuccessfulservercreation'])):
             }
         }
         echo '</div>';
-    }?>"
+    }?>";
 
     modal.setContent(content);
 
