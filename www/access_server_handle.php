@@ -9,6 +9,7 @@ $CHANGE_PASSWORD = 8;
 $CHANGE_RCON = 9;
 $CHANGE_PLAYERLIMIT = 10;
 $DELETE_SERVER = 11;
+
 if(!in_array($_POST["id"], array_keys($servers)))
     $settingstatus = "There are no servers saved with the given identifier";
 elseif(!password_verify($_POST["key"], $servers[$_POST["id"]]["accesskey"]))
@@ -156,4 +157,4 @@ $_SESSION['settingstatus'] = $settingstatus;
 $_SESSION['settingstatus_success'] = $success;
 $_SESSION['settingstatus_errors'] = $errors;
 $_SESSION['settingstatus_warnings'] = $warnings;
-header("Location: access_server.php");
+header("Location: $link");
