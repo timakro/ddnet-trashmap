@@ -39,10 +39,6 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
         }
     });
 
-    // setTimeout(function () {
-        // modal.close();
-    // }, 3000);
-
     <?php if (isset($_SESSION['newlycreatedserver'])): ?>
         var content = "<h2 class=\"modal_title\">Successfully created a new server.</h2>"
         var content = content + "<?php if(!empty($warnings)) {
@@ -53,7 +49,7 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
                 }
             }
             echo '</div>';
-        }?>"
+        }?>";
         // set content
         var content = content + '<p>Please save this link to your bookmarks and use it everytime you want to test a map.</p><p>You can also login using a form at the server list page and your accesskey.</p><p>You can of course share the link or your accesskey with other players.</p>';
 
@@ -67,7 +63,7 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
                 }
             }
             echo '</div>';
-        }?>"
+        }?>";
 
         var content = content + "<?php if(!empty($warnings)) {
             echo '<div class=\"warning_block\">';
@@ -77,7 +73,7 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
                 }
             }
             echo '</div>';
-        }?>"
+        }?>";
         
     <?php endif; ?>
 
@@ -115,7 +111,7 @@ $servers = $data["storage"]["servers"];
         <h2 class="page_title">DDNet Trashmap - Access Server</h2>
         <p class="page_description">
         <?php if(!in_array($_GET["id"], array_keys($servers))): ?>
-            There is no server saved with the given identifier.
+            There are no servers saved with the given identifier.
         <?php elseif(!password_verify($_GET["key"], $servers[$_GET["id"]]["accesskey"])): ?>
             The given accesskey does not match.
         <?php else:
