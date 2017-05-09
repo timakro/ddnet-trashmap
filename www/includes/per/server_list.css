@@ -1,15 +1,15 @@
 /* Font Stacks */
 /* Font Sizes */
-.main section.offline_servers_section .offline_servers_table td:nth-child(1), .main section.offline_servers_section .offline_servers_table td:nth-child(3) {
-  overflow: auto;
+.main section.offline_servers_section .offline_servers_table td:nth-child(1), .main section.offline_servers_section .offline_servers_table td:nth-child(3), .main section.running_servers_section .running_servers_table td:nth-child(1), .main section.running_servers_section .running_servers_table td:nth-child(3) {
+  white-space: normal;
+  word-break: break-all;
   max-width: 12em; }
-.main section.offline_servers_section .offline_servers_table td:last-of-type {
-  white-space: nowrap;
-  overflow: auto; }
-  .main section.offline_servers_section .offline_servers_table td:last-of-type form input[type=text] {
+.main section.offline_servers_section .offline_servers_table td:last-of-type, .main section.running_servers_section .running_servers_table td:last-of-type {
+  white-space: nowrap; }
+  .main section.offline_servers_section .offline_servers_table td:last-of-type form input[type=text], .main section.running_servers_section .running_servers_table td:last-of-type form input[type=text] {
     margin-top: 0;
     margin-bottom: 0; }
-  .main section.offline_servers_section .offline_servers_table td:last-of-type form input[type=submit] {
+  .main section.offline_servers_section .offline_servers_table td:last-of-type form input[type=submit], .main section.running_servers_section .running_servers_table td:last-of-type form input[type=submit] {
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 10px;

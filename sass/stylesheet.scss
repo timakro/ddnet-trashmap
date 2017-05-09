@@ -344,6 +344,9 @@ body {
 	section {
 		padding: 30px 0;
 		overflow: auto;
+		.section_title {
+			margin-bottom: 0.3em;
+		}
 		.inner_wrap {
 			max-width: 80%;
 			margin: 0 auto;
