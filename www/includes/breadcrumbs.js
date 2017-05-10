@@ -10,9 +10,9 @@ var breadcrumbs = (function (public) {
             // console.log(breadcrumbsBar.children[i]);
         }
         for (var j = 0; j < crumbs.length; j++) {
-            var separator = document.createElement("SPAN");
+            var separator = document.createElement("IMG");
             separator.classList.add("separator");
-            separator.classList.add("cif_arrow");
+            separator.src = "includes/arrow_o.svg";
             breadcrumbsBar.insertBefore(separator, crumbs[j]);
         }
     };
