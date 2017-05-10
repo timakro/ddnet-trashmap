@@ -1,4 +1,4 @@
-/* 
+/*
  * Indicate if files have been select on input[type=file] elements
  * styled with label
  * From: https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/

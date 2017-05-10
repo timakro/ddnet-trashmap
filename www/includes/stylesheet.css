@@ -40,22 +40,6 @@ table {
   border-collapse: collapse; }
 
 /* Global Styles */
-[class^="cif_"], [class*=" cif_"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'customIconFont' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.cif_arrow:before {
-  content: "\e900"; }
-
 p, td {
   color: #555;
   margin-bottom: 0.3em; }
@@ -156,7 +140,7 @@ input {
     border: 1px solid #b0b0b0;
     box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
     font-family: Open Sans, Noto Sans, Roboto, sans-serif;
-    color: #3c3c3c; }
+    color: #3b3b3b; }
     input[type=text]:focus, input[type=number]:focus {
       border-color: #65c286; }
   input[type=submit] {
