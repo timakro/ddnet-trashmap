@@ -1,12 +1,6 @@
 /* Font Stacks */
 /* Font Sizes */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700|Open+Sans:400,600");
-@font-face {
-  font-family: 'customIconFont';
-  src: url("iconFont/IF.eot?j3dzxt");
-  src: url("iconFont/IF.eot?j3dzxt#iefix") format("embedded-opentype"), url("iconFont/IF.ttf?j3dzxt") format("truetype"), url("iconFont/IF.woff?j3dzxt") format("woff"), url("iconFont/IF.svg?j3dzxt#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal; }
 /* - Normalize - */
 * {
   margin: 0;
@@ -242,9 +236,11 @@ body {
   border-bottom: 1px solid #cacaca;
   font-size: 16px; }
   .breadcrumbs .separator {
-    color: #7d7d7d;
-    font-size: 14px;
-    margin-right: 10px; }
+    position: relative;
+    top: -2px;
+    margin-right: 10px;
+    height: 1em;
+    vertical-align: middle; }
   .breadcrumbs .crumb {
     margin-right: 10px;
     color: #7d7d7d;
