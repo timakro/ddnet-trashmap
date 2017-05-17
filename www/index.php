@@ -24,11 +24,13 @@ $servers = $data["storage"]["servers"];
 
 <div class="main">
   <section class="site_branding">
-    <h1 class="site_title">DDNet Trashmap</h1>
-    <p class="site_description">
-    DDNet Trashmap is a service for mappers who can't host their own servers.
-    You can create a testing server here and test your map alone or with other players.
-    </p>
+    <div class="site_branding_box">
+      <img class="site_logo" src="includes/ddnet-trashmap.png">
+      <p class="site_description">
+      DDNet Trashmap is a service for mappers who can't host their own servers.
+      You can create a testing server here and test your map alone or with other players.
+      </p>
+    </div>
   </section>
 
   <section class="display_case_section">
@@ -121,6 +123,10 @@ $servers = $data["storage"]["servers"];
       <tr>
         <th>Date</th>
         <th>Change</th>
+      </tr>
+      <tr>
+        <td>2017-05-17</td>
+        <td>We now got our own logo made by Index</td>
       </tr>
       <tr>
         <td>2017-05-09</td>
