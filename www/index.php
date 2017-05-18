@@ -81,7 +81,7 @@ $servers = $data["storage"]["servers"];
                 <svg role="img" height="48" viewBox="0 0 48 48" width="48" class="icon hovering">
                   <use xlink:href="#path_plus" class="path_hovering"/>
                 </svg>
-                <a href="server_list.php"></a>
+                <a href="create_server.php"></a>
               </div>
               <h3 class="header_link">
                 <a href="create_server.php">Create Server</a>
