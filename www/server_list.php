@@ -25,7 +25,7 @@ $servers = $data["storage"]["servers"];
 <div class="main">
   <section class="page_branding">
     <h2 class="page_title"><?php echo $config["name"];?> - Server List</h2>
-    <p class="page_description">This is a list of all servers saved. You can use the search function of your browser to find a server with a known label. There are currently <?php echo(strval(count($servers))); ?> servers saved. The maximum count of saved servers is <?php echo($config["maxservers"]); ?>.</p>
+    <p class="page_description">This is a list of all servers saved. You can use the search function of your browser to find a server with a known label. Number of servers saved: <?php echo(strval(count($servers))); ?>. The maximum count of saved servers is <?php echo($config["maxservers"]); ?>.</p>
   </section>
 
   <section class="running_servers_section">
@@ -38,7 +38,7 @@ $servers = $data["storage"]["servers"];
             array_push($rows, "<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])." / ".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td><td><form action=\"access_server.php\" method=\"GET\"><input type=\"hidden\" name=\"id\" value=\"".$identifier."\"><input type=\"text\" name=\"key\" maxlength=\"".$config["maxlengthaccesskey"]."\"><input type=\"submit\" value=\"Access\"></form></td></tr>\n");
     }
     ?>
-    There are currently <?php echo(strval(count($rows))); ?> servers running.
+    Number of servers running: <?php echo(strval(count($rows))); ?>.
     The maximum count of running servers is <?php echo($config["maxrunningservers"]); ?>.
     </p>
     <?php if (!empty($rows)):?>
@@ -72,7 +72,7 @@ $servers = $data["storage"]["servers"];
             array_push($rows, "<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>- / ".$info["playerlimit"]."</td><td><form action=\"access_server.php\" method=\"GET\"><input type=\"hidden\" name=\"id\" value=\"".$identifier."\"><input type=\"text\" name=\"key\" maxlength=\"".$config["maxlengthaccesskey"]."\"><input type=\"submit\" value=\"Access\"></form></td></tr>\n");
     }
     ?>
-    There are currently <?php echo(strval(count($rows))); ?> offline servers saved.
+    Number of offline servers saved: <?php echo(strval(count($rows))); ?>.
     </p>
     <?php if (!empty($rows)):?>
     <table class="offline_servers_table data_table negative">
