@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
+$config = $data["config"];
+$servers = $data["storage"]["servers"];
+?>
 <head>
 <?php include "includes/head.inc.php";?>
 <link rel="stylesheet" href="includes/per/access_server.css">
-<title>DDNet Trashmap - Access Server</title>
+<title><?php echo $config["name"];?> - Access Server</title>
 </head>
 <body>
 
@@ -89,12 +94,6 @@ session_unset();
 
 <?php include "includes/openingBody.inc.php";?>
 
-<?php
-$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
-$config = $data["config"];
-$servers = $data["storage"]["servers"];
-?>
-
 <div class="breadcrumbs">
     <div class="crumb">
         <a href=".">Main Page</a>
@@ -109,7 +108,7 @@ $servers = $data["storage"]["servers"];
 
 <div class="main">
     <section class="page_branding">
-        <h2 class="page_title">DDNet Trashmap - Access Server</h2>
+        <h2 class="page_title"><?php echo $config["name"];?> - Access Server</h2>
         <p class="page_description">
         <?php if(!in_array($_GET["id"], array_keys($servers))): ?>
             There are no servers saved with the given identifier.

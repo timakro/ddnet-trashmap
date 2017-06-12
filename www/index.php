@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<?php include "includes/head.inc.php";?>
-<link rel="stylesheet" href="includes/per/index.css">
-<title>DDNet Trashmap</title>
-</head>
-<body>
-<?php include "includes/openingBody.inc.php";?>
-
 <?php
 $data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
 $config = $data["config"];
 $servers = $data["storage"]["servers"];
 ?>
+<head>
+<?php include "includes/head.inc.php";?>
+<link rel="stylesheet" href="includes/per/index.css">
+<title><?php echo $config["name"];?></title>
+</head>
+<body>
+<?php include "includes/openingBody.inc.php";?>
 
 <?php include_once "includes/sprites.svg";?>
 
@@ -27,7 +26,7 @@ $servers = $data["storage"]["servers"];
     <div class="site_branding_box">
       <img class="site_logo" src="includes/ddnet-trashmap.png">
       <p class="site_description">
-      DDNet Trashmap is a service for mappers who can't host their own servers.
+      <?php echo $config["name"];?> is a service for mappers who can't host their own servers.
       You can create a testing server here and test your map alone or with other players.
       </p>
     </div>

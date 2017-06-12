@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<?php include "includes/head.inc.php";?>
-<link rel="stylesheet" href="includes/per/server_list.css">
-<title>DDNet Trashmap - Server List</title>
-</head>
-<body>
-<?php include "includes/openingBody.inc.php";?>
-
 <?php
 $data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
 $config = $data["config"];
 $servers = $data["storage"]["servers"];
 ?>
+<head>
+<?php include "includes/head.inc.php";?>
+<link rel="stylesheet" href="includes/per/server_list.css">
+<title><?php echo $config["name"];?> - Server List</title>
+</head>
+<body>
+<?php include "includes/openingBody.inc.php";?>
 
 <div class="breadcrumbs">
     <div class="crumb">
@@ -25,7 +24,7 @@ $servers = $data["storage"]["servers"];
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title">DDNet Trashmap - Server List</h2>
+    <h2 class="page_title"><?php echo $config["name"];?> - Server List</h2>
     <p class="page_description">This is a list of all servers saved. You can use the search function of your browser to find a server with a known label. There are currently <?php echo(strval(count($servers))); ?> servers saved. The maximum count of saved servers is <?php echo($config["maxservers"]); ?>.</p>
   </section>
 

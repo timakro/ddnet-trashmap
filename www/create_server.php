@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
+$config = $data["config"];
+?>
 <head>
 <?php include "includes/head.inc.php";?>
-<title>DDNet Trashmap - Create Server</title>
+<title><?php echo $config["name"];?> - Create Server</title>
 </head>
 <body>
 
@@ -65,11 +69,6 @@ session_unset();
 
 <?php include "includes/openingBody.inc.php";?>
 
-<?php
-$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
-$config = $data["config"];
-?>
-
 <div class="breadcrumbs">
     <div class="crumb">
       <a href=".">Main Page</a>
@@ -81,7 +80,7 @@ $config = $data["config"];
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title">DDNet Trashmap - Create Server</h2>
+    <h2 class="page_title"><?php echo $config["name"];?> - Create Server</h2>
     <ul class="page_description">
       <li>When you submit this form a new server with the map you uploaded will be started.</li>
       <li>You are only allowed to have at most <?php echo($config["maxserversperip"]); ?> servers saved at a time.</li>
