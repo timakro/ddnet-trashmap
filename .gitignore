@@ -2,5 +2,6 @@ servers/*
 .teeworlds
 DDNet-Server
 daemon_data.json
+daemon_storage.json
 daemon_log.txt
 *.swp
