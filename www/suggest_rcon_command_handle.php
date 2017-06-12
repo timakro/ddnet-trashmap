@@ -1,5 +1,5 @@
 <?php
-$data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
 $config = $data["config"];
 $SUGGEST_RCON = 12;
 
@@ -28,7 +28,7 @@ if (!empty($errors)) {
 }
 
 if($success) {
-    file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+    file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
         ["type" => $SUGGEST_RCON,
          "command" => $_POST["commandname"]]
     )."\n");

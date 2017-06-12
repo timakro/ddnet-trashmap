@@ -90,7 +90,7 @@ session_unset();
 <?php include "includes/openingBody.inc.php";?>
 
 <?php
-$data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
 $config = $data["config"];
 $servers = $data["storage"]["servers"];
 ?>
@@ -134,7 +134,7 @@ $servers = $data["storage"]["servers"];
         Your server is <?php echo($info["running"] ? "running" : "offline"); ?> at the moment.
         <?php
             if($info["running"])
-                echo("The ip of your server is 'timakro.de:".$info["port"]."' or '84.38.65.222:".$info["port"]."'.\n");
+                echo("The ip of your server is ".$config["ip"].":".$info["port"]."\n");
         ?>
         </p>
         <table class="data_table server_status_table">

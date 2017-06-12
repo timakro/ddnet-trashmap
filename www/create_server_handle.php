@@ -1,5 +1,5 @@
 <?php
-$data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
 $config = $data["config"];
 $servers = $data["storage"]["servers"];
 $CREATE_SERVER = 3;
@@ -94,7 +94,8 @@ if($success) {
     $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $raw_accesskey]);
     $mapfile = tempnam("/srv/trashmap/upload", "");
     move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
-    file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+    chmod($mapfile, 0666);
+    file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
         ["type" => $CREATE_SERVER,
          "identifier" => $identifier,
          "label" => $_POST["label"],

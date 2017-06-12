@@ -1,5 +1,5 @@
 <?php
-$data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
 $config = $data["config"];
 $servers = $data["storage"]["servers"];
 $START_SERVER = 4;
@@ -93,13 +93,13 @@ else {
     $link = "access_server.php?".http_build_query(["id" => $_POST["id"], "key" => $_POST["key"]]);
     if($success) {
         if($_POST["action"] == "start") {
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $START_SERVER,
                  "identifier" => $identifier]
             )."\n");
             $settingstatus = "Successfully started the server";
         } elseif($_POST["action"] == "stop") {
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $STOP_SERVER,
                  "identifier" => $identifier]
             )."\n");
@@ -107,7 +107,8 @@ else {
         } elseif($_POST["action"] == "map") {
             $mapfile = tempnam("/srv/trashmap/upload", "");
             move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+            chmod($mapfile, 0666);
+            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_MAP,
                  "identifier" => $identifier,
                  "mapfile" => $mapfile,
@@ -115,28 +116,28 @@ else {
             )."\n");
             $settingstatus = "Successfully changed the map";
         } elseif($_POST["action"] == "password") {
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_PASSWORD,
                  "identifier" => $identifier,
                  "password" => $_POST["password"] ? $_POST["password"] : null]
             )."\n");
             $settingstatus = "Successfully changed the password";
         } elseif($_POST["action"] == "rcon") {
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_RCON,
                  "identifier" => $identifier,
                  "rcon" => $_POST["rcon"]]
             )."\n");
             $settingstatus = "Successfully changed the rcon";
         } elseif($_POST["action"] == "playerlimit") {
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_PLAYERLIMIT,
                  "identifier" => $identifier,
                  "playerlimit" => $_POST["playerlimit"]]
             )."\n");
             $settingstatus = "Successfully changed the playerlimit";
         } elseif($_POST["action"] == "delete") {
-            file_put_contents("/srv/trashmap/daemon_input.fifo", json_encode(
+            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $DELETE_SERVER,
                  "identifier" => $identifier]
             )."\n");

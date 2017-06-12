@@ -152,11 +152,11 @@ def startserver(identifier):
     if info["password"]:
         commands.append(buildcommand("password", info["password"]))
     commands.append(buildcommand("exec", "banlist.cfg"))
-    commands.append(buildcommand("exec", "/srv/trashmap/init.cfg"))
+    commands.append(buildcommand("exec", "/srv/trashmap/srv/init.cfg"))
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
     # start server
-    process = subprocess.Popen(("/srv/trashmap/DDNet-Server", "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    process = subprocess.Popen(("/srv/trashmap/srv/DDNet-Server", "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     fcntl.fcntl(process.stdout, fcntl.F_SETFL, os.O_RDONLY | os.O_NONBLOCK)
     info["process"] = process
     log("Started server", identifier=identifier)
@@ -275,7 +275,7 @@ def buildcommand(command, *args):
 
 def buildtitle(identifier):
     info = data["storage"]["servers"][identifier]
-    name = "DDNet Trashmap [" + info["label"] + "] (" + info["runtimestring"] + ")"
+    name = data["config"]["name"] + " - " + info["label"] + " (" + info["runtimestring"] + ")"
     return name
 
 
@@ -338,7 +338,7 @@ def log(message, identifier=None, warning=False, error=False):
 
 def loadconfig(init=False):
     try:
-        config = json.load(open("/srv/trashmap/daemon_config.json"))
+        config = json.load(open("/srv/trashmap/srv/daemon_config.json"))
         if init: log("Loaded config")
         else:    log("Reloaded config")
         return config
@@ -349,7 +349,7 @@ def loadconfig(init=False):
 
 def loadstorage():
     try:
-        storage = json.load(open("/srv/trashmap/daemon_storage.json"))
+        storage = json.load(open("/srv/trashmap/srv/daemon_storage.json"))
         log("Loaded storage")
         return storage
     except:
@@ -362,7 +362,7 @@ def writedata(init=False):
         json.dump(data, tmp_file, indent=4)
         tmp_file.close()
         os.chmod(tmp_file.name, 0644)
-        os.rename(tmp_file.name, "/srv/trashmap/daemon_data.json")
+        os.rename(tmp_file.name, "/srv/trashmap/srv/daemon_data.json")
         if init: log("Created data")
     except:
         if init: log("Failed to create data", error=True)
@@ -371,7 +371,7 @@ def writedata(init=False):
 
 def writestorage(final=False):
     try:
-        json.dump(data["storage"], open("/srv/trashmap/daemon_storage.json", "w"), indent=4)
+        json.dump(data["storage"], open("/srv/trashmap/srv/daemon_storage.json", "w"), indent=4)
         if final: log("Wrote final storage")
     except:
         if final: log("Failed to write final storage", error=True)
@@ -382,7 +382,7 @@ def main():
     # open logfile
     try:
         global logfile
-        logfile = open("/srv/trashmap/daemon_log.txt", "a")
+        logfile = open("/srv/trashmap/srv/daemon_log.txt", "a")
     except: pass
     global pidstr
     pidstr = str(os.getpid())
@@ -397,14 +397,14 @@ def main():
     # create and open fifo
     try:
         oldmask = os.umask(0000)
-        os.mkfifo("/srv/trashmap/daemon_input.fifo", 0666)
+        os.mkfifo("/srv/trashmap/srv/daemon_input.fifo", 0666)
         os.umask(oldmask)
         log("Created fifo")
     except:
         log("Failed to create fifo", warning=True)
     try:
         global fifo
-        fifo = os.open("/srv/trashmap/daemon_input.fifo", os.O_RDONLY | os.O_NONBLOCK)
+        fifo = os.open("/srv/trashmap/srv/daemon_input.fifo", os.O_RDONLY | os.O_NONBLOCK)
         assert stat.S_ISFIFO(os.fstat(fifo).st_mode)
     except:
         log("Failed to open fifo", error=True)
@@ -474,14 +474,14 @@ def shutdown():
     # close and remove fifo
     try:
         os.close(fifo)
-        os.unlink("/srv/trashmap/daemon_input.fifo")
+        os.unlink("/srv/trashmap/srv/daemon_input.fifo")
         log("Removed fifo")
     except:
         log("Failed to remove fifo", warning=True)
 
     # remove data
     try:
-        os.unlink("/srv/trashmap/daemon_data.json")
+        os.unlink("/srv/trashmap/srv/daemon_data.json")
         log("Removed data")
     except:
         log("Failed to remove data", warning=True)

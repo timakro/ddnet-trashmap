@@ -9,7 +9,7 @@
 <?php include "includes/openingBody.inc.php";?>
 
 <?php
-$data = json_decode(file_get_contents("/srv/trashmap/daemon_data.json"), true);
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
 ?>
 
 <div class="breadcrumbs">

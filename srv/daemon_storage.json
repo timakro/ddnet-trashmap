@@ -43,5 +43,27 @@
         "move", 
         "move_raw"
     ], 
-    "servers": {}
+    "servers": {
+        "593ed2a573a33": {
+            "lifeseconds": 37, 
+            "serverdir": "/srv/trashmap/servers/593ed2a573a33", 
+            "process": null, 
+            "clientids": [], 
+            "accesskey": "$2y$10$TDCPElejpEfk.CDZ5SyBOOo0jb1g8Ew09kh3mBdf5.TpCy..gE4si", 
+            "label": "FOO", 
+            "mapname": "Kobra_9dd1474d", 
+            "stopping": true, 
+            "running": true, 
+            "stoptime": null, 
+            "runtimestring": "0h 0m 36s", 
+            "streamlast": "", 
+            "starttime": 0, 
+            "playerlimit": "8", 
+            "userip": "93.213.182.21", 
+            "rcon": "trashmap", 
+            "password": null, 
+            "titletime": 30, 
+            "port": 8500
+        }
+    }
 }

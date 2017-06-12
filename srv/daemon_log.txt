@@ -1,1 +1,285 @@
 
+27530 Trashmap daemon started
+27530 Loaded config
+27530 Loaded storage
+27530 Created data
+27530 Created fifo
+27530 Removed fifo
+27530 Warning: Failed to remove data
+27530 Wrote final storage
+27530 Trashmap daemon terminated
+27539 Trashmap daemon started
+27539 Loaded config
+27539 Loaded storage
+27539 Created data
+27539 Created fifo
+27539 Removed fifo
+27539 Warning: Failed to remove data
+27539 Wrote final storage
+27539 Trashmap daemon terminated
+28660 Trashmap daemon started
+28660 Loaded config
+28660 Loaded storage
+28660 Created data
+28660 Created fifo
+28660 Removed fifo
+28660 Removed data
+28660 Wrote final storage
+28660 Trashmap daemon terminated
+28870 Trashmap daemon started
+28870 Loaded config
+28870 Loaded storage
+28870 Created data
+28870 Created fifo
+28870 Removed fifo
+28870 Removed data
+28870 Wrote final storage
+28870 Trashmap daemon terminated
+29401 Trashmap daemon started
+29401 Loaded config
+29401 Loaded storage
+29401 Created data
+29401 Created fifo
+29401 Traceback (most recent call last):
+        File "./trashmap.py", line 511, in starter
+          main()
+        File "./trashmap.py", line 451, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 102, in createserver
+          os.mkdir(serverdir)
+      OSError: [Errno 2] No such file or directory: '/srv/trashmap/servers/593ecc3d28ef3'
+29401 Removed fifo
+29401 Removed data
+29401 Wrote final storage
+29401 Trashmap daemon terminated because a python exception occurred
+29492 Trashmap daemon started
+29492 Loaded config
+29492 Loaded storage
+29492 Created data
+29492 Created fifo
+29492 Traceback (most recent call last):
+        File "./trashmap.py", line 511, in starter
+          main()
+        File "./trashmap.py", line 451, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 104, in createserver
+          os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+      OSError: [Errno 1] Operation not permitted
+29492 Removed fifo
+29492 Removed data
+29492 Wrote final storage
+29492 Trashmap daemon terminated because a python exception occurred
+29608 Trashmap daemon started
+29608 Loaded config
+29608 Loaded storage
+29608 Created data
+29608 Created fifo
+29608 Removed fifo
+29608 Removed data
+29608 Wrote final storage
+29608 Trashmap daemon terminated
+29623 Trashmap daemon started
+29623 Loaded config
+29623 Loaded storage
+29623 Created data
+29623 Created fifo
+29623 Traceback (most recent call last):
+        File "./trashmap.py", line 510, in starter
+          main()
+        File "./trashmap.py", line 450, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 104, in createserver
+          os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+      OSError: [Errno 1] Operation not permitted
+29623 Removed fifo
+29623 Removed data
+29623 Wrote final storage
+29623 Trashmap daemon terminated because a python exception occurred
+29708 Trashmap daemon started
+29708 Loaded config
+29708 Loaded storage
+29708 Created data
+29708 Created fifo
+29708 Traceback (most recent call last):
+        File "./trashmap.py", line 512, in starter
+          main()
+        File "./trashmap.py", line 452, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 106, in createserver
+          os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+      OSError: [Errno 1] Operation not permitted
+29708 Removed fifo
+29708 Removed data
+29708 Wrote final storage
+29708 Trashmap daemon terminated because a python exception occurred
+30013 Trashmap daemon started
+30013 Loaded config
+30013 Loaded storage
+30013 Created data
+30013 Created fifo
+30013 Traceback (most recent call last):
+        File "./trashmap.py", line 512, in starter
+          main()
+        File "./trashmap.py", line 452, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 106, in createserver
+          os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+      OSError: [Errno 1] Operation not permitted
+30013 Removed fifo
+30013 Removed data
+30013 Wrote final storage
+30013 Trashmap daemon terminated because a python exception occurred
+30077 Trashmap daemon started
+30077 Loaded config
+30077 Loaded storage
+30077 Created data
+30077 Created fifo
+30077 Traceback (most recent call last):
+        File "./trashmap.py", line 512, in starter
+          main()
+        File "./trashmap.py", line 452, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 106, in createserver
+          os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+      OSError: [Errno 1] Operation not permitted
+30077 Removed fifo
+30077 Removed data
+30077 Wrote final storage
+30077 Trashmap daemon terminated because a python exception occurred
+30195 Trashmap daemon started
+30195 Loaded config
+30195 Loaded storage
+30195 Created data
+30195 Created fifo
+30195 Traceback (most recent call last):
+        File "./trashmap.py", line 512, in starter
+          main()
+        File "./trashmap.py", line 452, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 106, in createserver
+          os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+      OSError: [Errno 1] Operation not permitted
+30195 Removed fifo
+30195 Removed data
+30195 Wrote final storage
+30195 Trashmap daemon terminated because a python exception occurred
+30360 Trashmap daemon started
+30360 Loaded config
+30360 Loaded storage
+30360 Created data
+30360 Created fifo
+30360 Traceback (most recent call last):
+        File "./trashmap.py", line 512, in starter
+          main()
+        File "./trashmap.py", line 452, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 106, in createserver
+          os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+      OSError: [Errno 1] Operation not permitted
+30360 Removed fifo
+30360 Removed data
+30360 Wrote final storage
+30360 Trashmap daemon terminated because a python exception occurred
+30431 Trashmap daemon started
+30431 Loaded config
+30431 Loaded storage
+30431 Created data
+30431 Created fifo
+30431 [593ecfa28b54d] Created server
+30431 Traceback (most recent call last):
+        File "./trashmap.py", line 512, in starter
+          main()
+        File "./trashmap.py", line 452, in main
+          handle(order)
+        File "./trashmap.py", line 42, in handle
+          createserver(order)
+        File "./trashmap.py", line 131, in createserver
+          startserver(order["identifier"])
+        File "./trashmap.py", line 161, in startserver
+          process = subprocess.Popen(("/srv/trashmap/srv/DDNet-Server", "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        File "/usr/lib/python2.7/subprocess.py", line 710, in __init__
+          errread, errwrite)
+        File "/usr/lib/python2.7/subprocess.py", line 1335, in _execute_child
+          raise child_exception
+      OSError: [Errno 2] No such file or directory
+30431 Warning: [593ecfa28b54d] Failed to write to server fifo
+30431 [593ecfa28b54d] Stopped server
+30431 Removed fifo
+30431 Removed data
+30431 Wrote final storage
+30431 Trashmap daemon terminated because a python exception occurred
+30508 Trashmap daemon started
+30508 Loaded config
+30508 Loaded storage
+30508 Created data
+30508 Created fifo
+30508 [593ecfdc41b9e] Created server
+30508 [593ecfdc41b9e] Started server
+30508 [593ecfdc41b9e] Stopped server
+30508 Removed fifo
+30508 Removed data
+30508 Wrote final storage
+30508 Trashmap daemon terminated
+30960 Trashmap daemon started
+30960 Loaded config
+30960 Loaded storage
+30960 Created data
+30960 Created fifo
+30960 Removed fifo
+30960 Removed data
+30960 Wrote final storage
+30960 Trashmap daemon terminated
+31010 Trashmap daemon started
+31010 Loaded config
+31010 Loaded storage
+31010 Created data
+31010 Created fifo
+31010 Removed fifo
+31010 Removed data
+31010 Wrote final storage
+31010 Trashmap daemon terminated
+31105 Trashmap daemon started
+31105 Loaded config
+31105 Loaded storage
+31105 Created data
+31105 Created fifo
+31105 [593ed1dc1e27c] Created server
+31105 [593ed1dc1e27c] Started server
+31105 [593ed1dc1e27c] Stopped server
+31105 Removed fifo
+31105 Removed data
+31105 Wrote final storage
+31105 Trashmap daemon terminated
+31332 Trashmap daemon started
+31332 Loaded config
+31332 Loaded storage
+31332 Created data
+31332 Created fifo
+31332 [593ed2a573a33] Created server
+31332 [593ed2a573a33] Started server
+31332 [593ed2a573a33] Stopped server
+31332 Removed fifo
+31332 Removed data
+31332 Wrote final storage
+31332 Trashmap daemon terminated
+31770 Trashmap daemon started
+31770 Loaded config
+31770 Loaded storage
+31770 Created data
+31770 Created fifo

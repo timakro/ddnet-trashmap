@@ -1,0 +1,5 @@
+servers/*
+.teeworlds
+DDNet-Server
+daemon_data.json
+*.swp
