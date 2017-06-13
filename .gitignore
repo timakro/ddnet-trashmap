@@ -5,3 +5,5 @@ daemon_data.json
 daemon_storage.json
 daemon_log.txt
 *.swp
+*.css.map
+*.sass-cache/*
