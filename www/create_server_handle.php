@@ -94,7 +94,6 @@ if($success) {
     $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $raw_accesskey]);
     $mapfile = tempnam("/srv/trashmap/upload", "");
     move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
-    chmod($mapfile, 0666);
     file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
         ["type" => $CREATE_SERVER,
          "identifier" => $identifier,

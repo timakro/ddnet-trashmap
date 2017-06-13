@@ -1,5 +1,5 @@
 # DDNet Trashmap
-[DDNet Trashmap](https://trashmap.timakro.de/) is a service for mappers who can't host their own server.
+[DDNet Trashmap](http://trashmap.ddnet.tw/) is a service for mappers who can't host their own server.
 You can create a testing server here and test your map alone or with other players.
 
 ## Development
