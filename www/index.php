@@ -19,6 +19,12 @@ $servers = $data["storage"]["servers"];
   <div class="crumb">
     Main Page
   </div>
+  <div class="locality_tab">
+    <h4 class="locality">
+      <?php echo $config["locality"]?>
+    </h4>
+    <img class="dropdown" src="includes/dropdown.svg">
+  </div>
 </div>
 
 <div class="main">
@@ -26,7 +32,7 @@ $servers = $data["storage"]["servers"];
     <div class="site_branding_box">
       <img class="site_logo" src="includes/ddnet-trashmap.png">
       <p class="site_description">
-      <?php echo $config["name"];?> is a service for mappers who can't host their own servers.
+      <b><?php echo $config["name"];?></b> is a service for mappers who can't host their own servers.
       You can create a testing server here and test your map alone or with other players.
       </p>
     </div>

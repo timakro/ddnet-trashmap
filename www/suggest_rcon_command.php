@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
+$config = $data["config"];
+?>
 <head>
 <?php include "includes/head.inc.php";?>
-<title>DDNet Trashmap - Suggest Rcon Command</title>
+<title><?php echo $config["name"];?> - Suggest Rcon Command</title>
 </head>
 <body>
 
@@ -66,11 +70,6 @@ session_unset();
 
 <?php include "includes/openingBody.inc.php";?>
 
-<?php
-$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
-$config = $data["config"];
-?>
-
 <div class="breadcrumbs">
     <div class="crumb">
       <a href=".">Main Page</a>
@@ -84,11 +83,17 @@ $config = $data["config"];
   <div class="crumb">
     Suggest Rcon Command
   </div>
+  <div class="locality_tab">
+    <h4 class="locality">
+      <?php echo $config["locality"]?>
+    </h4>
+    <img class="dropdown" src="includes/dropdown.svg">
+  </div>
 </div>
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title">DDNet Trashmap - Suggest Rcon Command</h2>
+    <h2 class="page_title"><?php echo $config["name"];?> - Suggest Rcon Command</h2>
     <p class="page_description">
     You can suggest a new rcon command here.
     Please don't misuse this service and only suggest commands that are useful and not dangerous.

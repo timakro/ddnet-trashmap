@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
+$config = $data["config"];
+?>
 <head>
 <?php include "includes/head.inc.php";?>
 <link rel="stylesheet" href="includes/per/rcon_commands.css">
-<title>DDNet Trashmap - Rcon Commands</title>
+<title><?php echo $config["name"];?> - Rcon Commands</title>
 </head>
 <body>
 <?php include "includes/openingBody.inc.php";?>
-
-<?php
-$data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), true);
-?>
 
 <div class="breadcrumbs">
   <div class="crumb">
@@ -22,11 +22,17 @@ $data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), tru
   <div class="crumb">
     Rcon Commands
   </div>
+  <div class="locality_tab">
+    <h4 class="locality">
+      <?php echo $config["locality"]?>
+    </h4>
+    <img class="dropdown" src="includes/dropdown.svg">
+  </div>
 </div>
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title">DDNet Trashmap - Rcon Commands</h2>
+    <h2 class="page_title"><?php echo $config["name"];?> - Rcon Commands</h2>
     <p class="page_description">When you have the rcon password of a server you can only execute specifically allowed commands.</p>
   </section>
   <section>

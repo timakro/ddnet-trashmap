@@ -76,6 +76,12 @@ session_unset();
   <div class="crumb">
     Create Server
   </div>
+  <div class="locality_tab">
+    <h4 class="locality">
+      <?php echo $config["locality"]?>
+    </h4>
+    <img class="dropdown" src="includes/dropdown.svg">
+  </div>
 </div>
 
 <div class="main">

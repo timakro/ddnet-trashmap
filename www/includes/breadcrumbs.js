@@ -6,8 +6,8 @@ var breadcrumbs = (function (public) {
         var initialLength = breadcrumbsBar.children.length;
         var crumbs = [];
         for (var i = 1; i < initialLength; i++) {
-            crumbs.push(breadcrumbsBar.children[i]);
-            // console.log(breadcrumbsBar.children[i]);
+            if (!breadcrumbsBar.children[i].classList.contains("locality_tab"))
+                crumbs.push(breadcrumbsBar.children[i]);
         }
         for (var j = 0; j < crumbs.length; j++) {
             var separator = document.createElement("IMG");

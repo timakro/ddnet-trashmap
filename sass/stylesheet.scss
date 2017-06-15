@@ -231,10 +231,13 @@ body {
 
 .breadcrumbs {
     background-color: $shade0;
-    padding: 5px 0px 5px 20px;
+    padding-left: 20px;
     border-bottom: 1px solid darken($shade1, 10%);
     font-size: 16px;
+    position: relative;
     .separator {
+        padding-top: 5px;
+        padding-bottom: 5px;
         position: relative;
         top: -2px;
         margin-right: 10px;
@@ -242,6 +245,8 @@ body {
         vertical-align: middle;
     }
     .crumb {
+        padding-top: 5px;
+        padding-bottom: 5px;
         margin-right: 10px;
         color: darken($shade1, 40%);
         font-family: $headerFS;
@@ -250,6 +255,34 @@ body {
         a {
             color: $accent1;
             font-weight: 500;
+        }
+    }
+    .locality_tab {
+        position: absolute;
+        height: 100%;
+        right: 0;
+        background-color: $accent1-fade;
+        border-bottom: 1px solid $accent1-fade;
+        box-sizing: content-box;
+        display: inline-block;
+        padding: 0 20px 0 20px;
+        &:hover {
+            cursor: pointer;
+        }
+        .locality {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            display: inline-block;
+            color: $shade0;
+            font-size: 16px;
+        }
+        .dropdown {
+            position: relative;
+            top: -3px;
+            display: inline-block;
+            font-size: 16px;
+            height: 0.8em;
+            vertical-align: middle;
         }
     }
 }
@@ -310,6 +343,23 @@ body {
             }
         }
     }
+    .trashmap_locations_header {
+        border-bottom: 2px solid $accent1;
+        padding-bottom: 8px;
+    }
+    ul.trashmap_locations {
+        list-style-type: none;
+        background-color: desaturate(lighten($accent1, 40%), 10%);
+        margin-top: 0;
+        margin-left: 0;
+        padding: 20px;
+        li a {
+            color: darken($accent1, 5%);
+            &:hover {
+                color: darken($accent1, 20%);
+            }
+        }
+    }
 }
 
 
@@ -332,7 +382,7 @@ body {
             background-color: $shade0;
         }
         &.page_branding {
-            background-color: lighten(desaturate($accent1, 20%), 10%);
+            background-color: $accent1-fade;
             .page_title {
                 color: $shade0;
                 display: inline-block;
@@ -349,7 +399,7 @@ body {
             }
         }
         &.site_branding {
-            background-color: lighten(desaturate($accent1, 20%), 10%);
+            background-color: $accent1-fade;
             padding-top: 60px;
             padding-bottom: 60px;
             overflow: hidden;

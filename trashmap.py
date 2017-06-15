@@ -152,6 +152,7 @@ def startserver(identifier):
     if info["password"]:
         commands.append(buildcommand("password", info["password"]))
     commands.append(buildcommand("exec", "banlist.cfg"))
+    commands.append(buildcommand("sv_welcome", "Welcome to {}! Visit trashmap.ddnet.tw".format(data["config"]["name"])))
     commands.append(buildcommand("exec", "/srv/trashmap/srv/init.cfg"))
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
@@ -459,7 +460,7 @@ def main():
         # sleep for a tick
         delta = next_run - time.time()
         if delta < 0:
-            log("Skipped {0} ticks".format(delta / -data["config"]["tickseconds"]), warning=True)
+            log("Skipped {} ticks".format(delta / -data["config"]["tickseconds"]), warning=True)
         else:
             time.sleep(delta)
 

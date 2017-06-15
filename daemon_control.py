@@ -7,12 +7,12 @@ ALLOW_RCON = 13
 DELETE_RCON = 14
 
 def getdata():
-    data = json.load(open("/srv/trashmap/daemon_data.json")) 
+    data = json.load(open("/srv/trashmap/srv/daemon_data.json")) 
     return data
 
 def writefifo(order):
     line = json.dumps(order) + "\n"
-    with open("/srv/trashmap/daemon_input.fifo", "w") as fifo:
+    with open("/srv/trashmap/srv/daemon_input.fifo", "w") as fifo:
         fifo.write(line)
 
 print("Welcome to daemon control, enter 'help' to get a list of commands.")
