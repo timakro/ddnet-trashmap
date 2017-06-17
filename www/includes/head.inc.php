@@ -7,3 +7,4 @@
 <script src="includes/breadcrumbs.js"></script>
 <script src="includes/fileUpload.js"></script>
 <script src="includes/start.js"></script>
+<script src="includes/localizeNav.js"></script>

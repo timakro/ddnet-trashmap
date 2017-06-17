@@ -216,16 +216,21 @@ body {
 
 .breadcrumbs {
   background-color: white;
-  padding: 5px 0px 5px 20px;
+  padding-left: 20px;
   border-bottom: 1px solid #cacaca;
-  font-size: 16px; }
+  font-size: 16px;
+  position: relative; }
   .breadcrumbs .separator {
+    padding-top: 5px;
+    padding-bottom: 5px;
     position: relative;
     top: -2px;
     margin-right: 10px;
     height: 1em;
     vertical-align: middle; }
   .breadcrumbs .crumb {
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin-right: 10px;
     color: #7d7d7d;
     font-family: Montserrat, Roboto, sans-serif;
@@ -234,6 +239,30 @@ body {
     .breadcrumbs .crumb a {
       color: #378A54;
       font-weight: 500; }
+  .breadcrumbs .locality_tab {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    background-color: #5e9672;
+    border-bottom: 1px solid #5e9672;
+    box-sizing: content-box;
+    display: inline-block;
+    padding: 0 20px 0 20px; }
+    .breadcrumbs .locality_tab:hover {
+      cursor: pointer; }
+    .breadcrumbs .locality_tab .locality {
+      padding-top: 5px;
+      padding-bottom: 5px;
+      display: inline-block;
+      color: white;
+      font-size: 16px; }
+    .breadcrumbs .locality_tab .dropdown {
+      position: relative;
+      top: -3px;
+      display: inline-block;
+      font-size: 16px;
+      height: 0.8em;
+      vertical-align: middle; }
 
 .tingle-modal.aside .tingle-modal-box {
   font-size: 14px;
@@ -271,6 +300,19 @@ body {
   .tingle-modal .warning_block .warning_line .warning_message {
     color: #935E22;
     margin-left: 5px; }
+.tingle-modal .trashmap_locations_header {
+  border-bottom: 2px solid #378A54;
+  padding-bottom: 8px; }
+.tingle-modal ul.trashmap_locations {
+  list-style-type: none;
+  background-color: #b4d9c1;
+  margin-top: 0;
+  margin-left: 0;
+  padding: 20px; }
+  .tingle-modal ul.trashmap_locations li a {
+    color: #307849; }
+    .tingle-modal ul.trashmap_locations li a:hover {
+      color: #1a4128; }
 
 .main section {
   padding: 30px 0;

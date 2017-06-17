@@ -5,4 +5,5 @@ window.onload = function () {
     document.body.style.display = "block";
     fileUpload.initialize(0);
     iconLinkHover.initialize();
+    localizeNav.initialize();
 };
