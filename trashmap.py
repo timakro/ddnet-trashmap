@@ -100,6 +100,7 @@ def createserver(order):
     # create serverdir and move map
     serverdir = os.path.join("/srv/trashmap/servers", order["identifier"])
     os.mkdir(serverdir)
+    os.symlink("/srv/trashmap/srv/init.cfg", os.path.join(serverdir, "init.cfg"))
     os.mkdir(os.path.join(serverdir, "maps"))
     os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
     # add server to memory
@@ -153,7 +154,7 @@ def startserver(identifier):
         commands.append(buildcommand("password", info["password"]))
     commands.append(buildcommand("exec", "banlist.cfg"))
     commands.append(buildcommand("sv_welcome", "Welcome to {}! Visit trashmap.ddnet.tw".format(data["config"]["name"])))
-    commands.append(buildcommand("exec", "/srv/trashmap/srv/init.cfg"))
+    commands.append(buildcommand("exec", "init.cfg"))
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
     # start server
