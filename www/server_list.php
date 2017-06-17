@@ -8,7 +8,7 @@ $servers = $data["storage"]["servers"];
 <head>
 <?php include "includes/head.inc.php";?>
 <link rel="stylesheet" href="includes/per/server_list.css">
-<title><?php echo $config["name"];?> - Server List</title>
+<title>DDNet <?php echo $config["location"];?> Trashmap - Server List</title>
 </head>
 <body>
 <?php include "includes/openingBody.inc.php";?>
@@ -22,7 +22,7 @@ $servers = $data["storage"]["servers"];
   </div>
   <div class="locality_tab">
     <h4 class="locality">
-      <?php echo $config["locality"]?>
+      <?php echo $config["location"]?>
     </h4>
     <img class="dropdown" src="includes/dropdown.svg">
   </div>
@@ -30,7 +30,7 @@ $servers = $data["storage"]["servers"];
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title"><?php echo $config["name"];?> - Server List</h2>
+    <h2 class="page_title">DDNet <?php echo $config["location"];?> Trashmap - Server List</h2>
     <p class="page_description">This is a list of all servers saved. You can use the search function of your browser to find a server with a known label. Number of servers saved: <?php echo(strval(count($servers))); ?>. The maximum count of saved servers is <?php echo($config["maxservers"]); ?>.</p>
   </section>
 

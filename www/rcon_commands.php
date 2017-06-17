@@ -7,7 +7,7 @@ $config = $data["config"];
 <head>
 <?php include "includes/head.inc.php";?>
 <link rel="stylesheet" href="includes/per/rcon_commands.css">
-<title><?php echo $config["name"];?> - Rcon Commands</title>
+<title>DDNet <?php echo $config["location"];?> Trashmap - Rcon Commands</title>
 </head>
 <body>
 <?php include "includes/openingBody.inc.php";?>
@@ -24,7 +24,7 @@ $config = $data["config"];
   </div>
   <div class="locality_tab">
     <h4 class="locality">
-      <?php echo $config["locality"]?>
+      <?php echo $config["location"]?>
     </h4>
     <img class="dropdown" src="includes/dropdown.svg">
   </div>
@@ -32,7 +32,7 @@ $config = $data["config"];
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title"><?php echo $config["name"];?> - Rcon Commands</h2>
+    <h2 class="page_title">DDNet <?php echo $config["location"];?> Trashmap - Rcon Commands</h2>
     <p class="page_description">When you have the rcon password of a server you can only execute specifically allowed commands.</p>
   </section>
   <section>

@@ -153,7 +153,6 @@ def startserver(identifier):
     if info["password"]:
         commands.append(buildcommand("password", info["password"]))
     commands.append(buildcommand("exec", "banlist.cfg"))
-    commands.append(buildcommand("sv_welcome", "Welcome to {}! Visit trashmap.ddnet.tw".format(data["config"]["name"])))
     commands.append(buildcommand("exec", "init.cfg"))
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
@@ -277,7 +276,7 @@ def buildcommand(command, *args):
 
 def buildtitle(identifier):
     info = data["storage"]["servers"][identifier]
-    name = data["config"]["name"] + " - " + info["label"] + " (" + info["runtimestring"] + ")"
+    name = "DDNet " + data["config"]["location"] + " Trashmap - " + info["label"] + " (" + info["runtimestring"] + ")"
     return name
 
 

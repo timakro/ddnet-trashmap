@@ -8,7 +8,7 @@ $servers = $data["storage"]["servers"];
 <head>
 <?php include "includes/head.inc.php";?>
 <link rel="stylesheet" href="includes/per/index.css">
-<title><?php echo $config["name"];?></title>
+<title>DDNet <?php echo $config["location"];?> - Trashmap</title>
 </head>
 <body>
 <?php include "includes/openingBody.inc.php";?>
@@ -21,7 +21,7 @@ $servers = $data["storage"]["servers"];
   </div>
   <div class="locality_tab">
     <h4 class="locality">
-      <?php echo $config["locality"]?>
+      <?php echo $config["location"]?>
     </h4>
     <img class="dropdown" src="includes/dropdown.svg">
   </div>
@@ -32,7 +32,7 @@ $servers = $data["storage"]["servers"];
     <div class="site_branding_box">
       <img class="site_logo" src="includes/ddnet-trashmap.png">
       <p class="site_description">
-      <b><?php echo $config["name"];?></b> is a service for mappers who can't host their own servers.
+      DDNet Trashmap is a service for mappers who can't host their own servers.
       You can create a testing server here and test your map alone or with other players.
       </p>
     </div>

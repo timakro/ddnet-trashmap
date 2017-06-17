@@ -6,7 +6,7 @@ $config = $data["config"];
 ?>
 <head>
 <?php include "includes/head.inc.php";?>
-<title><?php echo $config["name"];?> - Create Server</title>
+<title>DDNet <?php echo $config["location"];?> Trashmap - Create Server</title>
 </head>
 <body>
 
@@ -78,7 +78,7 @@ session_unset();
   </div>
   <div class="locality_tab">
     <h4 class="locality">
-      <?php echo $config["locality"]?>
+      <?php echo $config["location"]?>
     </h4>
     <img class="dropdown" src="includes/dropdown.svg">
   </div>
@@ -86,7 +86,7 @@ session_unset();
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title"><?php echo $config["name"];?> - Create Server</h2>
+    <h2 class="page_title">DDNet <?php echo $config["location"];?> Trashmap - Create Server</h2>
     <ul class="page_description">
       <li>When you submit this form a new server with the map you uploaded will be started.</li>
       <li>You are only allowed to have at most <?php echo($config["maxserversperip"]); ?> servers saved at a time.</li>

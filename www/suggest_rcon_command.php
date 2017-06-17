@@ -6,7 +6,7 @@ $config = $data["config"];
 ?>
 <head>
 <?php include "includes/head.inc.php";?>
-<title><?php echo $config["name"];?> - Suggest Rcon Command</title>
+<title>DDNet <?php echo $config["location"];?> Trashmap - Suggest Rcon Command</title>
 </head>
 <body>
 
@@ -85,7 +85,7 @@ session_unset();
   </div>
   <div class="locality_tab">
     <h4 class="locality">
-      <?php echo $config["locality"]?>
+      <?php echo $config["location"]?>
     </h4>
     <img class="dropdown" src="includes/dropdown.svg">
   </div>
@@ -93,7 +93,7 @@ session_unset();
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title"><?php echo $config["name"];?> - Suggest Rcon Command</h2>
+    <h2 class="page_title">DDNet <?php echo $config["location"];?> Trashmap - Suggest Rcon Command</h2>
     <p class="page_description">
     You can suggest a new rcon command here.
     Please don't misuse this service and only suggest commands that are useful and not dangerous.

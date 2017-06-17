@@ -6,7 +6,7 @@ $config = $data["config"];
 ?>
 <head>
 <?php include "includes/head.inc.php";?>
-<title><?php echo $config["name"];?> - Maintenance</title>
+<title>DDNet <?php echo $config["location"];?> Trashmap - Maintenance</title>
 </head>
 <body>
 <?php include "includes/openingBody.inc.php";?>
@@ -17,7 +17,7 @@ $config = $data["config"];
   </div>
   <div class="locality_tab">
     <h4 class="locality">
-      <?php echo $config["locality"]?>
+      <?php echo $config["location"]?>
     </h4>
     <img class="dropdown" src="includes/dropdown.svg">
   </div>
@@ -25,7 +25,7 @@ $config = $data["config"];
 
 <div class="main">
   <section class="page_branding">
-    <h2 class="page_title"><?php echo $config["name"];?> - Maintenance</h2>
+    <h2 class="page_title">DDNet <?php echo $config["location"];?> Trashmap - Maintenance</h2>
     <p class="page_description">Sorry, we are down for maintenance!</p>
   </section>
 </div>

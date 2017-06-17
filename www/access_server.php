@@ -8,7 +8,7 @@ $servers = $data["storage"]["servers"];
 <head>
 <?php include "includes/head.inc.php";?>
 <link rel="stylesheet" href="includes/per/access_server.css">
-<title><?php echo $config["name"];?> - Access Server</title>
+<title>DDNet <?php echo $config["location"];?> Trashmap - Access Server</title>
 </head>
 <body>
 
@@ -106,7 +106,7 @@ session_unset();
     </div>
     <div class="locality_tab">
       <h4 class="locality">
-        <?php echo $config["locality"]?>
+        <?php echo $config["location"]?>
       </h4>
       <img class="dropdown" src="includes/dropdown.svg">
     </div>
@@ -114,7 +114,7 @@ session_unset();
 
 <div class="main">
     <section class="page_branding">
-        <h2 class="page_title"><?php echo $config["name"];?> - Access Server</h2>
+        <h2 class="page_title">DDNet <?php echo $config["location"];?> Trashmap - Access Server</h2>
         <p class="page_description">
         <?php if(!in_array($_GET["id"], array_keys($servers))): ?>
             There are no servers saved with the given identifier.
