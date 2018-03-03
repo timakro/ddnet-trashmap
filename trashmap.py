@@ -101,6 +101,7 @@ def createserver(order):
     serverdir = os.path.join("/srv/trashmap/servers", order["identifier"])
     os.mkdir(serverdir)
     os.symlink("/srv/trashmap/srv/init.cfg", os.path.join(serverdir, "init.cfg"))
+    os.symlink("/srv/trashmap/srv/storage.cfg", os.path.join(serverdir, "storage.cfg"))
     os.mkdir(os.path.join(serverdir, "maps"))
     os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
     # add server to memory
