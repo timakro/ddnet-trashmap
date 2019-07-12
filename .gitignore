@@ -1,4 +1,5 @@
 servers/*
+!servers/.keep
 .teeworlds
 DDNet-Server
 daemon_data.json
@@ -8,3 +9,5 @@ daemon_config.json
 *.swp
 *.css.map
 *.sass-cache/*
+/.*
+!.gitignore
