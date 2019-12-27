@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import os
 import time
 import json
 import signal
-import threading
 import stat
 import tempfile
 import subprocess
@@ -93,7 +92,7 @@ def createserver(order):
     if len(data["storage"]["servers"]) >= data["config"]["maxservers"]:
         return
     # calculate port
-    ports = [i["port"] for i in data["storage"]["servers"].itervalues()]
+    ports = [i["port"] for i in data["storage"]["servers"].values()]
     port = 8500
     while port in ports:
         port += 1
@@ -132,7 +131,7 @@ def createserver(order):
 
 
 def startserver(identifier):
-    if len([1 for i in data["storage"]["servers"].itervalues() if i["running"]]) >= data["config"]["maxrunningservers"]:
+    if len([1 for i in data["storage"]["servers"].values() if i["running"]]) >= data["config"]["maxrunningservers"]:
         return
     info = data["storage"]["servers"][identifier]
     if info["running"]:
@@ -140,6 +139,7 @@ def startserver(identifier):
     # update memory
     info["starttime"] = info["lifeseconds"]
     info["stoptime"] = None
+    info["titletime"] = info["lifeseconds"]
     info["running"] = True
     info["runtimestring"] = buildruntime(identifier)
     info["streamlast"] = ""
@@ -270,7 +270,7 @@ def update(identifier):
 
 
 def buildcommand(command, *args):
-    args = ["\"" + unicode(arg).replace("\"", "\\\"") + "\"" for arg in args]
+    args = ["\"" + str(arg).replace("\"", "\\\"") + "\"" for arg in args]
     commandstr = command + " " + " ".join(args) + ";"
     return commandstr
 
@@ -293,11 +293,12 @@ def writefifo(identifier, line):
     info = data["storage"]["servers"][identifier]
     if not info["running"] or info["stopping"]:
         return
-    fifo = os.path.join(data["storage"]["servers"][identifier]["serverdir"], "fifo")
+    fifopath = os.path.join(data["storage"]["servers"][identifier]["serverdir"], "fifo")
     try:
-        assert stat.S_ISFIFO(os.stat(fifo).st_mode)
-        with open(fifo, "w+") as fifo:
-            fifo.write((line+"\n").encode("utf-8"))
+        assert stat.S_ISFIFO(os.stat(fifopath).st_mode)
+        fifo = os.open(fifopath, os.O_WRONLY | os.O_NONBLOCK)
+        os.write(fifo, (line+"\n").encode("utf-8"))
+        os.close(fifo)
     except:
         log("Failed to write to server fifo", identifier=identifier, warning=True)
 
@@ -307,7 +308,7 @@ def readstream(identifier):
     while True:
         # read rawstring
         try:
-            rawstring = os.read(info["process"].stdout.fileno(), 256)
+            rawstring = os.read(info["process"].stdout.fileno(), 256).decode("utf-8")
         except: break
         if not rawstring:
             break
@@ -363,7 +364,7 @@ def writedata(init=False):
         tmp_file = tempfile.NamedTemporaryFile(mode="w", prefix="trashmap-", delete=False)
         json.dump(data, tmp_file, indent=4)
         tmp_file.close()
-        os.chmod(tmp_file.name, 0644)
+        os.chmod(tmp_file.name, 0o644)
         os.rename(tmp_file.name, "/srv/trashmap/srv/daemon_data.json")
         if init: log("Created data")
     except:
@@ -399,7 +400,7 @@ def main():
     # create and open fifo
     try:
         oldmask = os.umask(0000)
-        os.mkfifo("/srv/trashmap/srv/daemon_input.fifo", 0666)
+        os.mkfifo("/srv/trashmap/srv/daemon_input.fifo", 0o666)
         os.umask(oldmask)
         log("Created fifo")
     except:
@@ -433,7 +434,7 @@ def main():
         # handle fifo 
         while True:
             try:
-                rawstring = os.read(fifo, 256)
+                rawstring = os.read(fifo, 256).decode("utf-8")
             except: break
             if not rawstring:
                 break
@@ -503,42 +504,26 @@ def shutdown():
     except: pass
 
 
-
-# start thread
 status_flag = RUNNING
 config_reload_flag = False
-def starter():
-    try:
-        main()
-    except:
-        global status_flag
-        status_flag = EXCEPTION
-        log(traceback.format_exc())
-        shutdown()
-        raise
-thread = threading.Thread(target=starter)
-thread.start()
 
-# set up sigterm handler
-def handle_sigterm(x, y):
+# set up SIGTERM and SIGINT handlers
+def handle_kill(x, y):
     global status_flag
     status_flag = SHUTDOWN
-signal.signal(signal.SIGTERM, handle_sigterm)
+signal.signal(signal.SIGTERM, handle_kill)
+signal.signal(signal.SIGINT,  handle_kill)
 
-# set up sigusr1 handler
-def handle_sigusr1(x, y):
+# set up SIGUSR1 handler
+def handle_reload(x, y):
     global config_reload_flag
     config_reload_flag = True
-signal.signal(signal.SIGUSR1, handle_sigusr1)
+signal.signal(signal.SIGUSR1, handle_reload)
 
-# wait for shutdown
 try:
-    while True:
-        if status_flag != RUNNING:
-            break
-        time.sleep(1)
-except KeyboardInterrupt:
-    status_flag = SHUTDOWN
-
-# wait for the thread to finish
-thread.join()
+    main()
+except:
+    status_flag = EXCEPTION
+    log(traceback.format_exc())
+    shutdown()
+    raise
