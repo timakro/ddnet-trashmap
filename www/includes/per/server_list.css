@@ -4,6 +4,7 @@
   white-space: normal;
   word-break: break-all;
   max-width: 12em; }
+
 .main section.offline_servers_section .offline_servers_table td:last-of-type, .main section.running_servers_section .running_servers_table td:last-of-type {
   white-space: nowrap; }
   .main section.offline_servers_section .offline_servers_table td:last-of-type form input[type=text], .main section.running_servers_section .running_servers_table td:last-of-type form input[type=text] {
@@ -14,5 +15,3 @@
     margin-bottom: 0;
     margin-left: 10px;
     height: 40px; }
-
-/*# sourceMappingURL=server_list.css.map */

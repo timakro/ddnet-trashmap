@@ -140,7 +140,7 @@ input {
     border: 1px solid #b0b0b0;
     box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
     font-family: Open Sans, Noto Sans, Roboto, sans-serif;
-    color: #3b3b3b; }
+    color: #3c3c3c; }
     input[type=text]:focus, input[type=number]:focus {
       border-color: #65c286; }
   input[type=submit] {
@@ -270,14 +270,18 @@ body {
   margin-top: 0;
   background-color: white;
   border-radius: 0; }
+
 .tingle-modal.aside .tingle-modal-box__content {
   padding: 20px; }
+
 .tingle-modal .modal_title.error_head {
   color: #8a3737; }
+
 .tingle-modal p {
   margin-top: 0.3em; }
   .tingle-modal p:first-of-type {
     margin-top: 1em; }
+
 .tingle-modal .error_block {
   margin-top: 1em;
   padding: 10px 15px;
@@ -289,6 +293,7 @@ body {
   .tingle-modal .error_block .error_line .error_message {
     color: #8a3737;
     margin-left: 5px; }
+
 .tingle-modal .warning_block {
   margin-top: 1em;
   padding: 10px 15px;
@@ -300,9 +305,11 @@ body {
   .tingle-modal .warning_block .warning_line .warning_message {
     color: #935E22;
     margin-left: 5px; }
+
 .tingle-modal .trashmap_locations_header {
   border-bottom: 2px solid #378A54;
   padding-bottom: 8px; }
+
 .tingle-modal ul.trashmap_locations {
   list-style-type: none;
   background-color: #b4d9c1;
@@ -357,5 +364,3 @@ body {
         font-size: 18px;
         width: 250px;
         float: left; }
-
-/*# sourceMappingURL=stylesheet.css.map */
