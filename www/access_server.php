@@ -145,11 +145,11 @@ session_unset();
         <table class="data_table server_status_table">
         <?php
             if($info["running"]) {
-                echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Playercount</th><th>Runtime</th></tr>\n");
-                echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".count($info["clientids"])." / ".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td></tr>\n");
+                echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Version</th><th>Playercount</th><th>Runtime</th></tr>\n");
+                echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".$info["version"]."</td><td>".count($info["clientids"])." / ".$info["playerlimit"]."</td><td>".$info["runtimestring"]."</td></tr>\n");
             } else {
-                echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Playercount</th></tr>\n");
-                echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>- / ".$info["playerlimit"]."</td></tr>\n");
+                echo("<tr><th>Label</th><th>Port</th><th>Map</th><th>Rcon</th><th>Password</th><th>Version</th><th>Playercount</th></tr>\n");
+                echo("<tr><td>".htmlentities($info["label"])."</td><td>".$info["port"]."</td><td>".htmlentities($info["mapname"])."</td><td>".($info["rcon"] == $config["defaultrcon"] ? "default" : "custom")."</td><td>".($info["password"] == null ? "false" : "true")."</td><td>".$info["version"]."</td><td>- / ".$info["playerlimit"]."</td></tr>\n");
             }
         ?>
         </table>
@@ -223,6 +223,26 @@ session_unset();
             <input type="text" name="rcon" maxlength="<?php echo($config["maxlengthrcon"]); ?>" value="<?php echo($config["defaultrcon"]); ?>">
             <br>
             <input type="submit" value="Change Rcon">
+        </form>
+    </section>
+
+    <section>
+        <h3 class="section_title">Version</h3>
+        <p>
+        Change the compatible Teeworlds version.
+        Choose between the original DDNet and DDNet7 servers.
+        This can only be changed if the server is offline.
+        </p>
+        <form enctype="multipart/form-data" action="access_server_handle.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo($_GET["id"]); ?>">
+            <input type="hidden" name="key" value="<?php echo($_GET["key"]); ?>">
+            <input type="hidden" name="action" value="version">
+            <select name="version">
+                <option value="0.6" selected>0.6</option>
+                <option value="0.7">0.7</option>
+            </select>
+            <br>
+            <input type="submit" value="Change Version">
         </form>
     </section>
 
