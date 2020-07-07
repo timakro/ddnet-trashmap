@@ -1,7 +1,7 @@
 servers/*
 !servers/.keep
 .teeworlds
-DDNet-Server
+/srv/build
 daemon_data.json
 daemon_storage.json
 daemon_log.txt

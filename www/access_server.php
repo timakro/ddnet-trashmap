@@ -51,7 +51,7 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
             echo '<div class=\"warning_block\">';
             foreach($warnings as $type => $warningmessages) {
                 foreach($warningmessages as $warningmessage) {
-                        echo '<div class=\"warning_line\">' . '<span class=\"warning_type\">[' . $type . ']</span><span class=\"warning_message\">' . $warningmessage . '</span></div>';
+                        echo '<div class=\"warning_line\">' . '<span class=\"warning_type\">[' . $type . ']</span><span class=\"warning_message\">' . htmlspecialchars($warningmessage) . '</span></div>';
                 }
             }
             echo '</div>';
@@ -65,7 +65,7 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
             echo '<div class=\"error_block\">';
             foreach($errors as $type => $errormessages) {
                 foreach($errormessages as $errormessage) {
-                        echo '<div class=\"error_line\">' . '<span class=\"error_type\">[' . $type . ']</span><span class=\"error_message\">' . $errormessage . '</span></div>';
+                        echo '<div class=\"error_line\">' . '<span class=\"error_type\">[' . $type . ']</span><span class=\"error_message\">' . htmlspecialchars($errormessage) . '</span></div>';
                 }
             }
             echo '</div>';
@@ -75,7 +75,7 @@ if (isset($_SESSION['newlycreatedserver']) || isset($_SESSION['changedsetting'])
             echo '<div class=\"warning_block\">';
             foreach($warnings as $type => $warningmessages) {
                 foreach($warningmessages as $warningmessage) {
-                        echo '<div class=\"warning_line\">' . '<span class=\"warning_type\">[' . $type . ']</span><span class=\"warning_message\">' . $warningmessage . '</span></div>';
+                        echo '<div class=\"warning_line\">' . '<span class=\"warning_type\">[' . $type . ']</span><span class=\"warning_message\">' . htmlspecialchars($warningmessage) . '</span></div>';
                 }
             }
             echo '</div>';

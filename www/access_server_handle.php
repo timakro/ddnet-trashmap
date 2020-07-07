@@ -85,7 +85,6 @@ else {
 
     $success = true;
     $errors = array_filter($errors);
-    $warnings = array_filter($warnings);
     if (!empty($errors)) {
         $success = false;
     }
@@ -106,11 +105,19 @@ else {
             $settingstatus = "Successfully stopped the server";
         } elseif($_POST["action"] == "map") {
             $mapfile = tempnam("/srv/trashmap/upload", "");
+            $mapfile7 = tempnam("/srv/trashmap/upload", "");
             move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
+            exec("/srv/trashmap/srv/build/map_convert_07 ".escapeshellarg($mapfile)." ".escapeshellarg($mapfile7), $map_conv_out);
+            foreach($map_conv_out as $line) {
+                if(preg_match("/\[map_convert_07\]: .*: (.*)$/", $line, $matches))
+                    array_push($warnings["Map"], $matches[1]);
+            }
+            chmod($mapfile7, 0644);
             file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_MAP,
                  "identifier" => $identifier,
                  "mapfile" => $mapfile,
+                 "mapfile7" => $mapfile7,
                  "mapname" => $mapname]
             )."\n");
             $settingstatus = "Successfully changed the map";
@@ -156,7 +163,7 @@ $_SESSION['changedsetting'] = true;
 $_SESSION['settingstatus'] = $settingstatus;
 $_SESSION['settingstatus_success'] = $success;
 $_SESSION['settingstatus_errors'] = $errors;
-$_SESSION['settingstatus_warnings'] = $warnings;
+$_SESSION['settingstatus_warnings'] = array_filter($warnings);
 if(!$error) {
   // Make sure the server recognizes that a setting changed
   sleep($config["tickseconds"]);

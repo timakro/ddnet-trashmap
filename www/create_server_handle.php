@@ -77,14 +77,13 @@ foreach($servers as $identifier => $data) {
 if($sameip >= $config["maxserversperip"])
     array_push($errors["Limit"], "The maximum count of saved servers per ip is already reached");
 if(!$errors["Limit"] && $running >= $config["maxrunningservers"])
-        array_push($warnings["Limit"], "The maximum count of running servers is already reached, the server couldn't be started");
+    array_push($warnings["Limit"], "The maximum count of running servers is already reached, the server couldn't be started");
 
 if(in_array($_SERVER["REMOTE_ADDR"], $config["bannedips"]))
     array_push($errors["Limit"], "Your ip is banned");
 
 $success = true;
 $errors = array_filter($errors);
-$warnings = array_filter($warnings);
 if (!empty($errors)) {
     $success = false;
 }
@@ -93,13 +92,21 @@ if($success) {
     $identifier = uniqid();
     $link = "access_server.php?".http_build_query(["id" => $identifier, "key" => $raw_accesskey]);
     $mapfile = tempnam("/srv/trashmap/upload", "");
+    $mapfile7 = tempnam("/srv/trashmap/upload", "");
     move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
+    exec("/srv/trashmap/srv/build/map_convert_07 ".escapeshellarg($mapfile)." ".escapeshellarg($mapfile7), $map_conv_out);
+    foreach($map_conv_out as $line) {
+        if(preg_match("/\[map_convert_07\]: .*: (.*)$/", $line, $matches))
+            array_push($warnings["Map"], $matches[1]);
+    }
+    chmod($mapfile7, 0644);
     file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
         ["type" => $CREATE_SERVER,
          "identifier" => $identifier,
          "label" => $_POST["label"],
          "accesskey" => $_POST["accesskey"],
          "mapfile" => $mapfile,
+         "mapfile7" => $mapfile7,
          "mapname" => $mapname,
          "password" => $_POST["password"] ? $_POST["password"] : null,
          "rcon" => $_POST["rcon"],
@@ -108,7 +115,7 @@ if($success) {
     )."\n");
     session_start();
     $_SESSION['newlycreatedserver'] = true;
-    $_SESSION['servercreation_warnings'] = $warnings;
+    $_SESSION['servercreation_warnings'] = array_filter($warnings);
     // Make sure the server recognizes that a new server has been created
     sleep($config["tickseconds"]);
     header("Location: $link");
@@ -117,6 +124,6 @@ else {
     session_start();
     $_SESSION['unsuccessfulservercreation'] = true;
     $_SESSION['servercreation_errors'] = $errors;
-    $_SESSION['servercreation_warnings'] = $warnings;
+    $_SESSION['servercreation_warnings'] = array_filter($warnings);
     header("Location: create_server.php");
 }

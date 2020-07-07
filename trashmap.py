@@ -48,7 +48,7 @@ def handle(order):
             stopserver(order["identifier"])
     elif order["type"] == CHANGE_MAP:
         if order["identifier"] in data["storage"]["servers"]:
-            changemap(order["identifier"], order["mapfile"], order["mapname"])
+            changemap(order["identifier"], order["mapfile"], order["mapfile7"], order["mapname"])
             writestorage()
     elif order["type"] == CHANGE_PASSWORD:
         if order["identifier"] in data["storage"]["servers"]:
@@ -102,7 +102,9 @@ def createserver(order):
     os.symlink("/srv/trashmap/srv/init.cfg", os.path.join(serverdir, "init.cfg"))
     os.symlink("/srv/trashmap/srv/storage.cfg", os.path.join(serverdir, "storage.cfg"))
     os.mkdir(os.path.join(serverdir, "maps"))
+    os.mkdir(os.path.join(serverdir, "maps7"))
     os.rename(order["mapfile"], os.path.join(serverdir, "maps", order["mapname"]+".map"))
+    os.rename(order["mapfile7"], os.path.join(serverdir, "maps7", order["mapname"]+".map"))
     # add server to memory
     data["storage"]["servers"][order["identifier"]] = {
         "label": order["label"],
@@ -158,7 +160,7 @@ def startserver(identifier):
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
     # start server
-    process = subprocess.Popen(("/srv/trashmap/srv/DDNet-Server", "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    process = subprocess.Popen(("/srv/trashmap/srv/build/DDNet-Server", "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     fcntl.fcntl(process.stdout, fcntl.F_SETFL, os.O_RDONLY | os.O_NONBLOCK)
     info["process"] = process
     log("Started server", identifier=identifier)
@@ -197,12 +199,14 @@ def deleteserver(identifier):
     log("Deleted server", identifier=identifier)
 
 
-def changemap(identifier, mapfile, mapname):
+def changemap(identifier, mapfile, mapfile7, mapname):
     info = data["storage"]["servers"][identifier]
     # remove old map
     os.unlink(os.path.join(info["serverdir"], "maps", info["mapname"]+".map"))
+    os.unlink(os.path.join(info["serverdir"], "maps7", info["mapname"]+".map"))
     # move new map and reload
     os.rename(mapfile, os.path.join(info["serverdir"], "maps", mapname+".map"))
+    os.rename(mapfile7, os.path.join(info["serverdir"], "maps7", mapname+".map"))
     if info["running"]:
         if info["mapname"] != mapname:
             writefifo(identifier, buildcommand("change_map", mapname))
