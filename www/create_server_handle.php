@@ -3,8 +3,8 @@ $data = json_decode(file_get_contents("/srv/trashmap/srv/daemon_data.json"), tru
 $config = $data["config"];
 $servers = $data["storage"]["servers"];
 $CREATE_SERVER = 3;
-$errors =   ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Version" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
-$warnings = ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Version" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+$errors =   ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+$warnings = ["Label" => [], "Accesskey" => [], "Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
 
 if(!$_POST["label"])
     array_push($errors["Label"], "Field is empty");
@@ -56,9 +56,6 @@ if(!$_POST["rcon"]) {
     $_POST["rcon"] = $config["defaultrcon"];
 }
 
-if($_POST["version"] != "0.6" && $_POST["version"] != "0.7")
-    array_push($errors["Version"], "Must be one of 0.6 or 0.7");
-
 if(!$_POST["playerlimit"] || !ctype_digit($_POST["playerlimit"])) {
     array_push($warnings["Playerlimit"], "Value is not a valid number");
     $_POST["playerlimit"] = $config["defaultplayers"];
@@ -106,7 +103,6 @@ if($success) {
          "mapname" => $mapname,
          "password" => $_POST["password"] ? $_POST["password"] : null,
          "rcon" => $_POST["rcon"],
-         "version" => $_POST["version"],
          "playerlimit" => $_POST["playerlimit"],
          "userip" => $_SERVER["REMOTE_ADDR"]]
     )."\n");

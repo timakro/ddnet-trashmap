@@ -173,17 +173,6 @@ label {
       cursor: pointer;
       background-color: #f2f2f2; }
 
-select {
-  margin: 1em 0;
-  padding: 8px 12px;
-  border-radius: 0;
-  border: 1px solid #b0b0b0;
-  box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 0.2);
-  font-family: Open Sans, Noto Sans, Roboto, sans-serif;
-  color: #3c3c3c; }
-  select:focus {
-    border-color: #65c286; }
-
 a {
   text-decoration: none;
   color: #37798A;

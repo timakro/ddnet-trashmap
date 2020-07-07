@@ -160,18 +160,6 @@ session_unset();
   </section>
 
   <section>
-    <h3 class="section_title">Version</h3>
-    <p>
-    The compatible Teeworlds version.
-    Choose between the original DDNet and DDNet7 servers.
-    </p>
-    <select name="version">
-        <option value="0.6" selected>0.6</option>
-        <option value="0.7">0.7</option>
-    </select>
-  </section>
-
-  <section>
     <h3 class="section_title">Playerlimit</h3>
     <p>
     The maximum number of players on the server.

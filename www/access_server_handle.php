@@ -5,7 +5,6 @@ $servers = $data["storage"]["servers"];
 $START_SERVER = 4;
 $STOP_SERVER = 5;
 $CHANGE_MAP = 6;
-$CHANGE_VERSION = 7;
 $CHANGE_PASSWORD = 8;
 $CHANGE_RCON = 9;
 $CHANGE_PLAYERLIMIT = 10;
@@ -19,8 +18,8 @@ else {
     $identifier = $_POST["id"];
     $info = $servers[$identifier];
 
-    $errors =   ["Map" => [], "Password" => [], "Version" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
-    $warnings = ["Map" => [], "Password" => [], "Version" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+    $errors =   ["Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
+    $warnings = ["Map" => [], "Password" => [], "Playerlimit" => [], "Rcon" => [], "Limit" => []];
 
     if($_POST["action"] == "start") {
         $running = 0;
@@ -71,12 +70,6 @@ else {
             array_push($warnings["Rcon"], "Field contains too many characters");
             $_POST["rcon"] = $config["defaultrcon"];
         }
-
-    } elseif($_POST["action"] == "version") {
-        if($info["running"])
-            array_push($errors["Version"], "The server is running at the moment");
-        elseif($_POST["version"] != "0.6" && $_POST["version"] != "0.7")
-            array_push($errors["Version"], "Must be one of 0.6 or 0.7");
 
     } elseif($_POST["action"] == "playerlimit") {
         if($info["running"])
@@ -135,13 +128,6 @@ else {
                  "rcon" => $_POST["rcon"]]
             )."\n");
             $settingstatus = "Successfully changed the rcon";
-        } elseif($_POST["action"] == "version") {
-            file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
-                ["type" => $CHANGE_VERSION,
-                 "identifier" => $identifier,
-                 "version" => $_POST["version"]]
-            )."\n");
-            $settingstatus = "Successfully changed the version";
         } elseif($_POST["action"] == "playerlimit") {
             file_put_contents("/srv/trashmap/srv/daemon_input.fifo", json_encode(
                 ["type" => $CHANGE_PLAYERLIMIT,

@@ -198,18 +198,6 @@ label {
         display: inline-block;
     }
 }
-select {
-    margin: 1em 0;
-    padding: 8px 12px;
-    border-radius: 0;
-    border: 1px solid darken($shade1, 20%);
-    box-shadow: inset 0px 0px 8px rgba(0,0,0,0.2);
-    font-family: $bodyFS;
-    color: darken($text1-0, 10%);
-    &:focus {
-        border-color: lighten($accent1, 20%);
-    }
-}
 
 a {
     text-decoration: none;

@@ -15,7 +15,6 @@ CREATE_SERVER = 3
 START_SERVER = 4
 STOP_SERVER = 5
 CHANGE_MAP = 6
-CHANGE_VERSION = 7
 CHANGE_PASSWORD = 8
 CHANGE_RCON = 9
 CHANGE_PLAYERLIMIT = 10
@@ -62,10 +61,6 @@ def handle(order):
             if data["storage"]["servers"][order["identifier"]]["running"]:
                 writefifo(order["identifier"], buildcommand("sv_rcon_mod_password", order["rcon"]))
             data["storage"]["servers"][order["identifier"]]["rcon"] = order["rcon"]
-            writestorage()
-    elif order["type"] == CHANGE_VERSION:
-        if order["identifier"] in data["storage"]["servers"] and not data["storage"]["servers"][order["identifier"]]["running"]:
-            data["storage"]["servers"][order["identifier"]]["version"] = order["version"]
             writestorage()
     elif order["type"] == CHANGE_PLAYERLIMIT:
         if order["identifier"] in data["storage"]["servers"] and not data["storage"]["servers"][order["identifier"]]["running"]:
@@ -116,7 +111,6 @@ def createserver(order):
         "mapname": order["mapname"],
         "password": order["password"],
         "rcon": order["rcon"],
-        "version": order["version"],
         "playerlimit": order["playerlimit"],
         "userip": order["userip"],
         "lifeseconds": 0,
@@ -164,10 +158,7 @@ def startserver(identifier):
     for rcon in data["storage"]["allowed_rcon"]:
         commands.append(buildcommand("access_level", rcon, 2))
     # start server
-    binary = "/srv/trashmap/srv/DDNet-Server"
-    if info["version"] == "0.7":
-        binary = "/srv/trashmap/srv/DDNet7-Server"
-    process = subprocess.Popen((binary, "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    process = subprocess.Popen(("/srv/trashmap/srv/DDNet-Server", "".join(commands).encode("utf-8")), cwd=info["serverdir"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     fcntl.fcntl(process.stdout, fcntl.F_SETFL, os.O_RDONLY | os.O_NONBLOCK)
     info["process"] = process
     log("Started server", identifier=identifier)

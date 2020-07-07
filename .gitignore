@@ -2,7 +2,6 @@ servers/*
 !servers/.keep
 .teeworlds
 DDNet-Server
-DDNet7-Server
 daemon_data.json
 daemon_storage.json
 daemon_log.txt
