@@ -109,7 +109,7 @@ else {
             move_uploaded_file($_FILES["map"]["tmp_name"], $mapfile);
             exec("/srv/trashmap/srv/build/map_convert_07 ".escapeshellarg($mapfile)." ".escapeshellarg($mapfile7), $map_conv_out);
             foreach($map_conv_out as $line) {
-                if(preg_match("/\[map_convert_07\]: .*: (.*)$/", $line, $matches))
+                if(preg_match("/\[map_convert_07\]: ".preg_quote($mapfile, "/").": (.*)$/", $line, $matches))
                     array_push($warnings["Map"], $matches[1]);
             }
             chmod($mapfile7, 0644);
