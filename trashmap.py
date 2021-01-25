@@ -458,7 +458,7 @@ def main():
                     handle(order)
 
         # update servers
-        for identifier in data["storage"]["servers"].keys():
+        for identifier in list(data["storage"]["servers"].keys()):
             update(identifier)
 
         # write data to file
