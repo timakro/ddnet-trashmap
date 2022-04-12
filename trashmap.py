@@ -243,13 +243,13 @@ def update(identifier):
         info["runtimestring"] = buildruntime(identifier)
         # read stream
         for line in readstream(identifier):
-            match = re.match("\[.*\]\[server\]: player is ready\. ClientID=([0-9]+) .*", line)
+            match = re.match("(?:\x1b\[39m\x1b\[39m)?\[[0-9-: ]+\]\[server\]: player is ready\. ClientID=([0-9]+) .*", line)
             if match:
                 cid = int(match.group(1))
                 if cid not in info["clientids"]:
                     info["clientids"].append(cid)
                 continue
-            match = re.match("\[.*\]\[server\]: client dropped\. cid=([0-9]+) .*", line)
+            match = re.match("(?:\x1b\[39m\x1b\[39m)?\[[0-9-: ]+\]\[server\]: client dropped\. cid=([0-9]+) .*", line)
             if match:
                 cid = int(match.group(1))
                 if cid in info["clientids"]:
