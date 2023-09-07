@@ -131,7 +131,7 @@ $servers = $data["storage"]["servers"];
       </tr>
       <tr>
         <td>2017-05-17</td>
-        <td>We now got our own logo made by Index</td>
+        <td>We now have our own logo, made by Index</td>
       </tr>
       <tr>
         <td>2017-05-09</td>
