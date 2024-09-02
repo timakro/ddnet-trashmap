@@ -1,8 +1,8 @@
 {
     "location": "GER",
-    "ip": "trashmap.ddnet.tw",
+    "ip": "trashmap.ddnet.org",
     "locations" : [
-        { "location":"South Africa", "ip":"zaf.ddnet.tw" }
+        { "location":"South Africa", "ip":"zaf.ddnet.org" }
     ],
     "maxservers": 300,
     "maxserversperip": 2,

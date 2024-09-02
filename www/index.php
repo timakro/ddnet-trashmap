@@ -111,9 +111,9 @@ $servers = $data["storage"]["servers"];
               <a href="https://github.com/timakro/DDNet-Trashmap">Development</a>
             </h3>
           </div>
-          <p class="case_description">DDNet Trashmap is developed by <a href="https://timakro.de">timakro</a> and the web design is made by Oblique.
-          You can find the sourcecode on <a href="https://github.com/timakro/DDNet-Trashmap">github</a>.
-          Please report bugs on the github page or on the related <a href="https://forum.ddnet.tw/viewtopic.php?f=6&t=1764">thread</a> in the DDNet forum.</p>
+          <p class="case_description">DDNet Trashmap is developed by timakro and the web design is made by Oblique.
+          You can find the source code on <a href="https://github.com/timakro/DDNet-Trashmap">GitHub</a>.
+          Please report bugs on the GitHub page.</p>
         </td>
       </tr>
     </table><!-- display_case -->
