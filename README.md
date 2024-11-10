@@ -1,3 +1,5 @@
+Deprecated. Use https://github.com/timakro/trashmap instead.
+
 # DDNet Trashmap
 
 [DDNet Trashmap](https://trashmap.ddnet.org/) is a service for mappers who can't host their own server.
